@@ -6,7 +6,8 @@ import { useHistory } from 'react-router';
 export default function RouteOrderAdd()  {
  
   
-  let history = useHistory();
+  let history = useHistory();//to navigate page
+
 
 
     
