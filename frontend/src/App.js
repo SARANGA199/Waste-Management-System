@@ -147,6 +147,7 @@ function App() {
           <PrivateRoute path="/driver/prof/:id" roles={["User"]} exact component={DriverProfile} />
           <PrivateRoute path="/routeReq/allRouteReq" roles={["admin"]} exact component={CheckDrivers} />
           <PrivateRoute path="/driver/allprof" roles={["admin"]} exact component={SelectDriver} />
+          <PrivateRoute path="/trip/addTrip" roles={["admin"]} exact component={SelectDriver} />
           <PrivateRoute path="/delivery/display" roles={["User"]} exact component={View} />
           <PrivateRoute path="/driver/collect" roles={["User"]} exact component={CollectItem} />
 

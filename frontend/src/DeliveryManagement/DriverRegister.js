@@ -26,7 +26,7 @@ export default function DriverRegister() {
 
     axios
       .post(
-        "http://localhost:8070/driver/613728a89f2ac365dc10e3ab/reg",
+        "http://localhost:8070/driver/613728a89f2ac365dc10e3ab/reg",      //ID  Add
         newDriver
       )
       .then(() => {
@@ -73,9 +73,9 @@ export default function DriverRegister() {
           >
             <option selected>Select the closest location</option>
             <option value={"Akuressa"}>Akuressa</option>
-            <option value={"Godagama"}>Godagama</option>
+            <option value={"Hakmana"}>Galle</option>
             <option value={"Hakmana"}>Hakmana</option>
-            <option value={"Kamburupitiya"}>Kamburupitiya</option>
+          
             <option value={"Matara"}>Matara</option>
             <option value={"Telijjawila"}>Telijjawila</option>
             <option value={"Weligama"}>Weligama</option>

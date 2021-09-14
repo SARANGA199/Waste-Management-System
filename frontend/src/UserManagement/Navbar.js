@@ -71,8 +71,8 @@ const Navbar = props =>{
                     <li class="nav-item">
                 <button type="button"
                         className="btn btn-link nav-item nav-link text-white" 
-                        onClick={onClickLogoutHandler}  style={{marginLeft:'82vh',marginTop:'5vh'}}>Logout</button></li>&nbsp;&nbsp;
-                                <li class="nav-item" style={{marginLeft:'-28vh'}}><a href="#" class="text-white "><i class="fas fa-user text-white"></i>&nbsp;About us</a></li>
+                        onClick={onClickLogoutHandler} >Logout</button></li>&nbsp;&nbsp;
+                                <li class="nav-item" ><a href="#" class="text-white "><i class="fas fa-user text-white"></i>&nbsp;About us</a></li>
                                 &nbsp;
                                 &nbsp;
                                 <li class="nav-item"><a href="#" class="text-white "><i className="fas fa-envelope text-white" />&nbsp;Contact us</a></li>
