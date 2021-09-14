@@ -41,7 +41,7 @@ export default function DisplayRouteRequest() {
     return (
         <div className = "container " style={{width:"100%"}}>
 
-                 <div className="addform1"><h1>All Routes for Request </h1></div>
+                 <div className="addform2"><h1>All Routes for Request </h1></div>
       
         <table className="table" >
   
@@ -94,6 +94,8 @@ export default function DisplayRouteRequest() {
            </tbody> 
   
         </table>
+
+      <button className ="btn btn-success"><a href="/req" style={{textDecoration:'none', color :'white'}}>Back </a> </button>
      </div>
     )
 }
