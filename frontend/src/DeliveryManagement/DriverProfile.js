@@ -95,11 +95,19 @@ componentDidMount(){
  }  
 
 onDelete= (id)=>{
+    let ans = window.confirm("Are you sure want to delete your account?");
+    if(ans){  
     axios.delete(`http://localhost:8070/driver/deleteProfile/${id}`).then((res)=>{
         alert("Driver Profile Successfully Deleted");
         this.props.history.push('/');
-})
+        }).catch((err)=>{
+        alert(err.message);
+       })
+    }    
+
 }
+
+
 render() {
  return (
      <div className="profile">

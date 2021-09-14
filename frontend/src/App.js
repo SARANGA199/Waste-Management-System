@@ -126,7 +126,7 @@ function App() {
       
       {/* pickup */}
 
-      <Route path="/req" exact component={DisplayReq} />
+          <PrivateRoute path="/req" roles={["admin"]} exact component={DisplayReq} />
           <PrivateRoute path="/addOrder/route" roles={["admin"]} exact component={RouteOrderAdd} />
           <PrivateRoute path="/order" roles={["admin"]} exact component={DisplayOrder} />
           <PrivateRoute path="/addReq/route" roles={["admin"]} exact component={RouteReqAdd} />
@@ -147,6 +147,7 @@ function App() {
           <PrivateRoute path="/driver/prof/:id" roles={["User"]} exact component={DriverProfile} />
           <PrivateRoute path="/routeReq/allRouteReq" roles={["admin"]} exact component={CheckDrivers} />
           <PrivateRoute path="/driver/allprof" roles={["admin"]} exact component={SelectDriver} />
+          <PrivateRoute path="/trip/addTrip" roles={["admin"]} exact component={SelectDriver} />
           <PrivateRoute path="/delivery/display" roles={["User"]} exact component={View} />
           <PrivateRoute path="/driver/collect" roles={["User"]} exact component={CollectItem} />
 

@@ -6,14 +6,14 @@ let OngoingDelivery = require("../../Models/Delivery/OngoingDelivery");
 router.route("/addTrip").post((req, res) => {
 
 
-        const driverId = req.body.driverId;
-        const vehicleNo = req.body.vehicleNo;
+        const dId = req.body.dId;
+        const destination = req.body.destination;
 
 
         const ongoingDetail = new OngoingDelivery({
 
-            driverId,
-            vehicleNo
+            dId,
+            destination
         })
 
         ongoingDetail.save().then(() => {
