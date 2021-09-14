@@ -30,7 +30,6 @@ retrieveAttends(){
    filterData(attends,searchKey){
        const result = attends.filter((attend) =>
        attend.name.toLowerCase().includes(searchKey)||
-       attend.staffId.toLowerCase().includes(searchKey)||
        attend.date.toLowerCase().includes(searchKey)
        
        )
@@ -70,7 +69,6 @@ retrieveAttends(){
              <tr>
                <th scope="col">#</th>
                <th scope="col">name</th>
-               <th scope="col">staffId</th>
                <th scope="col">date</th>
                <th scope="col">time</th>
                <th scope="col">attendanceType</th>
@@ -85,7 +83,6 @@ retrieveAttends(){
                        {attends.name}
                        </a>
                    </td>
-                   <td>{attends.staffId}</td>
                    <td>{attends.date}</td>
                    <td>{attends.time}</td>
                    <td>{attends.attendanceType}</td>

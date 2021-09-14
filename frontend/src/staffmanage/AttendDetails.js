@@ -21,16 +21,14 @@ export default class AttendDetails extends Component {
     }
     //test
     render() {
-        const{name, staffId, date, time, attendanceType} = this.state.attend;
+        const{name, date, time, attendanceType} = this.state.attend;
         return (
             <div style={{marginTop:'20px'}}>
                 <h4>{name}</h4>
                 <hr/>
 
                 <d1 className="row">
-                <dt className="col-sm-3">staffId</dt>
-                <dd className="col-sm-9">{staffId}</dd>
-
+        
                 <dt className="col-sm-3">date</dt>
                 <dd className="col-sm-9">{date}</dd>
 
