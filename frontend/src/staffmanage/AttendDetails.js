@@ -19,7 +19,7 @@ export default class AttendDetails extends Component {
             }
         });
     }
-    
+    //test
     render() {
         const{name, staffId, date, time, attendanceType} = this.state.attend;
         return (
