@@ -5,6 +5,7 @@ export default class CreatePost extends Component {
      constructor(props){
          super(props);
          this.state={
+             userName:"",
              roleName:"",
              OTRate:"",
              basicSalary:""
@@ -21,8 +22,9 @@ export default class CreatePost extends Component {
 
      onSubmit =(e) =>{
          e.preventDefault();
-         const {roleName, OTRate, basicSalary} = this.state;
+         const {userName, roleName, OTRate, basicSalary} = this.state;
          const data  ={
+             userName:userName,
              roleName:roleName,
              OTRate:OTRate,
              basicSalary:basicSalary
@@ -33,6 +35,7 @@ export default class CreatePost extends Component {
              if(res.data.success){
                  this.setState(
                      {
+                        userName:"",
                         roleName:"",
                         OTRate:"",
                         basicSalary:""
@@ -47,6 +50,16 @@ export default class CreatePost extends Component {
             <div className="col-md-8 mt-4 mx-auto">
                 <h1 className="h3 mb-3 font-weight-normal">Add New Member</h1>
                 <form className="needs-validation" noValidate>
+                <div className="form-group" style={{marginBottom:'15px'}}>
+                        <label style={{marginBottom:'5px'}}>User Name</label>
+                        <input type="text"
+                        className="form-control"
+                        name="userName"
+                        placeholder="Enter User Name"
+                        value={this.state.userName}
+                        onChange={this.handleInputChange}/>
+                    </div>
+                    
                     <div className="form-group" style={{marginBottom:'15px'}}>
                         <label style={{marginBottom:'5px'}}>Role Name</label>
                         <input type="text"

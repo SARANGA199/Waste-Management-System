@@ -34,6 +34,7 @@ retrievePosts(){
    
    filterData(posts,searchKey){
        const result = posts.filter((post) =>
+       post.userName.toLowerCase().includes(searchKey)||
        post.roleName.toLowerCase().includes(searchKey)||
        post.OTRate.toLowerCase().includes(searchKey)||
        post.basicSalary.toLowerCase().includes(searchKey)
@@ -73,6 +74,7 @@ retrievePosts(){
            <thead>
              <tr>
                <th scope="col">#</th>
+               <th scope="col">userName</th>
                <th scope="col">roleName</th>
                <th scope="col">OTRate</th>
                <th scope="col">basicSalary</th>
@@ -85,9 +87,10 @@ retrievePosts(){
                    <th scope="row">{index+1}</th>
                    <td>
                        <a href ={`/post/${posts._id}`} style = {{textDecoration:"none"}}>
-                       {posts.roleName}
+                       {posts.userName}
                        </a>
                    </td>
+                   <td>{posts.roleName}</td>
                    <td>{posts.OTRate}</td>
                    <td>{posts.basicSalary}</td>
                    <td>

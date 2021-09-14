@@ -21,13 +21,17 @@ export default class PostDetails extends Component {
     }
     
     render() {
-        const{roleName, OTRate, basicSalary} = this.state.post;
+        const{userName, roleName, OTRate, basicSalary} = this.state.post;
         return (
             <div style={{marginTop:'20px'}}>
-                <h4>{roleName}</h4>
+                <h4>{userName}</h4>
                 <hr/>
 
                 <d1 className="row">
+                <dt className="col-sm-3">roleName</dt>
+                <dd className="col-sm-9">{roleName}</dd>
+
+
                 <dt className="col-sm-3">OTRate</dt>
                 <dd className="col-sm-9">{OTRate}</dd>
 
