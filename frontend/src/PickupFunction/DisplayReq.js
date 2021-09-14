@@ -84,7 +84,7 @@ export default function DisplayReq() {
             </table>
 
            <center><button className ="btn btn-success"><a href="/order" style={{textDecoration:'none', color :'white'}}>Switch To Order </a> </button></center> 
-
+           <button className ="btn btn-success btn-lg"><a href="/routeReq" style={{textDecoration:'none', color :'white' }}>All Request Routes </a> </button>
 </div>
 
 

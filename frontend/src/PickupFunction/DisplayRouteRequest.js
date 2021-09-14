@@ -94,6 +94,8 @@ export default function DisplayRouteRequest() {
            </tbody> 
   
         </table>
+
+      <button className ="btn btn-success"><a href="/req" style={{textDecoration:'none', color :'white'}}>Back </a> </button>
      </div>
     )
 }
