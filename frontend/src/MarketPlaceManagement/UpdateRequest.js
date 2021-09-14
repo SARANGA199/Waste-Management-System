@@ -143,11 +143,18 @@ export default function UpdateRequest() {
             Photo
           </label>
           <input
-            className="form-control"
+            className="form-control mb-3"
             type="file"
             accept="image/png, image/jpeg"
             id="image"
             onChange={uploadImage}
+          />
+          <img
+            className="img-thumbnail"
+            width="150px"
+            height="150px"
+            src={photo}
+            alt="Card image cap"
           />
         </div>
         <div className="col-md-3 mb-5">

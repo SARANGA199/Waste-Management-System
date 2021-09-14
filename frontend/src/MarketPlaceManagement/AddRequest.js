@@ -9,6 +9,7 @@ export default function AddRequest() {
   const [description, setDescription] = useState("");
   const [itemLocation, setItemLocation] = useState("");
   const [photo, setPhoto] = useState("");
+  const [loading, setLoading] = useState(false);
 
   //image upload start
   const uploadImage = async (e) => {
@@ -16,6 +17,7 @@ export default function AddRequest() {
     const data = new FormData();
     data.append("file", files[0]);
     data.append("upload_preset", "wasteImages");
+    setLoading(true);
 
     const res = await fetch(
       "https://api.cloudinary.com/v1_1/waste123/image/upload",
@@ -122,12 +124,23 @@ export default function AddRequest() {
             Photo
           </label>
           <input
-            className="form-control"
+            className="form-control mb-3"
             type="file"
             accept="image/png, image/jpeg"
             id="image"
             onChange={uploadImage}
           />
+          {loading ? (
+            <img
+              className="img-thumbnail"
+              width="150px"
+              height="150px"
+              src={photo}
+              alt="Loading..."
+            />
+          ) : (
+            <label htmlFor="loading" className="form-label" />
+          )}
         </div>
         <div className="col-md-3 mb-3">
           <label htmlFor="itemLocation" className="form-label">
