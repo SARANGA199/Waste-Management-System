@@ -126,7 +126,7 @@ function App() {
       
       {/* pickup */}
 
-      <Route path="/req" exact component={DisplayReq} />
+          <PrivateRoute path="/req" roles={["admin"]} exact component={DisplayReq} />
           <PrivateRoute path="/addOrder/route" roles={["admin"]} exact component={RouteOrderAdd} />
           <PrivateRoute path="/order" roles={["admin"]} exact component={DisplayOrder} />
           <PrivateRoute path="/addReq/route" roles={["admin"]} exact component={RouteReqAdd} />

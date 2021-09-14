@@ -213,7 +213,7 @@ export default function RouteReqAdd()  {
                         </label>
                         <input
                         required
-                        type="text"
+                        type="time"
                         style={{width:"300px"}}
                         className="form-control"
                         name="arrivalTime"
@@ -273,7 +273,7 @@ export default function RouteReqAdd()  {
             </div>
             <br/> <br/>
             <center><button className ="btn btn-success btn-lg"><a href="/routeReq" style={{textDecoration:'none', color :'white'}}>View Request Routes</a> </button></center>
-
+            <br/> <br/>
             </div>
 
 

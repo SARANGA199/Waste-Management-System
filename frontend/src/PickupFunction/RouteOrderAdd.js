@@ -217,7 +217,7 @@ export default function RouteOrderAdd()  {
       
                         <div className="col-md-4 mb-3">
                             <label className="form-label">
-                            <h2 className="name1">Distance </h2>
+                            <h2 className="name1">Distance(KM) </h2>
                             </label>
                             <input
                             required
@@ -234,7 +234,7 @@ export default function RouteOrderAdd()  {
                             />
                            
                         </div>      
-                        <button className="btn btn-success">Calculate Time</button>
+                       
 
 
                         <div className="col-md-4 mb-3">
@@ -243,7 +243,7 @@ export default function RouteOrderAdd()  {
                             </label>
                             <input
                             required
-                            type="text"
+                            type="time"
                             style={{width:"300px"}}
                             className="form-control"
                             name="arrivalTime"
@@ -303,7 +303,8 @@ export default function RouteOrderAdd()  {
                     </div>
             <br/> <br/>
            <center> <button className ="btn btn-success btn-lg"><a href="/routeOrder" style={{textDecoration:'none', color :'white'}}>View Order Routes</a> </button> </center>
-            </div>
+           <br/><br/>
+           </div>
 
 
    );
