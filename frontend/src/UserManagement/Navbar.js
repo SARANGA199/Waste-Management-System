@@ -72,15 +72,16 @@ const Navbar = props =>{
                 <button type="button"
                         className="btn btn-link nav-item nav-link text-white" 
                         onClick={onClickLogoutHandler} >Logout</button></li>&nbsp;&nbsp;
-                                <li class="nav-item" ><a href="#" class="text-white "><i class="fas fa-user text-white"></i>&nbsp;About us</a></li>
+                           <div>     <li class="nav-item"  ><a href="#" class="text-white "><i class="fas fa-user text-white"></i>&nbsp;About us</a></li>
                                 &nbsp;
                                 &nbsp;
                                 <li class="nav-item"><a href="#" class="text-white "><i className="fas fa-envelope text-white" />&nbsp;Contact us</a></li>
+                                </div>
             </>
         )
     }
     return(
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-4 pb-4 pt-4 " style={{marginRight:'-15.5vh',marginLeft:'-15.5vh'}}>
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-4 pb-4 pt-4 " style={{marginRight:'-19.5vh',marginLeft:'-19.5vh', height:"15vh"}}>
             <div className="container-fluid" id="nav">
             <Link to="/">
                 <div className="navbar-brand" style={{marginLeft:'20vh'}}><h2>ecoBin</h2></div>

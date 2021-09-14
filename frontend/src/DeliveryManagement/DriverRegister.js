@@ -39,6 +39,8 @@ export default function DriverRegister() {
   }
 
   return (
+    <div class="driverimage">
+  
     <div className="register">
 
       <center>  <h1 className="Hfont">Register As Freelance Driver</h1> </center>
@@ -176,6 +178,9 @@ export default function DriverRegister() {
           Register
         </button>
       </form>
-    </div>
+    </div>    
+    </div> 
+
+    
   );
 }

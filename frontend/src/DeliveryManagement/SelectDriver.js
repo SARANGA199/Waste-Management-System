@@ -96,8 +96,7 @@ export default function SelectDriver() {
                         <th scope="col">Vehicle Number</th>
                         <th scope="col">Nearby Town</th>
                         <th scope="col">Vehicle Type</th>
-                        <th scope="col">Destination</th>
-                        <th scope="col">DId</th>
+                       
                         </tr>
 
                 </thead>

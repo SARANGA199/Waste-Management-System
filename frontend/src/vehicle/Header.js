@@ -6,7 +6,7 @@ function Header()
 {
     return(
     
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-4 pb-4 pt-4 " style={{marginRight:'-15.5vh',marginLeft:'-15.5vh'}}>
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-3 pb-4 pt-4 " style={{marginRight:'-25.5vh',marginLeft:'-15.5vh'}}>
         <div className="container-fluid" id="nav">
    
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,15 +19,18 @@ function Header()
           &nbsp;
           &nbsp;
           &nbsp;
-          
-        </li >
-        <li class="nav-item"><a href="#" class="text-white "><i class="fas fa-user text-white"></i>&nbsp;About us</a></li>
+      
+      </li >  <div className="align-right ">
+        <li ><a href="#" class="text-white "><i class="fas fa-user text-white " ></i>&nbsp; 
+        
+        
+        About us</a></li>
         &nbsp;
         &nbsp;
       
-        <li class="nav-item"><a href="#" class="text-white "><i className="fas fa-envelope text-white" />&nbsp;Contact us</a></li>
-        
-      </ul>
+        <li ><a href="#" class="text-white "><i className="fas fa-envelope text-white" />&nbsp;Contact us</a></li> 
+        </div>
+      </ul> 
      
     </div>
   </div>
