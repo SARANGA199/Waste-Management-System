@@ -69,11 +69,12 @@ export default class home extends Component {
                 <td>{items.unitPrice}</td>
                 <td>
                     <a className = "btn btn-warning" href={'/update/'+ items._id}>
-                            Edit
+                    <i className= "fas fa-edit"></i>&nbsp;Edit
                     </a>
                     &nbsp;
                     <a className = "btn btn-danger" href="#" onClick={()=>this.onDelete(items._id)}>
-                            Delete
+                    <i class="bi bi-trash"></i>
+                    <i className= "fas fa-trash-alt"></i>&nbsp;Delete
                     </a>
                 </td>
               </tr> 

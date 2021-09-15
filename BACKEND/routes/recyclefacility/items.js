@@ -6,7 +6,7 @@ router.route("/additem").post((req,res)=>{
 
     const itemName = req.body.itemName;
     const category = req.body.category;
-    const date = Date(req.body.date);
+    const date = req.body.date;
     const unitPrice = Number(req.body.unitPrice);
     const description = req.body.description;
 

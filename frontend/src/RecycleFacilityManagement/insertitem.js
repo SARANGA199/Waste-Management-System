@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import form from '../Styles/form.css'
 
 export default class insertitem extends Component {
 
@@ -60,32 +61,32 @@ export default class insertitem extends Component {
 
     render() {
         return (
-            <div>
-               <form class="row g-3">
+            <div className="container">
+               <form className="row g-3"  onSubmit={this.onSubmit}>
               <div class="col-md-6">
                 <label class="form-label">Item Name</label>
-                <input type="text" class="form-control" id="itemname" name="itemName" value={this.state.itemName} onChange={this.handleinputchanges} />
+                <input type="text" class="form-control" id="itemname" name="itemName" value={this.state.itemName} onChange={this.handleinputchanges} required/>
               </div>
               <div class="col-md-6">
                 <label  class="form-label">Category</label>
-                <input type="text" class="form-control" name="category" value={this.state.category} onChange={this.handleinputchanges}/>
+                <input type="text" class="form-control" name="category" value={this.state.category} onChange={this.handleinputchanges}  required/>
               </div>
-              <div class="col-12">
+              <div class="col-md-6">
                 <label for="inputAddress" class="form-label">Date</label>
-                <input type="date" class="form-control" name="date" placeholder="1234 Main St" value={this.state.date} onChange={this.handleinputchanges}/>
+                <input type="date" class="form-control" name="date" placeholder="1234 Main St" value={this.state.date} onChange={this.handleinputchanges}  required/>
               </div>
-              <div class="col-12">
+              <div class="col-md-6">
                 <label for="inputAddress2" class="form-label">Description</label>
                 <textarea  class="form-control" name="description" value={this.state.description} onChange={this.handleinputchanges}></textarea>
               </div>
               <label for="inputAddress2" class="form-label">Unit Price</label>
-              <div class="input-group mb-3">
+              <div class="input-group mb-3" style={{width:'200px'}}>
               <span class="input-group-text">RS.</span>
-              <input type="number" name="unitPrice" class="form-control" aria-label="Amount (to the nearest dollar)"value={this.state.unitPrice} onChange={this.handleinputchanges}/>
+              <input type="number" name="unitPrice"  class="form-control" aria-label="Amount (to the nearest dollar)"value={this.state.unitPrice} onChange={this.handleinputchanges}  required/>
               <span class="input-group-text">.00</span>
             </div>
               <div class="col-12">
-                <button type="submit" class="btn btn-primary" onClick={this.onSubmit} formAction="/">submit</button>
+                <button type="submit" class="btn btn-primary"  formAction="/">submit</button>
               </div>
             </form>
             </div>
