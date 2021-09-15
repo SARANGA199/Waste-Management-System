@@ -8,119 +8,75 @@ import "react-credit-cards/es/styles-compiled.css";
 
 
 const CreditCardForm = () => {
-  const { handleChange, handleFocus, handleSubmit, values, errors } = useForm();
+  const { handleChange, handleFocus, handleSubmit3, handleSubmit, values, errors } = useForm();
+  values.uid="123123";
   return (
     <div>
       <div className="container">
         <div className="box justify-content-center align-items-center">
           <div className="formDiv">
           <div className="creditCard">
-          <Cards
-            cvc={values.cardSecurityCode}
-            expiry={values.cardExpiration}
-            focused={values.focus}
-            name={values.cardName}
-            number={values.cardNumber}
-          />
+          <h3> Add Salary Details</h3>
           </div>
-          <Form onSubmit={handleSubmit} >
+          <Form onSubmit={handleSubmit3} >
             <Form.Group>
               <Form.Control
                 type="text"
-                id="cardName"
-                data-testid="cardName"
-                name="cardName"
-                placeholder="Cardholder Name"
-                value={values.cardName}
+                id="uid"
+                data-testid="uid"
+                name="uid"
+                placeholder="Username"
                 onChange={handleChange}
                 onFocus={handleFocus}
-                isValid={errors.cname}
+                required
               />
             </Form.Group>
             <Form.Group>
               <Form.Control
-                type="number"
-                id="cardNumber"
-                data-testid="cardNumber"
-                name="cardNumber"
-                placeholder="Card Number"
-                value={values.cardNumber}
+                type="date"
+                id="date"
+                data-testid="date"
+                name="date"
+                placeholder="Date"
                 onChange={handleChange}
                 onFocus={handleFocus}
-                isValid={errors.cnumber}
               />
             </Form.Group>
-            <Row>
-              <Col>
-                <Form.Group>
-                  <Form.Control
-                    type="text"
-                    name="cardType"
-                    id="cardType"
-                    data-testid="cardType"
-                    placeholder="Card Type"
-                    value={values.cardType}
-                    onChange={handleChange}
-                    onFocus={handleFocus}
-                    isValid={errors.ctype}
-                  />
-                </Form.Group>
-              </Col>
-              <Col>
-                <Form.Group>
-                  <Form.Control
-                    type="text"
-                    id="cardExpiration"
-                    data-testid="cardExpiration"
-                    name="cardExpiration"
-                    placeholder="Expiration Date"
-                    value={values.cardExpiration}
-                    onChange={handleChange}
-                    onFocus={handleFocus}
-                    isValid={errors.cexp}
-                  />
-                </Form.Group>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <Form.Group>
-                  <Form.Control
-                    type="number"
-                    id="cardSecurityCode"
-                    data-testid="cardSecurityCode"
-                    name="cardSecurityCode"
-                    placeholder="Security Code"
-                    value={values.cardSecurityCode}
-                    onChange={handleChange}
-                    onFocus={handleFocus}
-                    isValid={errors.ccvv}
-                  />
-                </Form.Group>
-              </Col>
-              <Col>
-                <Form.Group>
-                  <Form.Control
-                    type="text"
-                    id="cardPostalCode"
-                    data-testid="cardPostalCode"
-                    name="cardPostalCode"
-                    placeholder="Postal Code"
-                    value={values.cardPostalCode}
-                    onChange={handleChange}
-                    onFocus={handleFocus}
-                    isValid={errors.cpostal}
-                  />
-                </Form.Group>
-              </Col>
-            </Row>
+
+            <Form.Group>
+              <Form.Control
+                type="hidden"
+                id="OTHours"
+                data-testid="OTHours"
+                name="OTHours"
+                placeholder="OT Hours"
+                onChange={handleChange}
+                onFocus={handleFocus}
+                value={values.uid}
+              />
+            </Form.Group>
+
+            <Form.Group>
+              <Form.Control
+                type="number"
+                id="amount"
+                data-testid="amount"
+                name="amount"
+                placeholder="Payment Amount"
+                onChange={handleChange}
+                onFocus={handleFocus}
+                required
+              />
+            </Form.Group>
+
+            
             <Button
               size={"block"}
               data-testid="validateButton"
               id="validateButton"
               type="submit"
             >
-              Validate
+              Submit
             </Button>
           </Form>
           </div>

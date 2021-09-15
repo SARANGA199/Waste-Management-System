@@ -2,29 +2,36 @@
 
 const router = require("express").Router();
 let Card = require("../../Models/Payment/formCard");
+const bcrypt = require('bcryptjs');
 
 router.route("/add").post((req,res)=>{
+    const uid = req.body.uid;
     const cardName = req.body.cardName;
     const cardNumber = req.body.cardNumber;
     const cardType = req.body.cardType;
     const cardExpiration = req.body.cardExpiration;
-    const cardPostalCode = req.body.cardPostalCode;
+    const cardNickname = req.body.cardPostalCode;
     const cardSecurityCode = req.body.cardSecurityCode;
 
-    const newCard = new Card({
-        cardName,
-        cardNumber,
-        cardType,
-        cardExpiration,
-        cardSecurityCode,
-        cardPostalCode
+    bcrypt.hash(cardNumber,12)
+    .then(hashedcardno=>{
+        const newCard = new Card({
+            uid,
+            cardName,
+            cardNumber:hashedcardno,
+            cardType,
+            cardExpiration,
+            cardSecurityCode,
+            cardNickname
+        })
+    
+        newCard.save().then(()=>{
+            res.json("Card Added")
+        }).catch((err)=>{
+            console.log(err);
+        })
     })
-
-    newCard.save().then(()=>{
-        res.json("Card Added")
-    }).catch((err)=>{
-        console.log(err);
-    })
+    
 
 })
 
@@ -73,10 +80,47 @@ router.get("/allCards",(req,res)=>{
          }
             return res.status(200).json({
               success:true,
-              existingReqRouter:Card
+              existingReqRouter:Card,
           });
       });
   })
+
+  /**************************** */
+
+  router.get("/getCard/:id",(req,res)=>{
+    let crdid = req.params.id;
+    Card.find({uid:crdid}).exec((err,Card)=>{
+          if(err){
+              return res.status(400).json({
+                 error:err
+             });
+         }
+            return res.status(200).json({
+              success:true,
+              existingReqRouter:Card,
+
+          });
+      });
+  })
+  
+  router.get("/getMyCard/:id",(req,res)=>{
+    let crdid = req.params.id;
+    Card.find({uid:crdid}).exec((err,Card)=>{
+          if(err){
+              return res.status(400).json({
+                 error:err
+             });
+         }
+            return res.status(200).json({
+              success:true,
+              existingPayRouter:Card,
+
+          });
+      });
+  })
+  
+
+  /***************************** */
   
 
 router.route("/update/:id").put(async (req, res)=>{
@@ -127,6 +171,8 @@ router.delete('/deleteCard/:id',(req,res)=>{
     });
   
    });
+
+   
 
 
 module.exports = router;

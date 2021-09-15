@@ -8,9 +8,10 @@ import "react-credit-cards/es/styles-compiled.css";
 
 const CreditCardForm = () => {
   const { handleChange, handleFocus, handleSubmit3, handleSubmit, values, errors } = useForm();
+  values.uid="123123";
   return (
     <div>
-      <div className="cardcontainer">
+      <div className="container">
         <div className="box justify-content-center align-items-center">
           <div className="formDiv">
           <div className="creditCard">
@@ -38,20 +39,19 @@ const CreditCardForm = () => {
                 placeholder="Date"
                 onChange={handleChange}
                 onFocus={handleFocus}
-                
               />
             </Form.Group>
 
             <Form.Group>
               <Form.Control
-                type="number"
+                type="hidden"
                 id="OTHours"
                 data-testid="OTHours"
                 name="OTHours"
                 placeholder="OT Hours"
                 onChange={handleChange}
                 onFocus={handleFocus}
-                
+                value={values.uid}
               />
             </Form.Group>
 

@@ -6,7 +6,7 @@ let Salary = require("../../Models/Payment/Salary");
 router.route("/add").post((req,res)=>{
     const EID = req.body.uid;
     const pDate = Date(req.body.date);
-    const OT_Payment = Number(req.body.OTHours);
+    const OT_Payment = req.body.OTHours;
     const TotalSalary = Number(req.body.amount);
 
     const newSalary = new Salary({
@@ -82,6 +82,23 @@ router.get("/allSalarys",(req,res)=>{
           });
       });
   })
+
+  router.get("/getSalary/:id",(req,res)=>{
+    let salaryid = req.params.id;
+    Salary.find({EID:salaryid}).exec((err,Salary)=>{
+          if(err){
+              return res.status(400).json({
+                 error:err
+             });
+         }
+            return res.status(200).json({
+              success:true,
+              existingSalRouter:Salary,
+          });
+      });
+  })
+
+
 
   router.delete('/deleteSalary/:id',(req,res)=>{
     Salary.findByIdAndRemove(req.params.id).exec((err,deletedSalary)=>{

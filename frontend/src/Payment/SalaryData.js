@@ -1,121 +1,84 @@
-import React, { Component } from 'react'
-import axios from 'axios'
-
-export default class SalaryData extends Component {
-
-    constructor(props){
-        super(props);
-        this.state={
-           ReqRoute:[]
-        };
-      }
-      
-      componentDidMount(){
-      
-        this.retriveSalary();
-      }
-      
-      
-      
-      retriveSalary(){
-
-        axios.get("http://localhost:8070/salarys/allSalarys").then(res =>{
-      
-            if(res.data.success){
-                alert("Success!");
-                this.setState({ 
-                    ReqRoute : res.data.existingSalRouter,            
-                  });
-    
-              }
-              else{
-                alert("Failed!");
-              }
-          
-        }).catch((err)=>{
-            alert(err.message)
-        })
-      }
-      
-
-      onDelete = (id)=>{
-        const URL = 'http://localhost:8070/salarys/deleteSal/'+id;
-          axios.delete(URL).then((res)=>{
-              alert("Deleted!");
-              this. retriveSalary();
-          }).catch((err)=>{
-              alert(err.message);
-          })
-      }
-
-      deleteCard(){
-
-        axios.delete("http://localhost:8070/formcards/delete/${Reqr._id}").then(res =>{
-      
-            if(res.data.success){
-                alert("Delete Success!");
-                this.setState({  
-                    ReqRoute : res.data.existingReqRouter
-                  });
-    
-              }
-              else{
-                alert("Delete Failed!");
-              }
-          
-        }).catch((err)=>{
-            alert(err.message)
-        })
-      }
-
-    render() {
-        return (
-            <><h1>Slary Details</h1> 
-            <a href="/credit-card-validation/addSalary"><button>Add new</button> </a>
-            <div className="container " style={{ width: "100%" }}>
-                <table className="table">
-
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">User ID</th>
-                            <th scope="col">Pay Date</th>
-                            <th scope="col">OT Hours</th>
-                            <th scope="col">Total Payment</th>
-                        </tr>
-
-                    </thead>
-                    <tbody>
-                        {this.state.ReqRoute.map((Reqr, index) => (
-
-                            <tr key={index}>
-                                <th scope="row">{index + 1}</th>
-                                <td>{Reqr.EID}</td>
-                                <td>{Reqr.pDate}</td>
-                                <td style={{ width: '250px' }}>{Reqr.OT_Payment}</td>
-                                <td>{Reqr.TotalSalary}</td>
-                                <td>
-
-                                    <a className="btn btn-warning" href={`credit-card-validation/editCard/${Reqr._id}`}>
-                                        <i className="fas fa-edit"></i>&nbsp;Edit
-                                    </a>
-                                    &nbsp;
-                                    <a className="btn btn-danger" onClick={() => this.onDelete(Reqr._id)}>
-                                        <i className="fas fa-trash-alt"></i>&nbsp;Delete
-                                    </a>
-
-                                </td>
-
-                            </tr>
+import React from "react";
+import useForm from "../useForm";
+import { Button, Form, Alert, Row, Col } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./CreditCardForm.css";
+import Cards from "react-credit-cards";
+import "react-credit-cards/es/styles-compiled.css";
 
 
-                        ))}
+const CreditCardForm = () => {
+  const { handleChange, handleFocus, handleSubmit2, handleSubmit, values, errors } = useForm();
+  return (
+    <div>
+      <div className="container">
+        <div className="box justify-content-center align-items-center">
+          <div className="formDiv">
+          <div className="creditCard">
+          <h3> Add Payment Details</h3>
+          </div>
+          <Form onSubmit={handleSubmit2} >
+            <Form.Group>
+              <Form.Control
+                type="text"
+                id="uid"
+                data-testid="uid"
+                name="uid"
+                placeholder="Username"
+                onChange={handleChange}
+                onFocus={handleFocus}
+                required
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Control
+                type="number"
+                id="TripCount"
+                data-testid="TripCount"
+                name="TripCount"
+                placeholder="Number of Trips"
+                onChange={handleChange}
+                onFocus={handleFocus}
+                required
+              />
+            </Form.Group>
 
+            <Form.Group>
+              <Form.Control
+                type="number"
+                id="amount"
+                data-testid="amount"
+                name="amount"
+                placeholder="Payment Amount"
+                onChange={handleChange}
+                onFocus={handleFocus}
+                required
+              />
+            </Form.Group>
 
-                    </tbody>
+            
+            <Button
+              size={"block"}
+              data-testid="validateButton"
+              id="validateButton"
+              type="submit"
+            >
+              Submit
+            </Button>
+          </Form>
+          </div>
+          <Alert
+            id="alertMessage"
+            data-testid="alertMessage"
+            variant={errors.variant}
+            show={errors.show}
+          >
+            {errors.message}
+          </Alert>{" "}
+        </div>
+      </div>
+    </div>
+  );
+};
 
-                </table>
-            </div></>
-        )
-    }
-}
+export default CreditCardForm;

@@ -88,16 +88,20 @@ import HomePage from './vehicle/HomePage';
 
 import CreditCardForm from "./Payment/CreditCardForm";
 import Header2 from "./Payment/Header2";
-import Header3 from "./Payment/Header3";
+
 import Myearning from "./Payment/Myearning";
 import PaymentData from "./Payment/PaymentData";
 import UserPayForm from "./Payment/UserPayForm";
 import AddSalary from "./Payment/AddSalary";
 import SalaryData from "./Payment/SalaryData";
-import editCard from "./Payment/editCard";
-import edcard from "./Payment/edcard";
-//import savedCard from "./Payment/savedCard";
-import scard from "./Payment/scard";
+
+import MySalary from "./Payment/MySalary";
+import MyPayments from "./Payment/MyPayments";
+import CompanyPurchase from "./Payment/CompanyPurchase";
+import EditCard from "./Payment/EditCard";
+import PurchaseData from "./Payment/PurchaseData";
+import MyCards from "./Payment/MyCards";
+
 
 function App() {
   return (
@@ -189,8 +193,8 @@ function App() {
 
           <div className="App">
 
-        <editCard />
-        <PrivateRoute path="/credit-card-validation/MyEarning" roles={["admin","User"]} component={Myearning} />
+        
+        
 
           <PrivateRoute path="/credit-card-validation/addSalary" roles={["admin"]} component={AddSalary}/>
 
@@ -203,9 +207,21 @@ function App() {
 
           <PrivateRoute path="/credit-card-validation/addcard" roles={["admin","User"]} component={CreditCardForm}/>
 
-          <PrivateRoute path="/credit-card-validation/editCard" roles={["admin","User"]} component={Header3}/>
 
           <PrivateRoute path="/credit-card-validation/allCards" roles={["admin","User"]} component={Header2}/>
+
+          <PrivateRoute path="/credit-card-validation/EditCard/:id" roles={["admin","User"]} component={EditCard}/>
+
+          <PrivateRoute path="/credit-card-validation/MySalary/" roles={["admin","User"]} component={MySalary}/>
+
+          <PrivateRoute path="/credit-card-validation/MyPayments/" roles={["admin","User"]} component={MyPayments}/>
+
+          <PrivateRoute path="/credit-card-validation/CompanyPurchase/" roles={["admin"]} component={CompanyPurchase}/>
+
+          <PrivateRoute path="/credit-card-validation/PurchaseData/" roles={["admin"]} component={PurchaseData}/>
+
+          <PrivateRoute path="/credit-card-validation/MyCards/" roles={["admin","User"]} component={MyCards}/>
+
       </div>
 
     </Router>
