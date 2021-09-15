@@ -13,7 +13,7 @@ class UserCard extends React.Component {
           <div className="card shadow-sm">
             <div className="card-body">
               <h4 className="fw-normal">Welcome</h4>
-              <h2 className="fw-normal">User Name</h2>
+              <h2 className="fw-normal">{this.props.name}</h2>
             </div>
 
             <svg

@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "../component.css";
+import { AuthContext } from "../Context/AuthContext";
 
 import UserCard from "./UserCard";
 import axios from "axios";
@@ -14,6 +15,7 @@ import {
 
 export default function Dashboard() {
   const [RequestList, setRequestList] = useState([]);
+  const { user } = useContext(AuthContext);
   useEffect(() => {
     axios
       .get("http://localhost:8070/marketplace/")
@@ -41,7 +43,7 @@ export default function Dashboard() {
       <section className="py-5 text-center container">
         <div className="row py-lg-5">
           <div className="col-lg-6 col-md-8 mx-auto">
-            <UserCard />
+            <UserCard name={user.name} />
           </div>
         </div>
       </section>

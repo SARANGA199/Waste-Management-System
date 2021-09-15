@@ -68,6 +68,7 @@ export default function AddRequest() {
             type="text"
             className="form-control"
             id="Itemname"
+            required
             placeholder="Enter Your Item Name"
             onChange={(e) => {
               setItemName(e.target.value);
@@ -80,6 +81,7 @@ export default function AddRequest() {
           </label>
           <select
             className="form-select"
+            required
             onChange={(e) => {
               setCategory(e.target.value);
             }}
@@ -95,9 +97,11 @@ export default function AddRequest() {
         <div className="col-md-1 mb-3">
           <label htmlFor="weight" className="form-label">
             Weight
+            <span class="text-muted"> (Kg)</span>
           </label>
           <input
             type="text"
+            required
             className="form-control"
             id="weight"
             placeholder="             kg"
@@ -112,6 +116,7 @@ export default function AddRequest() {
             className="form-control"
             placeholder="Add your description here"
             id="description"
+            required
             defaultValue={""}
             onChange={(e) => {
               setDescription(e.target.value);
@@ -126,6 +131,7 @@ export default function AddRequest() {
           <input
             className="form-control mb-3"
             type="file"
+            required
             accept="image/png, image/jpeg"
             id="image"
             onChange={uploadImage}
@@ -134,6 +140,7 @@ export default function AddRequest() {
             <img
               className="img-thumbnail"
               width="150px"
+              required
               height="150px"
               src={photo}
               alt="Loading..."
@@ -148,6 +155,7 @@ export default function AddRequest() {
           </label>
           <textarea
             className="form-control"
+            required
             placeholder="Add your address here"
             id="itemLocation"
             defaultValue={""}

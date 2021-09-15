@@ -12,7 +12,9 @@ class ItemList extends React.Component {
         <div className="album py-4 bg-light">
           <div className="container">
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-              <BuyItemCard />
+              <a href="/checkout">
+                <BuyItemCard />
+              </a>
               <BuyItemCard />
               <BuyItemCard />
               <BuyItemCard />

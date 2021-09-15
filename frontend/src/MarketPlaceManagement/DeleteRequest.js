@@ -70,6 +70,7 @@ export default function DeleteRequest() {
             className="form-control"
             id="Itemname"
             value={itemName}
+            disabled
             placeholder="Enter Your Item Name"
             onChange={(e) => {
               setItemName(e.target.value);
@@ -83,6 +84,7 @@ export default function DeleteRequest() {
           <select
             className="form-select"
             value={category}
+            disabled
             onChange={(e) => {
               setCategory(e.target.value);
             }}
@@ -98,12 +100,14 @@ export default function DeleteRequest() {
         <div className="col-md-1 mb-3">
           <label htmlFor="weight" className="form-label">
             Weight
+            <span class="text-muted"> (Kg)</span>
           </label>
           <input
             type="text"
             className="form-control"
             id="weight"
             value={weight}
+            disabled
             onChange={(e) => {
               setWeight(e.target.value);
             }}
@@ -115,6 +119,7 @@ export default function DeleteRequest() {
             className="form-control"
             placeholder="Add your description here"
             id="description"
+            disabled
             value={description}
             defaultValue={""}
             onChange={(e) => {
@@ -128,11 +133,19 @@ export default function DeleteRequest() {
             Photo
           </label>
           <input
-            className="form-control"
+            className="form-control mb-3"
             type="file"
+            disabled
             accept="image/png, image/jpeg"
             id="image"
             onChange={uploadImage}
+          />
+          <img
+            className="img-thumbnail"
+            width="150px"
+            height="150px"
+            src={photo}
+            alt="Card image cap"
           />
         </div>
         <div className="col-md-3 mb-5">
@@ -141,6 +154,7 @@ export default function DeleteRequest() {
           </label>
           <textarea
             className="form-control"
+            disabled
             placeholder="Add your address here"
             id="itemLocation"
             value={itemLocation}

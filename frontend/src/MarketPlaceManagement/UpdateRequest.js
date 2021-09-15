@@ -113,6 +113,7 @@ export default function UpdateRequest() {
         <div className="col-md-1 mb-3">
           <label htmlFor="weight" className="form-label">
             Weight
+            <span class="text-muted"> (Kg)</span>
           </label>
           <input
             type="text"
