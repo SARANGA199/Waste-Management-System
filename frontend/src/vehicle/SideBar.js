@@ -18,6 +18,9 @@ function SideBar() {
       
       <ul className="list-items mt-5">
         <li><a href="/"><i className="fas fa-home" />Home</a></li>
+        {
+                user.role === "User" ? 
+        <li><a href="/"><i className="fas fa-home" />Dashboard</a></li>:null}
       
         {
                 user.role === "admin" ? 

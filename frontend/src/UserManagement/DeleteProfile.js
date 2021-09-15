@@ -30,6 +30,7 @@ export default class Userprofile extends Component {
     onDelete = (id) =>{
         axios.delete(`/user/deleteUser/${id}`).then((res)=>{
             alert("Deleted Successfully");
+            this.props.history.push("/");
         })
     }
 

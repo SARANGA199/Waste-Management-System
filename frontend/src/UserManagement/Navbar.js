@@ -58,20 +58,30 @@ const Navbar = props =>{
                     </li>
                 </Link> : null
                 }
+                    <Link to="/profiles">
+                        <li className="nav-item nav-link text-white " style={{marginRight:'5vh',marginLeft:'43vh'}}>
+                            Driver Register
+                        </li>
+                    </Link>
+                    <Link to="/profiles">
+                        <li className="nav-item nav-link text-white ">
+                            Marketplace
+                        </li>
+                        </Link>
                     <span>{user.role === "User" ?
                         <h4 className="nav-item nav-link text-white" >
                             Welcome&nbsp;{user.name}
                         </h4>:null}
                     </span>
                     <span>{user.role === "admin" ?
-                        <li className="nav-item nav-link text-white" >
+                        <li className="nav-item nav-link text-white ">
                             Administrator&nbsp;{user.name}
                         </li>:null}
                     </span>
                     <li class="nav-item">
                 <button type="button"
                         className="btn btn-link nav-item nav-link text-white" 
-                        onClick={onClickLogoutHandler} >Logout</button></li>&nbsp;&nbsp;
+                        onClick={onClickLogoutHandler} style={{marginRight:'1.5vh',marginLeft:'4.5vh'}} >Logout</button></li>&nbsp;&nbsp;
                            <div>     <li class="nav-item"  ><a href="#" class="text-white "><i class="fas fa-user text-white"></i>&nbsp;About us</a></li>
                                 &nbsp;
                                 &nbsp;
