@@ -1,0 +1,132 @@
+*{
+
+    margin :0;
+    padding: 0;
+}
+
+
+
+.addform{
+    width: 120vh;
+    background-color:white;
+    border: 2px solid rgb(57, 224, 15);
+    box-shadow: 8px 6px 8px rgba(10, 228, 46, 0.2);
+    margin: auto;
+    color: #ffffff;
+    padding: 10px 0px 10px 0px;
+    text-align: center;
+    border-radius: 15px 15px 0px 0px;
+    color: black;
+    
+  
+}
+
+
+.addform1{
+    width: 60vh;
+    background-color:white;
+    border: 2px solid rgb(57, 224, 15);
+    box-shadow: 8px 6px 8px rgba(10, 228, 46, 0.2);
+    margin: auto;
+    color: #ffffff;
+    padding: 10px 0px 10px 0px;
+    text-align: center;
+    border-radius: 15px 15px 15px 15px;
+    color: black;
+    height: 9vh;
+    margin-bottom: 20px;
+    
+  
+}
+
+
+.addform2{
+    width: 60vh;
+    background-color:white;
+    border: 2px solid rgb(57, 224, 15);
+    box-shadow: 8px 6px 8px rgba(10, 228, 46, 0.2);
+    margin: auto;
+    color: #ffffff;
+    padding: 10px 0px 10px 0px;
+    text-align: center;
+    border-radius: 15px 15px 15px 15px;
+    color: black;
+    height: 9vh;
+    margin-bottom: 20px;
+    
+  
+}
+
+.main{
+    background-color: rgb(0,0,0,0.4);
+    width: 120vh;
+    margin: auto;
+    
+}
+
+.form{
+
+    padding: 15px;
+    border:2px solid rgb(57, 224, 15);
+    box-shadow: 8px 6px 8px rgba(0, 0,0,0.2);
+    border-radius: 0 0 15px 15px;
+    background-image: url('./PickupPhotos/addpick1.jpg');
+    
+    background-position: center;
+    background-size: cover;
+    
+  
+}
+
+/* Delete  */
+
+.form1{
+
+    padding: 15px;
+    border:2px solid rgb(241, 32, 17);
+    box-shadow: 8px 6px 8px rgba(228, 17, 10, 0.2);
+    border-radius: 0 0 15px 15px;
+    background-image: url('./PickupPhotos/addpick1.jpg');
+    background-position: center;
+    background-size: cover;
+    
+  
+}
+
+
+.addform1{
+    width: 120vh;
+    background-color:white;
+    border: 2px solid rgb(250, 67, 11);
+    box-shadow: 8px 6px 8px rgba(228, 17, 10, 0.2);
+    margin: auto;
+    color: #ffffff;
+    padding: 10px 0px 10px 0px;
+    text-align: center;
+    border-radius: 15px 15px 0px 0px;
+    color: black;
+    
+  
+}
+
+
+
+.name1{
+
+    margin-left: 25px;
+    margin-top: 30px;
+    width: 225px;
+    color: black;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.reqid{
+    position: relative;
+    left: 100px;
+    top: -27px;
+    line-height: 40px;
+    border-radius: 6px;
+    padding: 0 22px;
+    width: 300px;
+}
