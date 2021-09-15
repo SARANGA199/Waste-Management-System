@@ -1,40 +1,55 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import './Styles/deleteprof.css'
+import React, {useState, useEffect}  from 'react';
+import axios from "axios";
+import { useHistory } from 'react-router';
 
-export default class Userprofile extends Component {
-    constructor(props){
-        super(props);
 
-        this.state={
-            users:{}
-        };
+export default function DeleteRouteRequest()  {
+
+  let history = useHistory();
+
+    
+  const [uid, setuid] = useState();
+  const [name, setname] = useState();
+  const [username, setusername] = useState();
+  const [phone, setphone] = useState();
+  const [email, setemail] = useState();
+  const [nic, setnic] = useState();
+  const [gender, setgender] = useState();
+  const [role, setrole] = useState();
+
+
+    useEffect(() => {
+
+      setuid(localStorage.getItem('uid'));
+      setname(localStorage.getItem('name'));
+      setusername(localStorage.getItem('username'));
+      setphone(localStorage.getItem('phone'))
+      setemail(localStorage.getItem('email'));
+      setnic(localStorage.getItem('nic'));
+      setgender(localStorage.getItem('gender'))
+      setrole(localStorage.getItem('role'));
+       
+
+
+    },[] );
+
+
+    function deleteData() {
+        
+
+        axios.delete(`/user/deleteUser/${uid}`).then(()=>{
+
+            alert("Account Delete successfully");
+            history.push('/profiles');
+             
+    
+         }).catch((err)=>{
+    
+            alert(err);
+         })
+    
+
     }
-
-    componentDidMount(){
-
-        const id = this.props.match.params.id;
-
-        axios.get(`/user/profile/${id}`).then(res=>{
-            if(res.data.success){
-                this.setState({
-                    users:res.data.users
-                });
-                console.log(this.state.users);
-            }
-        });
-
-    }
-
-
-    onDelete = (id) =>{
-        axios.delete(`/user/deleteUser/${id}`).then((res)=>{
-            alert("Deleted Successfully");
-        })
-    }
-
-    render() {
-        const {_id,name,username,phone,email,nic,gender,role} = this.state.users;
 
         return (
             <div class="row gutters-sm">
@@ -46,10 +61,10 @@ export default class Userprofile extends Component {
                     <div class="mt-3">
                       <h4>{name}</h4><br/>
                       <p>User ID</p>
-                      <p>{_id}</p>
+                      <p>{uid}</p>
                     </div><br/>
                     <div class="row">
-                    <a className="btn btn-danger" href="#" onClick={()=>this.onDelete(_id)}>
+                    <a className="btn btn-danger" href="#" onClick={deleteData}>
                 <i className="fas fa-trash-alt"></i>&nbsp;Delete
             </a><br/>
                 </div>
@@ -128,6 +143,5 @@ export default class Userprofile extends Component {
 </div>
         )
     }
-}
 
 
