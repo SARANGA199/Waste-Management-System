@@ -104,7 +104,6 @@ export default function AddRequest() {
             required
             className="form-control"
             id="weight"
-            placeholder="             kg"
             onChange={(e) => {
               setWeight(e.target.value);
             }}
@@ -196,7 +195,7 @@ export default function AddRequest() {
         />
         </div> */}
 
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary mb-5">
           Submit
         </button>
       </form>

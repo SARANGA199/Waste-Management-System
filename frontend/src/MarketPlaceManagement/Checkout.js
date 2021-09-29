@@ -2,12 +2,15 @@ import "../component.css";
 import React, { useState } from "react";
 import axios from "axios";
 import { Button } from "reactstrap";
+import { useHistory } from "react-router";
 
 export default function Checkout() {
   const [receivedItemId, setReceivedItemId] = useState("");
   const [deliveryAddress, setDeliveryAddress] = useState("");
   const [quantity, setQuantity] = useState("");
   const [orderStatus, setOrderStatus] = useState("");
+
+  let history = useHistory();
 
   function sendData(e) {
     e.preventDefault();
@@ -22,6 +25,7 @@ export default function Checkout() {
       .post("http://localhost:8070/order/checkout", newOrder)
       .then(() => {
         alert("Successfully placed the order");
+        history.push("/itemlist");
       })
       .catch((err) => {
         alert(err);

@@ -84,6 +84,7 @@ export default function UpdateRequest() {
             type="text"
             className="form-control"
             id="Itemname"
+            required
             value={itemName}
             placeholder="Enter Your Item Name"
             onChange={(e) => {
@@ -97,6 +98,7 @@ export default function UpdateRequest() {
           </label>
           <select
             className="form-select"
+            required
             value={category}
             onChange={(e) => {
               setCategory(e.target.value);
@@ -119,6 +121,7 @@ export default function UpdateRequest() {
             type="text"
             className="form-control"
             id="weight"
+            required
             value={weight}
             onChange={(e) => {
               setWeight(e.target.value);
@@ -131,6 +134,7 @@ export default function UpdateRequest() {
             className="form-control"
             placeholder="Add your description here"
             id="description"
+            required
             value={description}
             defaultValue={""}
             onChange={(e) => {
@@ -146,6 +150,7 @@ export default function UpdateRequest() {
           <input
             className="form-control mb-3"
             type="file"
+            required
             accept="image/png, image/jpeg"
             id="image"
             onChange={uploadImage}
@@ -166,6 +171,7 @@ export default function UpdateRequest() {
             className="form-control"
             placeholder="Add your address here"
             id="itemLocation"
+            required
             value={itemLocation}
             defaultValue={""}
             onChange={(e) => {

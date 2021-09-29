@@ -10,7 +10,7 @@ class BuyItemCard extends React.Component {
     return (
       <div className="col-3">
         <div className="card  shadow-sm mb-4" style={{ width: "18rem" }}>
-          <svg
+          {/* <svg
             className="bd-placeholder-img card-img-top"
             width="100%"
             height={225}
@@ -22,17 +22,18 @@ class BuyItemCard extends React.Component {
           >
             <title>Placeholder</title>
             <rect width="100%" height="100%" fill="#55595c" />
-          </svg>
+          </svg> */}
+          <img width="100%" height={225} src={this.props.link}></img>
           <div className="card-body">
             <label htmlFor="name" className="form-label">
-              Item name
+              {this.props.name}
             </label>
             <br />
             <label htmlFor="name" className="form-label">
               Rs.
             </label>
             <label htmlFor="name" className="form-label">
-              300
+              {this.props.price}
             </label>
             <div className="d-flex justify-content-between align-items-center"></div>
           </div>
