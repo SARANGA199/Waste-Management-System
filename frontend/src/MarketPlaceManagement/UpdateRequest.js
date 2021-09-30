@@ -1,6 +1,6 @@
 import "../component.css";
 import React, { useEffect, useState } from "react";
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router";
 
 import axios from "axios";
 
@@ -13,6 +13,7 @@ export default function UpdateRequest() {
   const [photo, setPhoto] = useState();
 
   const [_id, setID] = useState();
+  let history = useHistory();
 
   useEffect(() => {
     setID(localStorage.getItem("ID"));
@@ -43,8 +44,26 @@ export default function UpdateRequest() {
   };
   //image upload end
 
-  // function updateData(e) {
-  //   e.preventDefault();
+  function updateData(e) {
+    e.preventDefault();
+    axios
+      .put(`http://localhost:8070/marketplace/updateRequest/${_id}`, {
+        itemName,
+        category,
+        weight,
+        description,
+        itemLocation,
+        photo,
+      })
+      .then(() => {
+        alert("Request Updated Successfully");
+        history.push("/dashboard");
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  }
+  // const updateData = () => {
   //   axios
   //     .put(`http://localhost:8070/marketplace/updateRequest/${_id}`, {
   //       itemName,
@@ -55,26 +74,13 @@ export default function UpdateRequest() {
   //       photo,
   //     })
   //     .then(() => {
-  //       alert("Request Updated Successfully");
-  //       <Redirect to="/dashboard" />;
-  //     })
-  //     .catch((err) => {
-  //       alert(err);
+  //       alert("Request updated successfully");
+  //       history.push("/dashboard");
   //     });
-  // }
-  const updateData = () => {
-    axios.put(`http://localhost:8070/marketplace/updateRequest/${_id}`, {
-      itemName,
-      category,
-      weight,
-      description,
-      itemLocation,
-      photo,
-    });
-  };
+  // };
 
   return (
-    <div className="container">
+    <div className="container" onSubmit={updateData}>
       <form className="form">
         <div className="col-md-4 mb-3">
           <label htmlFor="name" className="form-label">
@@ -118,10 +124,12 @@ export default function UpdateRequest() {
             <span class="text-muted"> (Kg)</span>
           </label>
           <input
-            type="text"
+            type="number"
             className="form-control"
             id="weight"
             required
+            min="1"
+            step="1"
             value={weight}
             onChange={(e) => {
               setWeight(e.target.value);
@@ -150,7 +158,6 @@ export default function UpdateRequest() {
           <input
             className="form-control mb-3"
             type="file"
-            required
             accept="image/png, image/jpeg"
             id="image"
             onChange={uploadImage}
@@ -180,14 +187,21 @@ export default function UpdateRequest() {
           />
         </div>
 
-        <a
+        {/* <a
           type="submit"
           className="btn btn-warning mb-5"
           href="/dashboard"
           onClick={updateData}
         >
           Update
-        </a>
+        </a> */}
+        <button
+          type="submit"
+          className="btn btn-warning mb-5"
+          href="/dashboard"
+        >
+          Update
+        </button>
       </form>
     </div>
   );
