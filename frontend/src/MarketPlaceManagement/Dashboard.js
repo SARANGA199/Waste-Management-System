@@ -1,10 +1,18 @@
 import React, { useState, useEffect, useContext } from "react";
 import "../component.css";
 import { AuthContext } from "../Context/AuthContext";
+import jsPDF from "jspdf";
 
 import UserCard from "./UserCard";
 import axios from "axios";
-import { Card, CardImg, CardText, CardBody, CardTitle } from "reactstrap";
+import {
+  Card,
+  CardImg,
+  CardText,
+  CardBody,
+  CardTitle,
+  Button,
+} from "reactstrap";
 
 export default function Dashboard() {
   const [RequestList, setRequestList] = useState([]);
@@ -50,6 +58,15 @@ export default function Dashboard() {
         });
     }
   }
+
+  //Get report as a PDF
+
+  function pdfGenerate() {
+    var doc = new jsPDF("landscape", "px", "a4", "false");
+    doc.text(60, 60, "name");
+    doc.save("Account Report");
+  }
+
   return (
     <div>
       <section className="py-5 text-center container">
@@ -64,11 +81,41 @@ export default function Dashboard() {
       </section>
       <div className="album py-4 bg-light">
         <div className="container">
-          <div className="col text-center">
+          {/* <div className="col text-center">
             <a class="btn btn-primary mb-4 text-center" href={"/addrequest"}>
               <i class="bi bi-plus-circle me-2 lg "></i>
               Add New
             </a>
+          </div>
+          <div className="col text-center">
+            <a class="btn btn-primary mb-4 text-center" href={"/addrequest"}>
+              <i class="bi bi-plus-circle me-2 lg "></i>
+              Get report
+            </a>
+          </div> */}
+          <div className="row justify-content-center">
+            <div className="col-2">
+              <a
+                className="btn btn-primary mb-4 text-center"
+                href={"/addrequest"}
+              >
+                Add New
+              </a>
+            </div>
+            <div className="col-2">
+              {/* <a
+                class="btn btn-secondary mb-4 text-center"
+                href={"/addrequest"}
+              >
+                Get report
+              </a> */}
+              <Button
+                className="btn btn-secondary mb-4 text-center"
+                onClick={pdfGenerate}
+              >
+                Get Report
+              </Button>
+            </div>
           </div>
           <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             {RequestList.map((RequestList, index) => (
@@ -96,6 +143,7 @@ export default function Dashboard() {
                         <i className="bi bi-trash me-2" />
                         Delete
                       </button>
+
                       <a
                         type="button"
                         className="btn btn-warning ms-5"
