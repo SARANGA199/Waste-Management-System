@@ -6,6 +6,7 @@ export default class EditPost extends Component {
     constructor(props){
         super(props);
         this.state={
+            userName:"",
             roleName:"",
             OTRate:"",
             basicSalary:""
@@ -24,8 +25,9 @@ export default class EditPost extends Component {
        
         e.preventDefault();
         const id  = this.props.match.params.id;
-        const {roleName, OTRate, basicSalary} = this.state;
+        const {userName, roleName, OTRate, basicSalary} = this.state;
         const data  ={
+            userName:userName,
             roleName:roleName,
             OTRate:OTRate,
             basicSalary:basicSalary
@@ -37,6 +39,7 @@ export default class EditPost extends Component {
                 alert("Updated Successfully")
                 this.setState(
                     {
+                       userName:"",
                        roleName:"",
                        OTRate:"",
                        basicSalary:""
@@ -52,6 +55,7 @@ export default class EditPost extends Component {
         axios.get(`http://localhost:8070/post/${id}`).then((res) =>{
             if(res.data.success){
                 this.setState({
+                    userName: res.data.post.userName,
                     roleName: res.data.post.roleName,
                     OTRate:res.data.post.OTRate,
                     basicSalary:res.data.post.basicSalary
@@ -66,6 +70,16 @@ export default class EditPost extends Component {
             <div className="col-md-8 mt-4 mx-auto">
                 <h1 className="h3 mb-3 font-weight-normal">Edit Member</h1>
                 <form className="needs-validation" noValidate>
+                <div className="form-group" style={{marginBottom:'15px'}}>
+                        <label style={{marginBottom:'5px'}}>User Name</label>
+                        <input type="text"
+                        className="form-control"
+                        name="userName"
+                        placeholder="Enter User Name"
+                        value={this.state.userName}
+                        onChange={this.handleInputChange}/>
+                    </div>
+                    
                     <div className="form-group" style={{marginBottom:'15px'}}>
                         <label style={{marginBottom:'5px'}}>Role Name</label>
                         <input type="text"

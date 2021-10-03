@@ -77,7 +77,10 @@ const Navbar = (props) => {
                     <li class="nav-item">
                 <button type="button"
                         className="btn btn-link nav-item nav-link text-white" 
+
+
                         onClick={onClickLogoutHandler} style={{marginRight:'1.5vh',marginLeft:'4.5vh'}} >Logout</button></li>&nbsp;&nbsp;
+
                            <div>     <li class="nav-item"  ><a href="#" class="text-white "><i class="fas fa-user text-white"></i>&nbsp;About us</a></li>
                                 &nbsp;
                                 &nbsp;

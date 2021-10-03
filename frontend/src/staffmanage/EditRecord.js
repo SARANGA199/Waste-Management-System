@@ -23,8 +23,9 @@ export default class EditRecord extends Component {
        
         e.preventDefault();
         const id  = this.props.match.params.id;
-        const {OTHours, attendance} = this.state;
+        const {userName, OTHours, attendance} = this.state;
         const data  ={
+            userName:userName,
             OTHours:OTHours,
             attendance:attendance
         }
@@ -35,6 +36,7 @@ export default class EditRecord extends Component {
                 alert("Updated Successfully")
                 this.setState(
                     {
+                       userName:"",
                        OTHours:"",
                        attendance:""
                     }
@@ -49,6 +51,7 @@ export default class EditRecord extends Component {
         axios.get(`http://localhost:8070/record/${id}`).then((res) =>{
             if(res.data.success){
                 this.setState({
+                    userName:res.data.record.userName,
                     OTHours:res.data.record.OTHours,
                     attendance:res.data.record.attendance
                 });
@@ -62,9 +65,19 @@ export default class EditRecord extends Component {
             <div className="col-md-8 mt-4 mx-auto">
                 <h1 className="h3 mb-3 font-weight-normal">Edit Record</h1>
                 <form className="needs-validation" noValidate>
+                <div className="form-group" style={{marginBottom:'15px'}}>
+                        <label style={{marginBottom:'5px'}}>User Name</label>
+                        <input type="text"
+                        className="form-control"
+                        name="userName"
+                        placeholder="Enter User Name"
+                        value={this.state.userName}
+                        onChange={this.handleInputChange}/>
+                    </div>
+                    
                     <div className="form-group" style={{marginBottom:'15px'}}>
                         <label style={{marginBottom:'5px'}}>OT Hours</label>
-                        <input type="text"
+                        <input type="number"
                         className="form-control"
                         name="OTHours"
                         placeholder="Enter OT Hours"

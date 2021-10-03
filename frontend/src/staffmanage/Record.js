@@ -34,6 +34,7 @@ retrieveRecords(){
    
    filterData(records,searchKey){
        const result = records.filter((record) =>
+       record.userName.toLowerCase().includes(searchKey)||
        record.OTHours.toLowerCase().includes(searchKey)||
        record.attendance.toLowerCase().includes(searchKey)
        )
@@ -72,6 +73,7 @@ retrieveRecords(){
            <thead>
              <tr>
                <th scope="col">#</th>
+               <th scope="col">userName</th>
                <th scope="col">OTHours</th>
                <th scope="col">attendance</th>
                <th scope="col">Action</th>
@@ -83,9 +85,10 @@ retrieveRecords(){
                    <th scope="row">{index+1}</th>
                    <td>
                        <a href ={`/record/${records._id}`} style = {{textDecoration:"none"}}>
-                       {records.OTHours}
+                       {records.userName}
                        </a>
                    </td>
+                   <td>{records.OTHours}</td>
                    <td>{records.attendance}</td>
                    <td>
                       <a className="btn btn-warning" href={`/edit/${records._id}`}>

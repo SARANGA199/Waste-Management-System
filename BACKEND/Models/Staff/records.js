@@ -1,5 +1,11 @@
 const mongoose = require('mongoose');
 const recordSchema = new mongoose.Schema({
+    userName:{
+        type:String,
+        required:true
+
+    },
+    
     OTHours:{
         type:String,
         required:true

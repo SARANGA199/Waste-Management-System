@@ -21,13 +21,17 @@ export default class RecordDetails extends Component {
     }
     
     render() {
-        const{OTHours, attendance} = this.state.record;
+        const{userName, OTHours, attendance} = this.state.record;
         return (
             <div style={{marginTop:'20px'}}>
-                <h4>{OTHours}</h4>
+                <h4>{userName}</h4>
                 <hr/>
 
                 <d1 className="row">
+                <dt className="col-sm-3">OTHours</dt>
+                <dd className="col-sm-9">{OTHours}</dd>
+
+                
                 <dt className="col-sm-3">attendance</dt>
                 <dd className="col-sm-9">{attendance}</dd>
 

@@ -3,6 +3,8 @@ import PhotoSlide from "./PhotoSlide";
 import "./HomeStyle.css";
 import Footer from "./Footer";
 
+
+
 import "../Home.css";
 
 
@@ -16,6 +18,7 @@ function HomePage() {
         </div>
 
         <div className="mt-5 mb-1">
+
           <div className="card-group">
             <div className="card ms-4">
               <div className="text-center pb-5">
@@ -36,6 +39,7 @@ function HomePage() {
                   longer.
                 </p>
               </div>
+
             </div>
             <div className="card ms-4">
               <div className="text-center pb-5">
@@ -45,6 +49,19 @@ function HomePage() {
                   width="50px"
                   height="100px"
                 /> */}
+              </div>
+              <div className="card-body">
+                <h5 className="card-title">Card title</h5>
+                <p className="card-text">
+                  This card has supporting text below as a natural lead-in to
+                  additional content.
+                </p>
+              </div>
+
+            </div>
+            <div className="card ms-4">
+              <div className="text-center pb-5">
+            
               </div>
               <div className="card-body">
 
@@ -60,18 +77,17 @@ function HomePage() {
             </div>
             <div className="card ms-4">
               <div className="text-center pb-5">
-                {/* <img
-                  className="card-img-top"
-                  src="https://img.icons8.com/ios-filled/100/000000/deliver-food.png"
-                  width="200px"
-                  height="100px"
-                /> */}
+      
               </div>
               <div className="card-body">
+
+                <h5 className="card-title">Card title</h5>
+
 
                 <h5 className="card-title">
                   <b>Deliver</b>
                 </h5>
+
 
                 <p className="card-text">
                   This card has supporting text below as a natural lead-in to
@@ -90,9 +106,11 @@ function HomePage() {
               </div>
               <div className="card-body">
 
+
                 <h5 className="card-title">
                   <b>Recycle</b>
                 </h5>
+
 
                 <p className="card-text">
                   This is a wider card with supporting text below as a natural
@@ -102,9 +120,11 @@ function HomePage() {
               </div>
             </div>
           </div>
+
         </div>
 
         <Footer />
+
       </div>
     </div>
   );

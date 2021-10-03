@@ -5,11 +5,7 @@ const attendSchema = new mongoose.Schema({
         required:true
 
     },
-    staffId:{
-        type:String,
-        required:true
-
-    },
+    
     date:{
         type:String,
         required:true
