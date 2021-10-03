@@ -1,11 +1,18 @@
+
 import React, {useState,useEffect,useContext} from "react";
+
+import React, {useState,useEffect} from "react";
+
 import axios from 'axios';
 import { AuthContext } from '../Context/AuthContext';
 
 
 export default function DisplayRouteRequest() {
   
+
   const {user} = useContext(AuthContext);
+
+
 
     const[profile,setprofile] = useState([]);
 
@@ -44,6 +51,7 @@ export default function DisplayRouteRequest() {
 
                  <div className="addform1"><h1>All User Accounts </h1></div>
 
+
              
                  <a className="btn btn-warning" 
                             type="button"
@@ -51,6 +59,7 @@ export default function DisplayRouteRequest() {
                             style={{textDecoration:'none'}}>
                             <i></i>&nbsp;Generate Report
                             </a>
+
       
         <table className="table" >
   
@@ -91,12 +100,14 @@ export default function DisplayRouteRequest() {
                          <a className="btn btn-danger" href={`/deleteprofile/${data._id}`} onClick={() => setData(data)}>
                             <i className= "fas fa-trash-alt"></i>&nbsp;Delete
                          </a>
+
                          &nbsp;
                          {
                         data.role === "User" ? 
                          <a className="btn btn-success" style={{marginLeft:'24vh',marginTop:'-8.5vh'}} href={`/addpoints/${data._id}`} onClick={() => setData(data)}>
                             <i className= "fas fa-plus"></i>&nbsp;Points
                          </a>:null}
+
   
                        </td>
   
