@@ -3,12 +3,12 @@ const Schema = mongoose.Schema;
 
 const OngoingDelivery = new Schema({
 
-    driverId: {
+    _id: {
         type: Schema.Types.ObjectId,
         ref: "FreelanceDriver",
     },
 
-    vehicleNo: {
+    destination: {
         type: String,
         required: true
     }

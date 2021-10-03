@@ -13,10 +13,10 @@ class UserCard extends React.Component {
           <div className="card shadow-sm">
             <div className="card-body">
               <h4 className="fw-normal">Welcome</h4>
-              <h2 className="fw-normal">User Name</h2>
+              <h2 className="fw-normal">{this.props.name}</h2>
             </div>
 
-            <svg
+            {/* <svg
               className="bd-placeholder-img card-img-top"
               width="75%"
               height={225}
@@ -28,7 +28,9 @@ class UserCard extends React.Component {
             >
               <title>User Image</title>
               <rect width="100%" height="100%" fill="#55595c" />
-            </svg>
+            </svg> */}
+
+            <img width="100%" height={225} src={this.props.link}></img>
           </div>
         </div>
       </div>

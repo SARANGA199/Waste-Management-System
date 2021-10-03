@@ -37,7 +37,9 @@ export default function DeleteRouteOrder()  {
 
     const submitData = (e)=> {
          e.preventDefault();
-       
+        let ans = window.confirm("Do you want to delete this record ?");
+
+        if(ans){
 
         axios.delete(`http://localhost:8070/routeOrder/deleteOrderRoute/${orderId}`).then(()=>{
 
@@ -49,7 +51,7 @@ export default function DeleteRouteOrder()  {
   
           alert(err);
        })
-
+      }
             
     
 
@@ -62,31 +64,32 @@ export default function DeleteRouteOrder()  {
 
 <button className ="btn btn-success"><a href="/routeOrder" style={{textDecoration:'none', color :'white'}}>Request Routes</a> </button>
 
-  <div className="addform"><h1>Process Order</h1></div>
+  <div className="addform1"><h1>Delete Order Route</h1></div>
                 
     <div className="main">
 
-<form onSubmit={submitData} className="form" >
-  <div className="col-md-4 mb-3">
-    <label htmlFor="name" className="form-label">
-    <h2 className="name1">  Order ID </h2>
-    </label>
-    <input
-      type="text"
-      className="form-control"
-      name="rid"
-      style={{width:"300px"}}
-      required
-      disabled
-      value={orderId}
-      onChange={e=>{
-                  
-        setoid(e.target.value);
+<form onSubmit={submitData} className="form1" >
 
-  }}
-      
-    />
-  </div>
+          {/* <div className="col-md-4 mb-3">
+            <label htmlFor="name" className="form-label">
+            <h2 className="name1">  Order ID </h2>
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              name="rid"
+              style={{width:"300px"}}
+              required
+              disabled
+              value={orderId}
+              onChange={e=>{
+                          
+                setoid(e.target.value);
+
+          }}
+              
+            />
+          </div> */}
 
 
   <div className="col-md-4 mb-3">
@@ -299,13 +302,14 @@ export default function DeleteRouteOrder()  {
             <hr className="col-md-4 mb-4" />
 
            
-             <button type="submit" id= " btn1" className="btn btn-primary mb-5" >
+             <button type="submit" id= " btn1" className="btn btn-danger mb-5" >
                 Delete
             </button>
 
             
             </form>
             </div>
+            <br/><br/>
             </div>
 
 

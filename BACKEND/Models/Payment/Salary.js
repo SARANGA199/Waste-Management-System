@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 
 const SalarySchema = new Schema({
 
+
     EID:{
         type: String,
         required : true
@@ -15,7 +16,7 @@ const SalarySchema = new Schema({
     },
 
     OT_Payment:{
-        type: Number,
+        type: String,
         //required : true
     },
 

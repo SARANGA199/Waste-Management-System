@@ -5,13 +5,21 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./CreditCardForm.css";
 import Cards from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
+import {useContext} from 'react';
+import { AuthContext } from '../Context/AuthContext';
 
 
 const CreditCardForm = () => {
+  /************** */
+
+  const {user} = useContext(AuthContext);
+  
+  /*************** */
   const { handleChange, handleFocus, handleSubmit, values, errors } = useForm();
+  values.uid = user.username;
   return (
     <div>
-      <div className="container">
+      <div className="cardcontainer">
         <div className="box justify-content-center align-items-center">
           <div className="formDiv">
           <div className="creditCard">
@@ -22,8 +30,26 @@ const CreditCardForm = () => {
             name={values.cardName}
             number={values.cardNumber}
           />
+          
           </div>
+       
           <Form onSubmit={handleSubmit} >
+          <input type="hidden" id="uid" name="uid" value="" />
+            
+          <Form.Group>
+              <Form.Control
+                type="hidden"
+                id="uid"
+                data-testid="uid"
+                name="uid"
+                value={user.username}
+                onChange={handleChange}
+                onFocus={handleFocus}
+
+              />
+            </Form.Group>
+               
+            
             <Form.Group>
               <Form.Control
                 type="text"
@@ -37,6 +63,8 @@ const CreditCardForm = () => {
                 isValid={errors.cname}
               />
             </Form.Group>
+
+            <br />
             <Form.Group>
               <Form.Control
                 type="number"
@@ -50,6 +78,7 @@ const CreditCardForm = () => {
                 isValid={errors.cnumber}
               />
             </Form.Group>
+            <br />
             <Row>
               <Col>
                 <Form.Group>
@@ -82,6 +111,7 @@ const CreditCardForm = () => {
                 </Form.Group>
               </Col>
             </Row>
+            <br />
             <Row>
               <Col>
                 <Form.Group>
@@ -105,23 +135,26 @@ const CreditCardForm = () => {
                     id="cardPostalCode"
                     data-testid="cardPostalCode"
                     name="cardPostalCode"
-                    placeholder="Postal Code"
+                    placeholder="Nickname"
                     value={values.cardPostalCode}
                     onChange={handleChange}
                     onFocus={handleFocus}
-                    isValid={errors.cpostal}
+
                   />
                 </Form.Group>
               </Col>
             </Row>
+            <br />
+            <center>
             <Button
               size={"block"}
               data-testid="validateButton"
               id="validateButton"
               type="submit"
             >
-              Validate
+              Submit
             </Button>
+            </center>
           </Form>
           </div>
           <Alert

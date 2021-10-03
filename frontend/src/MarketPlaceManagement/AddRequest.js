@@ -9,6 +9,7 @@ export default function AddRequest() {
   const [description, setDescription] = useState("");
   const [itemLocation, setItemLocation] = useState("");
   const [photo, setPhoto] = useState("");
+  const [loading, setLoading] = useState(false);
 
   //image upload start
   const uploadImage = async (e) => {
@@ -16,6 +17,7 @@ export default function AddRequest() {
     const data = new FormData();
     data.append("file", files[0]);
     data.append("upload_preset", "wasteImages");
+    setLoading(true);
 
     const res = await fetch(
       "https://api.cloudinary.com/v1_1/waste123/image/upload",
@@ -66,6 +68,7 @@ export default function AddRequest() {
             type="text"
             className="form-control"
             id="Itemname"
+            required
             placeholder="Enter Your Item Name"
             onChange={(e) => {
               setItemName(e.target.value);
@@ -78,6 +81,7 @@ export default function AddRequest() {
           </label>
           <select
             className="form-select"
+            required
             onChange={(e) => {
               setCategory(e.target.value);
             }}
@@ -93,12 +97,18 @@ export default function AddRequest() {
         <div className="col-md-1 mb-3">
           <label htmlFor="weight" className="form-label">
             Weight
+            <span class="text-muted"> (Kg)</span>
           </label>
           <input
-            type="text"
+
+            type="number"
+            required
             className="form-control"
             id="weight"
-            placeholder="             kg"
+            min="1"
+            step="1"
+
+ 
             onChange={(e) => {
               setWeight(e.target.value);
             }}
@@ -110,6 +120,7 @@ export default function AddRequest() {
             className="form-control"
             placeholder="Add your description here"
             id="description"
+            required
             defaultValue={""}
             onChange={(e) => {
               setDescription(e.target.value);
@@ -122,12 +133,25 @@ export default function AddRequest() {
             Photo
           </label>
           <input
-            className="form-control"
+            className="form-control mb-3"
             type="file"
+            required
             accept="image/png, image/jpeg"
             id="image"
             onChange={uploadImage}
           />
+          {loading ? (
+            <img
+              className="img-thumbnail"
+              width="150px"
+              required
+              height="150px"
+              src={photo}
+              alt="Loading..."
+            />
+          ) : (
+            <label htmlFor="loading" className="form-label" />
+          )}
         </div>
         <div className="col-md-3 mb-3">
           <label htmlFor="itemLocation" className="form-label">
@@ -135,6 +159,7 @@ export default function AddRequest() {
           </label>
           <textarea
             className="form-control"
+            required
             placeholder="Add your address here"
             id="itemLocation"
             defaultValue={""}
@@ -175,7 +200,7 @@ export default function AddRequest() {
         />
         </div> */}
 
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary mb-5">
           Submit
         </button>
       </form>

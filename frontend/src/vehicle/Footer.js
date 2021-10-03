@@ -5,7 +5,9 @@ export default function Footer() {
   return (
     <div>
       {/* Site footer */}
-      <footer className="site-footer" style={{marginRight:'-20vh',marginLeft:'-20vh' , height:"30vh"}}>
+
+      <footer className="site-footer" style={{marginRight:'-20vh',marginLeft:'-20vh' , height:"60vh"}}>
+
         <div className="container">
           <div className="row">
             <div className="col-sm-12 col-md-6">

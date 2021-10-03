@@ -1,3 +1,4 @@
+
 import React, { Component,useContext } from 'react';
 import { AuthContext } from '../Context/AuthContext';
 
@@ -111,27 +112,8 @@ function SideBar() {
 
   </ul>
 </div>:null}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-      </ul>
+     
+  </ul>
   
     </nav>
   </div>
@@ -142,3 +124,4 @@ function SideBar() {
     }
   
 export default SideBar;
+

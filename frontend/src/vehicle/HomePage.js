@@ -2,7 +2,12 @@ import React from "react";
 import PhotoSlide from "./PhotoSlide";
 import "./HomeStyle.css";
 import Footer from "./Footer";
-import '../Home.css';
+
+
+
+import "../Home.css";
+
+
 
 function HomePage() {
   return (
@@ -12,7 +17,8 @@ function HomePage() {
           <PhotoSlide />
         </div>
 
-        <div className="mt-5 mb-1" style={{zIndex:1}}>
+        <div className="mt-5 mb-1">
+
           <div className="card-group">
             <div className="card ms-4">
               <div className="text-center pb-5">
@@ -33,6 +39,7 @@ function HomePage() {
                   longer.
                 </p>
               </div>
+
             </div>
             <div className="card ms-4">
               <div className="text-center pb-5">
@@ -50,18 +57,38 @@ function HomePage() {
                   additional content.
                 </p>
               </div>
+
             </div>
             <div className="card ms-4">
               <div className="text-center pb-5">
-                {/* <img
-                  className="card-img-top"
-                  src="https://img.icons8.com/ios-filled/100/000000/deliver-food.png"
-                  width="200px"
-                  height="100px"
-                /> */}
+            
               </div>
               <div className="card-body">
+
+                <h5 className="card-title">
+                  <b>Buy</b>
+                </h5>
+
+                <p className="card-text">
+                  This card has supporting text below as a natural lead-in to
+                  additional content.
+                </p>
+              </div>
+            </div>
+            <div className="card ms-4">
+              <div className="text-center pb-5">
+      
+              </div>
+              <div className="card-body">
+
                 <h5 className="card-title">Card title</h5>
+
+
+                <h5 className="card-title">
+                  <b>Deliver</b>
+                </h5>
+
+
                 <p className="card-text">
                   This card has supporting text below as a natural lead-in to
                   additional content.
@@ -78,7 +105,13 @@ function HomePage() {
                 /> */}
               </div>
               <div className="card-body">
-                <h5 className="card-title">Card title</h5>
+
+
+                <h5 className="card-title">
+                  <b>Recycle</b>
+                </h5>
+
+
                 <p className="card-text">
                   This is a wider card with supporting text below as a natural
                   lead-in to additional content. This card has even longer
@@ -87,10 +120,11 @@ function HomePage() {
               </div>
             </div>
           </div>
+
         </div>
-      <div style={{zIndex:0}}>
+
         <Footer />
-        </div>
+
       </div>
     </div>
   );
