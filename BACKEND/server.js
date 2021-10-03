@@ -108,6 +108,9 @@ app.use("/userpayments",upRouter);
 const salRouter = require("./routes/payment/salarys.js");
 app.use("/salarys",salRouter);
 
+const comRouter = require("./routes/payment/companybuys.js");
+app.use("/companybuys",comRouter);
+
 //const marketplaceRouter = require("./Routes/marketplace/requestpools");
 //app.use("/marketplace", marketplaceRouter);
 

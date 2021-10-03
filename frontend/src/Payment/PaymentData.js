@@ -22,7 +22,7 @@ export default class PaymentData extends Component {
         axios.get("http://localhost:8070/userpayments/allPayments").then(res =>{
       
             if(res.data.success){
-                alert("Success!");
+
                 this.setState({
                      
                     ReqRoute : res.data.existingPayRouter,            
@@ -40,40 +40,25 @@ export default class PaymentData extends Component {
       
 
       onDelete = (id)=>{
-        alert('http://localhost:8070/formcards/deleteCard/${id}');
-        const URL = 'http://localhost:8070/userpayments/deletePay/'+id;
-          axios.delete(URL).then((res)=>{
-              alert("Deleted!");
-              this. retrivePayments();
-          }).catch((err)=>{
-              alert(err.message);
-          })
+        let ans = window.confirm("Do you want to delete this record?");
+        if(ans){
+            const URL = 'http://localhost:8070/userpayments/deletePay/'+id;
+            axios.delete(URL).then((res)=>{
+                alert("Deleted!");
+                this. retrivePayments();
+            }).catch((err)=>{
+                alert(err.message);
+            })
+        }  
       }
 
-      deleteCard(){
 
-        axios.delete("http://localhost:8070/formcards/delete/${Reqr._id}").then(res =>{
-      
-            if(res.data.success){
-                alert("Delete Success!");
-                this.setState({  
-                    ReqRoute : res.data.existingReqRouter
-                  });
-    
-              }
-              else{
-                alert("Delete Failed!");
-              }
-          
-        }).catch((err)=>{
-            alert(err.message)
-        })
-      }
 
     render() {
         return (
-            <><h1>My Payment Methods</h1> 
-            <a href="/credit-card-validation/UserPayForm"><button>Add new</button> </a>
+            <><center><h1>Drivers Payment Details</h1> 
+            <a href="/credit-card-validation/UserPayForm"><button className ="btn btn-success">Add new</button> </a>
+            </center>
             <div className="container " style={{ width: "100%" }}>
                 <table className="table">
 

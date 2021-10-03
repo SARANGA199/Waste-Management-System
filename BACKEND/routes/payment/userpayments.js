@@ -50,6 +50,21 @@ router.get("/allPayments",(req,res)=>{
       });
   })
 
+  router.get("/MyPayments/:id",(req,res)=>{
+    let uPayid = req.params.id;
+    uPay.find({uid:uPayid}).exec((err,uPay)=>{
+          if(err){
+              return res.status(400).json({
+                 error:err
+             });
+         }
+            return res.status(200).json({
+              success:true,
+              existingPayRouter:uPay,
+          });
+      });
+  })
+
 router.route("/update/:id").put(async (req, res)=>{
     let uPayid = req.params.id;
     const {uid,TripCount,amount} = req.body;
