@@ -172,7 +172,7 @@ function App() {
           <PrivateRoute path="/record/:id" roles={["admin"]} component={RecordDetails}/>       
           <PrivateRoute path="/staffattend" roles={["admin","User"]} exact component={Attend}/>
           <PrivateRoute path="/addattend" roles={["admin","User"]} component={CreateAttend}/>
-          <PrivateRoute path="/attend/:id" roles={["admin","User"]} component={AttendDetails}/>  
+          <PrivateRoute path="/attend/:id" roles={["admin","User"]} component={AttendDetails}/>
 
           {/* vehicle */}
 

@@ -93,7 +93,7 @@ retrieveAttends(){
          </table>
             
             <button className="btn btn-success"><a href="/addattend" style={{textDecoration:'none', color:'white'}}>Add New Attendance</a></button>
-            <button className="btn btn-success"><a href="#" style={{textDecoration:'none', color:'white'}}>Print</a></button>
+            <button className="btn btn-success"><a href="/report" style={{textDecoration:'none', color:'white'}}>Print</a></button>
             
       </div>
     )
