@@ -7,15 +7,19 @@ export default function SelectDriver() {
     
     
     const[request,setRequest] = useState([]);
-    const [tripId, settripId] = useState();
-    const [deliveryTown, setdeliveryTown] = useState();
-    const [vehicle, setvehicle] = useState();
+    const [tripId, settripId] = useState("");
+    const [deliveryTown, setdeliveryTown] = useState("");
+    const [vehicle, setvehicle] = useState("");
+    const [destination, setdestination] = useState("");
+    const [_id, setdId] = useState("");
+
     useEffect(()=>{
              settripId(localStorage.getItem('tripId'));
              setdeliveryTown(localStorage.getItem('deliveryTown'));
              setvehicle(localStorage.getItem('vehicleType'));
-        
-
+             setdestination(localStorage.getItem('destination'));
+             setdId(localStorage.getItem('dId'));
+              
         axios.get("http://localhost:8070/driver/allprof").then((res)=>{
                 setRequest(res.data.existingDRouter);
             }).catch((err)=>{
@@ -27,17 +31,36 @@ export default function SelectDriver() {
     },[])
 
 
-    const setData = (data) => {
-        let {_id,vehicleNo, nearbyTown,vehicleType} = data;
+        const setData = (data) => {
 
-        localStorage.setItem('dId',_id);
-        localStorage.setItem('vehicleNo', vehicleNo);
-        localStorage.setItem('nearbyTown', nearbyTown);
-        localStorage.setItem('vehicleType', vehicleType);
+          let {_id,vehicleNo, nearbyTown,vehicleType} = data;
 
-        //localStorage.setItem('deliveryTown', deliveryTown);
-        console.log(data);
+          localStorage.setItem('dId',_id);
+          localStorage.setItem('vehicleNo', vehicleNo);
+          localStorage.setItem('nearbyTown', nearbyTown);
+          localStorage.setItem('vehicleType', vehicleType);
         
+          const OngoingDelivery = {
+             
+            _id,
+            destination,
+          
+        };
+    
+        axios
+          .post(
+            "http://localhost:8070/trip/addTrip",
+             OngoingDelivery
+          )
+          .then(() => {
+            
+                                 
+          })
+          .catch((err) => {
+            alert(err);
+          });
+          alert("Driver Assigned");
+
 }
 
     return (
@@ -51,31 +74,33 @@ export default function SelectDriver() {
       <br/>
             <div className = "container">
             
-          <form>  <table className="table">
+          <form >  <table className="table">
 
                 <thead>
                         <tr>
                         <th scope="col">Number</th>
-                        <th scope="col">Driver Id</th>
+                        
                         <th scope="col">Vehicle Number</th>
                         <th scope="col">Nearby Town</th>
                         <th scope="col">Vehicle Type</th>
+                       
                         </tr>
 
                 </thead>
             <tbody>
+
               {request.map((data,index)=>(
                         
                         <tr key={index}>
                             <th scope="row">{index+1}</th>
-                            
-                            <td> {data._id} </td>
-                            <td> {data.vehicleNo} </td>
-                            <td> {data.nearbyTown} </td>
-                            <td> {data.vehicleType} </td>
+                            <td> <b> {data.vehicleNo} </b></td> 
+                            <td><b> {data.nearbyTown} </b> </td> 
+                             <td> <b>{data.vehicleType} </b></td> 
+                           
                             <td>
                             <a className="btn btn-warning" 
-                            //onClick={() => setData(data)}
+                            type="submit"
+                            onClick={() => setData(data)}
                             href={`http://localhost:3000/routeReq/allRouteReq`}
                             style={{textDecoration:'none'}}>
                             <i></i>&nbsp;Assign Driver
@@ -91,6 +116,13 @@ export default function SelectDriver() {
                 </tbody> 
 
             </table> </form>
+            <br/> <br/><br/><br/>
+           <a className="btn btn-success"
+           href={`http://localhost:3000/routeReq/allRouteReq`}
+           style={{textDecoration:'none'}}
+           
+           >Go Back</a>
+
           </div>
             
         </div>

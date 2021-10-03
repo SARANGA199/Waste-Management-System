@@ -1,19 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "../component.css";
+import { AuthContext } from "../Context/AuthContext";
 
 import UserCard from "./UserCard";
 import axios from "axios";
-import {
-  Card,
-  CardImg,
-  CardText,
-  CardBody,
-  CardTitle,
-  CardSubtitle,
-} from "reactstrap";
+import { Card, CardImg, CardText, CardBody, CardTitle } from "reactstrap";
 
 export default function Dashboard() {
   const [RequestList, setRequestList] = useState([]);
+  const { user } = useContext(AuthContext);
   useEffect(() => {
     axios
       .get("http://localhost:8070/marketplace/")
@@ -36,12 +31,34 @@ export default function Dashboard() {
     localStorage.setItem("photo", photo);
     console.log(data);
   };
+
+  function deleteData(data) {
+    // e.preventDefault();
+    let { _id, itemName, category, weight, description, itemLocation, photo } =
+      data;
+    console.log("Delete", _id);
+    let ans = window.confirm("Do you want to delete this request ?");
+
+    if (ans) {
+      axios
+        .delete(`http://localhost:8070/marketplace/deleteRequest/${_id}`)
+        .then(() => {
+          alert("Request Delete successfully");
+        })
+        .catch((err) => {
+          alert(err);
+        });
+    }
+  }
   return (
     <div>
       <section className="py-5 text-center container">
         <div className="row py-lg-5">
           <div className="col-lg-6 col-md-8 mx-auto">
-            <UserCard />
+            <UserCard
+              name={user.name}
+              link="https://res.cloudinary.com/waste123/image/upload/v1631737463/wasteImage/gpxtzmz1rngbax4azgvb.jpg"
+            />
           </div>
         </div>
       </section>
@@ -66,18 +83,19 @@ export default function Dashboard() {
                   />
                   <CardBody>
                     <CardTitle tag="h5">{RequestList.itemName}</CardTitle>
-                    <CardSubtitle tag="h6" className="mb-2 text-muted">
+                    {/* <CardSubtitle tag="h6" className="mb-2 text-muted">
                       Card subtitle
-                    </CardSubtitle>
+                    </CardSubtitle> */}
                     <CardText>{RequestList.description}</CardText>
                     <div>
-                      <a
-                        className="btn btn-danger me-5 ms-3"
-                        href="/deleteRequest"
+                      <button
+                        type="button"
+                        className="btn btn-danger ms-5"
+                        onClick={() => deleteData(RequestList)}
                       >
                         <i className="bi bi-trash me-2" />
                         Delete
-                      </a>
+                      </button>
                       <a
                         type="button"
                         className="btn btn-warning ms-5"

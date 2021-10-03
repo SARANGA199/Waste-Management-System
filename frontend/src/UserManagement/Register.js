@@ -131,7 +131,7 @@ const Register = props=>{
                 </div>
 
                 <div class="d-flex justify-content-end pt-3">
-                  <button type="submit" class="btn btn-success btn-lg ms-2">Submit form</button>
+                  <button type="submit" class="btn btn-success btn-lg ms-2">Register</button>
                 </div>
                 </form>
             {message ? <Message message={message}/> : null}

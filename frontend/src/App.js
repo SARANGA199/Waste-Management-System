@@ -13,6 +13,7 @@ import UserProfile from './UserManagement/Userprofile';
 import EditProfile from './UserManagement/EditProfile';
 import DeleteProfile from './UserManagement/DeleteProfile';
 import UserProfileclient from './UserManagement/UserProfileclient'
+import GetReport from './UserManagement/GetReport'
 
 //marketplace
 
@@ -44,7 +45,7 @@ import DriverRegister from './DeliveryManagement/DriverRegister';
 import View from './DeliveryManagement/View';
 import CollectItem from './DeliveryManagement/CollectItem';
 import SelectDriver from './DeliveryManagement/SelectDriver';
-
+import ViewOrders from './DeliveryManagement/ViewOrders';
 import CheckDrivers from './DeliveryManagement/CheckDrivers';
 
 //recycle facility
@@ -115,6 +116,7 @@ import EditPaymentData from "./Payment/EditPaymentData";//new
 import DeletePayment from "./Payment/DeletePayment";//new
 
 
+
 function App() {
   return (
     <Router>
@@ -122,6 +124,8 @@ function App() {
       <Navbar />
 
       {/* user */}
+
+      <PrivateRoute path="/report" roles={["admin","User"]} component={GetReport}/>
 
       <UnPrivateRoute path="/login" component={Login}/>
       <UnPrivateRoute path="/register" component={Register}/>
@@ -142,7 +146,7 @@ function App() {
       
       {/* pickup */}
 
-      <Route path="/req" exact component={DisplayReq} />
+          <PrivateRoute path="/req" roles={["admin"]} exact component={DisplayReq} />
           <PrivateRoute path="/addOrder/route" roles={["admin"]} exact component={RouteOrderAdd} />
           <PrivateRoute path="/order" roles={["admin"]} exact component={DisplayOrder} />
           <PrivateRoute path="/addReq/route" roles={["admin"]} exact component={RouteReqAdd} />
@@ -163,8 +167,10 @@ function App() {
           <PrivateRoute path="/driver/prof/:id" roles={["User"]} exact component={DriverProfile} />
           <PrivateRoute path="/routeReq/allRouteReq" roles={["admin"]} exact component={CheckDrivers} />
           <PrivateRoute path="/driver/allprof" roles={["admin"]} exact component={SelectDriver} />
+          <PrivateRoute path="/trip/addTrip" roles={["admin"]} exact component={SelectDriver} />
           <PrivateRoute path="/delivery/display" roles={["User"]} exact component={View} />
           <PrivateRoute path="/driver/collect" roles={["User"]} exact component={CollectItem} />
+          <PrivateRoute path="/trip/check/:id" roles={["User"]} exact component={ViewOrders} />
 
           {/* recycle facility */}
 

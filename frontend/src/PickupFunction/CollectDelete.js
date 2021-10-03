@@ -29,7 +29,9 @@ export default function CollectDelete() {
           
       e.preventDefault();
 
-      
+      let ans = window.confirm("Do you want to delete this record ?");
+
+      if(ans){      
 
       axios.delete(`http://localhost:8070/receivedItem/deleteRitems/${receivedId}`).then(()=>{
 
@@ -43,6 +45,7 @@ export default function CollectDelete() {
      })
 
     }
+  }
 
     return(
       <div>

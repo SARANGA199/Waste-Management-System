@@ -5,18 +5,13 @@ let deliveryDetail = require("../../Models/Delivery/DeliveryDetail");
 router.route("/addDelivery").post((req, res) => {
 
     const driverId = req.body.driverId;
-    const tripId = req.body.tripId;
     const deliveryLocation = req.body.deliveryLocation;
-    const vehicleNo = req.body.vehicleNo;
-    const date = Date(req.body.date);
-
+   
     const tripDetail = new deliveryDetail({
 
         driverId,
-        tripId,
         deliveryLocation,
-        vehicleNo,
-        date
+    
     })
 
 

@@ -58,29 +58,40 @@ const Navbar = props =>{
                     </li>
                 </Link> : null
                 }
+                    <Link to={`/driver/${user._id}/reg`}>
+                        <li className="nav-item nav-link text-white " style={{marginRight:'5vh',marginLeft:'43vh'}}>
+                            Driver Register
+                        </li>
+                    </Link>
+                    <Link to="/itemlist">
+                        <li className="nav-item nav-link text-white ">
+                            Marketplace
+                        </li>
+                        </Link>
                     <span>{user.role === "User" ?
                         <h4 className="nav-item nav-link text-white" >
                             Welcome&nbsp;{user.name}
                         </h4>:null}
                     </span>
                     <span>{user.role === "admin" ?
-                        <li className="nav-item nav-link text-white" >
+                        <li className="nav-item nav-link text-white ">
                             Administrator&nbsp;{user.name}
                         </li>:null}
                     </span>
                     <li class="nav-item">
                 <button type="button"
                         className="btn btn-link nav-item nav-link text-white" 
-                        onClick={onClickLogoutHandler}  style={{marginLeft:'82vh',marginTop:'5vh'}}>Logout</button></li>&nbsp;&nbsp;
-                                <li class="nav-item" style={{marginLeft:'-28vh'}}><a href="#" class="text-white "><i class="fas fa-user text-white"></i>&nbsp;About us</a></li>
+                        onClick={onClickLogoutHandler} style={{marginRight:'1.5vh',marginLeft:'4.5vh'}} >Logout</button></li>&nbsp;&nbsp;
+                           <div>     <li class="nav-item"  ><a href="#" class="text-white "><i class="fas fa-user text-white"></i>&nbsp;About us</a></li>
                                 &nbsp;
                                 &nbsp;
                                 <li class="nav-item"><a href="#" class="text-white "><i className="fas fa-envelope text-white" />&nbsp;Contact us</a></li>
+                                </div>
             </>
         )
     }
     return(
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-4 pb-4 pt-4 " style={{marginRight:'-15.5vh',marginLeft:'-15.5vh'}}>
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-4 pb-4 pt-4 " style={{marginRight:'-19.5vh',marginLeft:'-19.5vh', height:"15vh"}}>
             <div className="container-fluid" id="nav">
             <Link to="/">
                 <div className="navbar-brand" style={{marginLeft:'20vh'}}><h2>ecoBin</h2></div>

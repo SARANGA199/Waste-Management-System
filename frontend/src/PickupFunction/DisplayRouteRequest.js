@@ -7,6 +7,7 @@ export default function DisplayRouteRequest() {
   
 
     const[routes,setRoute] = useState([]);
+    
 
     useEffect(()=>{
             
@@ -36,19 +37,80 @@ export default function DisplayRouteRequest() {
 
 }
 
+//search bar functions
+const filterData = (routes,searchkey) =>{
+
+   const result= routes.filter((Routereq) =>
+   Routereq.deliveryTown.toLowerCase().includes(searchkey) ||
+   Routereq.deliveryTown.includes(searchkey)
+   )
+
+   setRoute(result)
+}
+
+
+  function hancdleSearchArea(e) {
+        
+  const searchkey = e.currentTarget.value;
+
+  axios.get("http://localhost:8070/routeReq/allRouteReq").then((res)=>{
+
+            //setRoute(res.data);
+          // filterData(res.data,searchkey)
+
+          if(res.data.success){
+              
+            filterData(res.data.existingReqRouter,searchkey)
+
+          }
+  
+  
+  });
+
+ }
+
 
 
     return (
+             
+     <div>
+     
+            {/* search bar */}
+            <div className="container">
+                <div className="row">
+               
+                   <h4> search here </h4>
+                  <div className="col-lg-3 mt-2 mb-2">
+                      <input
+                        className="form-control"
+                        type="search"
+                        placeholder="search"
+                        name="searchQuery"
+                        onChange={hancdleSearchArea}>
+                          
+                        </input>
+                      
+                  </div>
+
+                </div>
+
+            </div>
+
+
+
+
+
+
         <div className = "container " style={{width:"100%"}}>
 
-                 <div className="addform1"><h1>All Routes for Request </h1></div>
+                 <div className="addform2"><h1>All Routes for Request </h1></div>
       
         <table className="table" >
   
           <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">PackSize</th>
+                    <th scope="col">PackSize(KG)</th>
                     <th scope="col">VehicleType</th>
                     <th scope="col">Destination</th>
                     <th scope="col">Distance</th>
@@ -94,6 +156,10 @@ export default function DisplayRouteRequest() {
            </tbody> 
   
         </table>
+
+      <button className ="btn btn-success"><a href="/req" style={{textDecoration:'none', color :'white'}}>Back </a> </button>
+     </div>
+
      </div>
     )
 }

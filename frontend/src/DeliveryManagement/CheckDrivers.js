@@ -9,7 +9,8 @@ export default function CheckDrivers() {
     const[request,setRequest] = useState([]);
 
     useEffect(()=>{
-            
+
+           
         axios.get("http://localhost:8070/routeReq/allRouteReq").then((res)=>{
                 setRequest(res.data.existingReqRouter);
             }).catch((err)=>{
@@ -21,12 +22,12 @@ export default function CheckDrivers() {
 
 
     const setData = (data) => {
-        let {_id,deliveryTown,vehicleType} = data;
+        let {_id,deliveryTown,vehicleType,destination} = data;
 
         localStorage.setItem('tripId',_id);
         localStorage.setItem('deliveryTown', deliveryTown);
         localStorage.setItem('vehicleType', vehicleType);
-
+        localStorage.setItem('destination', destination);
         console.log(data);
         
 
@@ -44,7 +45,7 @@ export default function CheckDrivers() {
                 <thead>
                         <tr>
                         <th scope="col">Number</th>
-                        <th scope="col">Trip Id</th>
+                      
                         <th scope="col">Nearby Town</th>
                         <th scope="col">Vehicle Type</th>
                         <th scope="col">Delivery Status</th>
@@ -57,11 +58,12 @@ export default function CheckDrivers() {
                         <tr key={index}>
                             <th scope="row">{index+1}</th>
                             
-                            <td> {data._id} </td>
+                         
                             <td> {data.deliveryTown} </td>
                             <td> {data.vehicleType} </td>
                             <td>Not Assigned</td>
                             <td>
+                                
                             <a className="btn btn-warning" 
                             onClick={() => setData(data)}
                             href={`/driver/allProf`}

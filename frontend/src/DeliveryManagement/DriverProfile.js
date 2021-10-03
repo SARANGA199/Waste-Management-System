@@ -95,11 +95,20 @@ componentDidMount(){
  }  
 
 onDelete= (id)=>{
+   
+    let ans = window.confirm("Are you sure want to delete your account?");
+    if(ans){  
     axios.delete(`http://localhost:8070/driver/deleteProfile/${id}`).then((res)=>{
         alert("Driver Profile Successfully Deleted");
         this.props.history.push('/');
-})
+        }).catch((err)=>{
+        alert(err.message);
+       })
+    }    
+
 }
+
+
 render() {
  return (
      <div className="profile">
@@ -137,9 +146,10 @@ render() {
                      value= {this.state.nearbyTown}
                      onChange = {this.handleInputChange}
                     >
-                    <option value={"Akuressa"}>Akuressa</option>
+                    <option value={"Akurassa"}>Akuressa</option>
                     <option value={"Galle"}>Galle</option>
                     <option value={"Matara"}>Matara</option>
+                    <option value={"Waligama"}>Waligama</option>
                     </select>
                     </div> </div>            
 
@@ -176,9 +186,10 @@ render() {
                              >
                              
                              <option value={"Bike"}>Bike</option>
+                             <option value={"Lorry"}>Lorry</option>
                              <option value={"Three-Wheeler"}>Three-Wheeler</option>
                              <option value={"Truck"}>Truck</option>
-                             <option value={"Van"}>Van</option>
+                           
                             
                             </select></div>
                          </div>                       

@@ -36,38 +36,7 @@ export default function View() {
     return (
         <div className = "container" style={{marginTop:"3%"}} >
       
-        <table className="table" >
-  
-          <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Trip Id</th>
-                    <th scope="col">Vehicle Number</th>
-                    <th scope="col">Location</th>
-                    <th scope="col">Date</th>
-                   
-                  </tr>
-                 
-          </thead>
-         <tbody>
-             {stats.map((data,index)=>(
-                    
-                    <tr key={index}>
-                       <th scope="row">{index+1}</th>
-                       <td>{data.tripId}</td>
-                       <td>{data.vehicleNo}</td>
-                       <td>{data.deliveryLocation}</td>
-                       <td>{data.date}</td>
-                       
-                    </tr>
-                  
-  
-             ))}
-             
-           
-           </tbody> 
-  
-        </table>
+          <h4>You Don't have Delivery Records Yet... </h4>
      </div>
     )
 }

@@ -18,6 +18,20 @@ function SideBar() {
       
       <ul className="list-items mt-5">
         <li><a href="/"><i className="fas fa-home" />Home</a></li>
+
+        {
+                user.role === "User" ? 
+        <li><a href="/dashboard"><i  />Dashboard</a></li>:null}
+
+          { 
+                user.role === "User" ? 
+         <li><a href={`/driver/prof/${user._id}`}><i  />View Driver Profile</a></li> :null}
+
+        { 
+                user.role === "User" ? 
+         <li><a href={`/trip/check/${user._id}`}><i  />Check Delivery Job</a></li> :null}
+
+
       
         {
                 user.role === "admin" ? 
@@ -93,6 +107,7 @@ function SideBar() {
   </ul>
 </div>:null}
 
+
 {user.role === "admin" ? 
 <div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle" style={{marginTop:"10%" , marginLeft:"10%" , width:"80%"}} type="button" 
@@ -100,6 +115,7 @@ function SideBar() {
     Payment Management
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+
     <li><a  href={"/credit-card-validation/CompanyPurchase/"} style={{width:"124.7%", marginLeft:"-24.8%"}} className="btn-secondary "> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;New Company Purchase </a> </li>
     <li><a  href={"/credit-card-validation/PurchaseData2/"} style={{width:"124.7%", marginLeft:"-24.8%"}} className="btn-secondary "> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Company Purchases </a></li>
     <li><a  href={"/credit-card-validation/addSalary/"} style={{width:"124.7%", marginLeft:"-24.8%"}} className="btn-secondary "> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add Salary Data </a></li>
@@ -108,6 +124,11 @@ function SideBar() {
     <li><a  href={"/credit-card-validation/allCards/"} style={{width:"124.7%", marginLeft:"-24.8%"}} className="btn-secondary "> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;User Payment Methods </a></li>
     <li><a  href={"/credit-card-validation/UserPayForm/"} style={{width:"124.7%", marginLeft:"-24.8%"}} className="btn-secondary "> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add Driver payment </a></li>
     <li><a  href={"/credit-card-validation/PaymentData2/"} style={{width:"124.7%", marginLeft:"-24.8%"}} className="btn-secondary "> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Driver payment History </a></li>
+
+    <li><button class="dropdown-item" type="button">Action</button></li>
+    <li><button class="dropdown-item" type="button">Another action</button></li>
+    <li><button class="dropdown-item" type="button">Something else here</button></li>
+
   </ul>
 </div>:null}
 
