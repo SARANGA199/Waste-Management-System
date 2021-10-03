@@ -40,8 +40,8 @@ const userSchema = new Schema({
     },
 
     image: {
-        data: Buffer,
-        type: String
+        type: String,
+        default: "Image"
     },
 
     role: {

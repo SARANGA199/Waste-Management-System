@@ -5,6 +5,7 @@ const passportConfig = require('../../passport');
 const JWT = require('jsonwebtoken');
 let User = require("../../Models/User/UserDetail");
 const { findById } = require('../../Models/User/UserDetail');
+const sendMail = require("../../mailapi");
 
 
 const signToken = userID =>{
@@ -16,23 +17,70 @@ const signToken = userID =>{
 
 //Add user details
 userRouter.post('/register',(req,res)=>{
-  const { name,username,phone,email,nic,gender,password,img } = req.body;
+  const { name,username,phone,email,nic,gender,password,image } = req.body;
   User.findOne({username},(err,user)=>{
       if(err)
           res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
       if(user)
           res.status(400).json({message : {msgBody : "Username is already taken", msgError: true}});
       else{
-          const newUser = new User({name,username,phone,email,nic,gender,password,img});
-          newUser.save(err=>{
-              if(err)
-                  res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
-              else
-                  res.status(201).json({message : {msgBody : "Account successfully created", msgError: false}});
-          });
+        User.findOne({email},(err,mail)=>{
+          if(err)
+              res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
+          if(mail)
+              res.status(400).json({message : {msgBody : "Email is already taken", msgError: true}});
+          else{
+            const newUser = new User({name,username,phone,email,nic,gender,password,image});
+            newUser.save(err=>{
+                if(err)
+                    res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
+                else
+                    res.status(201).json({message : {msgBody : "Account successfully created", msgError: false}});
+            });
+            
+          }
+      });
+
       }
   });
 });
+
+//forgetpw
+userRouter.post("/forgot",(req,res) => {
+  // const thisUser = User.findOne({email: req.body.email});
+  const email = req.body.email;
+  User.findOne({email:email},(error,data) => {
+    if(error){
+      console.log.error;
+    }else{
+      console.log(data);
+    }
+    console.log(data._id);
+    id = data._id;
+    sendMail(email,id);
+    res.status(200).json();
+  });
+});
+
+//resetPW
+userRouter.put("/reset/:id", (req, res) => {
+  User.findByIdAndUpdate(
+    req.params.id,
+    {
+      $set:req.body
+    },
+    (err,users)=>{
+      if(err){
+        return res.status(400).json({error:err});
+      }
+
+      return res.status(200).json({
+        success:"updated successfully"
+      });
+    }
+  );
+});
+
 
 //Display user details
 userRouter.get("/profiles",(req, res) => {
@@ -102,10 +150,10 @@ userRouter.delete('/deleteUser/:id',(req, res) => {
 
 userRouter.post('/login',passport.authenticate('local',{session : false}),(req,res)=>{
   if(req.isAuthenticated()){
-     const {_id,username,name,phone,email,nic,gender,role} = req.user;
+     const {_id,username,name,phone,email,nic,gender,role,image} = req.user;
      const token = signToken(_id);
      res.cookie('access_token',token,{httpOnly: true, sameSite:true}); 
-     res.status(200).json({isAuthenticated : true,user : {_id,username,name,phone,email,nic,gender,role}});
+     res.status(200).json({isAuthenticated : true,user : {_id,username,name,phone,email,nic,gender,role,image}});
   }
 });
 
@@ -125,8 +173,8 @@ userRouter.get('/admin',passport.authenticate('jwt',{session : false}),(req,res)
 
 
 userRouter.get('/authenticated',passport.authenticate('jwt',{session : false}),(req,res)=>{
-  const {_id,username,name,phone,email,nic,gender,role} = req.user;
-  res.status(200).json({isAuthenticated : true, user : {_id,username,name,phone,email,nic,gender,role}});
+  const {_id,username,name,phone,email,nic,gender,role,image} = req.user;
+  res.status(200).json({isAuthenticated : true, user : {_id,username,name,phone,email,nic,gender,role,image}});
 });
 
 module.exports = userRouter;

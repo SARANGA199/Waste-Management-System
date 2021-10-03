@@ -4,7 +4,8 @@
     background-color: white;
     margin-top: 1%;
     margin-bottom: 1%;
-    margin-left: 1%;
+    margin-right: 3%;
+    margin-left: -1%;
     padding-top: 1%;
     padding-left: 4%;
     padding-right: 4%;
@@ -39,3 +40,11 @@
    
     border-style: groove;
 }
+
+.driverimage {
+    background-image: url('./log1.jpg');
+    background-size: 850px 600px;
+    background-repeat: no-repeat;
+    background-position: right;
+    
+  }

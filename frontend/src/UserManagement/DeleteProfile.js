@@ -30,11 +30,13 @@ export default class Userprofile extends Component {
     onDelete = (id) =>{
         axios.delete(`/user/deleteUser/${id}`).then((res)=>{
             alert("Deleted Successfully");
+            this.props.history.push("/profiles");
+            window.location.reload(false);
         })
     }
 
     render() {
-        const {_id,name,username,phone,email,nic,gender,role} = this.state.users;
+        const {_id,name,username,phone,email,nic,gender,role,image} = this.state.users;
 
         return (
             <div class="row gutters-sm">
@@ -42,7 +44,7 @@ export default class Userprofile extends Component {
               <div class="card">
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150"/>
+                    <img src={image} alt="Admin" class="rounded-circle" width="150"/>
                     <div class="mt-3">
                       <h4>{name}</h4><br/>
                       <p>User ID</p>

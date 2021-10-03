@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import './Styles/login.css'
 
 export default class EditProfile extends Component {
 
@@ -48,7 +49,9 @@ export default class EditProfile extends Component {
 
         axios.put(`/user/updateUser/${id}`,data).then((res) =>{
             if(res.data.success){
-                alert("Post Updated")
+                window.location.reload(false);
+                alert("Profile Updated successfully");
+                this.props.history.push("/profiles");
                 this.setState(
                     {
                         name:"",
@@ -139,22 +142,13 @@ export default class EditProfile extends Component {
                         className = "form-control"
                         placeholder = "Enter Gender"/>
                 <label style={{marginBottom:'5px'}}>Role</label>
-                {this.state.role === "User" ?
-                <input type = "text"
-                        name = "role"
-                        value={this.state.role}
-                        onChange={this.handleInputChange}
-                        className = "form-control"
-                        readonly="true"
-                        placeholder = "Enter Password"/>:null}
-                {this.state.role === "admin" ?
                         <input type = "text"
                         name = "role"
                         value={this.state.role}
                         onChange={this.handleInputChange}
                         className = "form-control"
-                        placeholder = "Enter Password"/>:null}
-
+                        placeholder = "Enter Password"/>
+                    <br/>
                     <button className="btn btn-success" type="submit" style={{marginBottom:'15px'}} onClick={this.onSubmit}>
                         <i className="far fa-check-square"></i>
                         &nbsp;update

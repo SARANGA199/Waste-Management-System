@@ -24,6 +24,7 @@ const Login = props=>{
                 props.history.push('/');
             }
             else
+                alert("Invalid username or password");
                 setMessage(message);
         });
     }
@@ -64,7 +65,7 @@ const Login = props=>{
                   <i className="fas fa-edit"></i>&nbsp;Sign Up
                   </a>
                   <div class="text-center">
-                    <a class="small" href="#">Forgot password?</a>
+                    <a class="small" href={"/forgotpw"}>Forgot password?</a>
                   </div>
                 </div>
 

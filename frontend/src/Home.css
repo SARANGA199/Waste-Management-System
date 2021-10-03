@@ -1,0 +1,10 @@
+body{
+
+    font-family: sans-serif;
+    background-image: url('./bg1.jpg');
+    background-position: center;
+    background-size: cover;
+    width: auto;
+    height: auto;
+    
+}

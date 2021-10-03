@@ -9,7 +9,17 @@ const loyaltypointSchema = new Schema({
         ref: 'user'
     },
 
+    uname:{
+        type: String,
+        required: true
+    },
+
     points: {
+        type: String,
+        required: true
+    },
+
+    description: {
         type: String,
         required: true
     },

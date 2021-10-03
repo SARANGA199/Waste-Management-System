@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext,useState } from 'react';
 import { AuthContext } from '../Context/AuthContext';
 import './Styles/profile.css'
 
@@ -18,10 +18,14 @@ const Clientprof = props =>{
                         <div class="row m-l-0 m-r-0">
                             <div class="col-sm-4 bg-c-lite-green user-profile">
                                 <div class="card-block text-center text-white">
-                                    <div class="m-b-25"> <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="rounded-circle" width="150" alt="User-Profile-Image"/> </div>
+                                    <div class="m-b-25"> <img src={user.image} class="rounded-circle" width="150" alt="User-Profile-Image"/> </div>
                                     <h6 class="f-w-600">{uname}</h6>
                                     <p>{user.role}</p> <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
-                                    <br/><br/>
+                                    <a href={`/updatedp`} style={{height:'50px'}}>
+                                    <i className="fas fa-camera"></i>&nbsp;Update
+                                    </a>
+                                    <br/>
+                                    <br/>
                                     <div class="m-b-25"> <img src="https://img.icons8.com/external-justicon-flat-justicon/100/000000/external-coins-st-patricks-day-justicon-flat-justicon.png" class="img-radius" alt="User-Profile-Image"/> </div>
                                     <h6 class="f-w-600">Loyalty Ponits</h6>
                                     <p>####</p> <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>

@@ -13,6 +13,12 @@ import UserProfile from './UserManagement/Userprofile';
 import EditProfile from './UserManagement/EditProfile';
 import DeleteProfile from './UserManagement/DeleteProfile';
 import UserProfileclient from './UserManagement/UserProfileclient'
+import Addpoints from './UserManagement/Addpoints'
+import Updatedp from './UserManagement/Updatedp'
+import Displaypoints from './UserManagement/Displaypoints'
+import Updatepoints from './UserManagement/Updatepoints'
+import ForgetPw from './UserManagement/ForgetPw'
+import ResetPw from './UserManagement/ResetPw'
 
 //marketplace
 
@@ -115,6 +121,12 @@ function App() {
       <PrivateRoute path="/editprofile/:id" roles={["admin","User"]} component={EditProfile}/>
       <PrivateRoute path="/deleteprofile/:id" roles={["admin","User"]} component={DeleteProfile}/>
       <PrivateRoute path="/clientprofile/:id" roles={["admin","User"]} component={UserProfileclient}/>
+      <PrivateRoute path="/addpoints/:id" roles={["admin"]} component={Addpoints}/>
+      <PrivateRoute path="/updatedp" roles={["admin",,"User"]} component={Updatedp}/>
+      <PrivateRoute path="/displaypts" roles={["admin"]} component={Displaypoints}/>
+      <PrivateRoute path="/updatepoints" roles={["admin"]} component={Updatepoints}/>
+      <UnPrivateRoute path="/forgotpw" roles={["admin","User"]} component={ForgetPw}/>
+      <UnPrivateRoute path="/Resetpw" roles={["admin","User"]} component={ResetPw}/>
 
       {/* marketplace */}
 
@@ -147,6 +159,7 @@ function App() {
           <PrivateRoute path="/driver/prof/:id" roles={["User"]} exact component={DriverProfile} />
           <PrivateRoute path="/routeReq/allRouteReq" roles={["admin"]} exact component={CheckDrivers} />
           <PrivateRoute path="/driver/allprof" roles={["admin"]} exact component={SelectDriver} />
+          <PrivateRoute path="/trip/addTrip" roles={["admin"]} exact component={SelectDriver} />
           <PrivateRoute path="/delivery/display" roles={["User"]} exact component={View} />
           <PrivateRoute path="/driver/collect" roles={["User"]} exact component={CollectItem} />
 

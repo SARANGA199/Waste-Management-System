@@ -73,13 +73,13 @@ const Register = props=>{
                 <div class="row">
                   <div class="col-md-6 mb-4">
                     <div class="form-outline">
-                      <input type="number" name = "phone" class="form-control form-control-lg" onChange = {onChange} required />
+                      <input type="text" name = "phone" class="form-control form-control-lg" maxlength="10" minLength="10" pattern="(?=.*[0-9]).{10,}" title="Re-check the phone number" onChange = {onChange} required />
                       <label class="form-label" for="form3Example1m1" >Phone Number</label>
                     </div>
                   </div>
                   <div class="col-md-6 mb-4">
                     <div class="form-outline">
-                      <input type="text" name = "nic" class="form-control form-control-lg" onChange = {onChange} required />
+                      <input type="text" name = "nic" class="form-control form-control-lg" maxlength="10" minLength="10" required pattern="(?=.*\d)(?=.*[0-9])(?=.*[V]).{10,}" title="use correct pattern" onChange = {onChange} required />
                       <label class="form-label" for="form3Example1n1" >NIC number</label>
                     </div>
                   </div>
