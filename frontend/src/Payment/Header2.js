@@ -5,7 +5,7 @@ import {useContext} from 'react';
 import { AuthContext } from '../Context/AuthContext';
 
 
-export default function DisplayMyCardData() {
+export default function DisplayAllCardData() {
     
     const {user} = useContext(AuthContext);
     const id = user.username;

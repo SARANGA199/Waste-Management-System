@@ -142,6 +142,22 @@ export default function EditCardData()  {
             />
           </Form.Group>
 
+          <Form.Group>
+            <Form.Control
+              type="number"
+              id="amount"
+              data-testid="amount"
+              name="amount"
+              placeholder="Payment Amount"
+              value={cardSecurityCode}
+              onChange={e=>{                 
+                setCVV(e.target.value);    
+             }}
+
+              required
+            />
+          </Form.Group>
+
           <br />
           <center>
           <Button
@@ -152,7 +168,7 @@ export default function EditCardData()  {
             type="submit"
             
           >
-            Submit
+            Update
           </Button>
           </center>
         </Form>
