@@ -1,16 +1,16 @@
-import React, {useState,useEffect} from "react";
+import React, {useState,useEffect,useContext} from "react";
 import axios from 'axios';
-
+import { AuthContext } from '../Context/AuthContext';
 
 export default function View() {
   
-
-   const[stats,setStats] = useState([]);
+   const {user} = useContext(AuthContext);
+   const[request,setRequest] = useState([]);
   
     useEffect(()=>{
             
-        axios.get(`http://localhost:8070/delivery/display`).then((res)=>{
-                  setStats(res.data);
+        axios.get(`http://localhost:8070/delivery/display/${user._id}`).then((res)=>{
+              setRequest(res.data);
             
                 }).catch((err)=>{
                 alert(err.message);
@@ -21,13 +21,11 @@ export default function View() {
 
     
     const setData = (data) => {
-        let { _id,tripId, vehicleNo,deliveryLocation,date} = data;
+        let { dId,deliveryLocation,createdAt} = data;
 
-        localStorage.setItem('did', _id);
-        localStorage.setItem('tripId', tripId);
-        localStorage.setItem('vehicleNo', vehicleNo);
+        localStorage.setItem('dId', dId);
         localStorage.setItem('deliveryLocation', deliveryLocation);
-        localStorage.setItem('date', date);
+        localStorage.setItem('createdAt', createdAt);
        
 }
 
@@ -36,7 +34,54 @@ export default function View() {
     return (
         <div className = "container" style={{marginTop:"3%"}} >
       
-          <h4>You Don't have Delivery Records Yet... </h4>
-     </div>
+      <h1><b> <center> Your Stats </center> </b> </h1>
+            
+      <br/>
+            <div className = "container">
+            
+          <form onSubmit={setData}>  <table className="table">
+
+                <thead>
+                        <tr>
+                        <th scope="col">Number</th>
+                        
+                        <th scope="col">Delivery Location</th>
+                        <th scope="col">Date</th>
+                        
+                       
+                        </tr>
+
+                </thead>
+            <tbody>
+
+              {request.map((data,index)=>(
+                        
+                        <tr key={index}>
+                            <th scope="row">{index+1}</th>
+                            <td> <b> {data.deliveryLocation} </b></td> 
+                            <td><b> {data.createdAt} </b> </td> 
+                           
+                           
+
+                        </tr>
+                        
+
+                ))}
+                
+                
+                </tbody> 
+
+            </table> 
+            
+
+           
+                            <a className="btn btn-warning" 
+                            type="submit"
+                            style={{textDecoration:'none'}}>
+                            <i></i>&nbsp;Get Report
+                            </a>
+                            
+            </form>
+     </div> </div>
     )
 }

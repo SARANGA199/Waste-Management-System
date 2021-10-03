@@ -29,10 +29,10 @@ router.route("/addDelivery").post((req, res) => {
 
 //Display All
 
-router.route("/display").get((req, res) => {
-
+router.route("/display/:_id").get((req, res) => {
+    const _id = req.params._id;
     
-    deliveryDetail.find().then((profileStats) => {
+    deliveryDetail.find({driverId:_id}).then((profileStats) => {
 
         res.json(profileStats)
 
@@ -42,9 +42,5 @@ router.route("/display").get((req, res) => {
 
 
 })
-
-
-
-
 
 module.exports = router;

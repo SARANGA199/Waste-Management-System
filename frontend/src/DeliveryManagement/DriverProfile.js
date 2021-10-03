@@ -201,7 +201,7 @@ render() {
             </div>
 
         <div>   <br></br> <br></br>
-          <button className ="btn btn-warning"><a href="/delivery/display" style={{textDecoration:'none', color :'white'}}>View Stats </a>
+          <button className ="btn btn-warning"><a href={`/delivery/display/:id`} style={{textDecoration:'none', color :'white'}}>View Stats </a>
              
              </button>    </div>             
              <br></br>    <br></br> 
