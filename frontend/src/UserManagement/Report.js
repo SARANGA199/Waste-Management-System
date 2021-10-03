@@ -1,10 +1,9 @@
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 
-// Date Fns is used to format the dates we receive
-// from our API call
+
 //import { format } from "date-fns";
-//import { report } from "../../../BACKEND/routes/delivery/deliverydetails";
+
 
 // define a generatePDF function that accepts a tickets argument
 const generatePDF = profile => {
