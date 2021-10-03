@@ -1,5 +1,6 @@
 import React, {useState,useEffect} from "react";
 import axios from 'axios';
+import AddpicupReq from './AddpickupReq.css'
 
 
 export default function DisplayRouterOrder() {
@@ -40,6 +41,8 @@ export default function DisplayRouterOrder() {
 
     return (
         <div className = "container " style={{width:"100%"}}>
+
+<div className="addform2"><h1>All Routes for Orders </h1></div>
       
         <table className="table" >
   
@@ -64,7 +67,7 @@ export default function DisplayRouterOrder() {
                     <tr key={index}>
                        <th scope="row">{index+1}</th>
                        <td>{data.quantity}</td>
-                       <td>{data.routeDescription}</td>
+                       <td style={{width:'200px'}}>{data.routeDescription}</td>
                        <td>{data.orderType}</td>
                        <td>{data.vehicleType}</td>
                        <td style={{width:'250px'}}>{data.destination}</td>
@@ -94,6 +97,8 @@ export default function DisplayRouterOrder() {
            </tbody> 
   
         </table>
+
+        <button className ="btn btn-success"><a href="/order" style={{textDecoration:'none', color :'white'}}>Back </a> </button>
      </div>
     )
 }

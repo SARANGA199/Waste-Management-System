@@ -128,8 +128,10 @@ export default function UpdateRequest() {
             className="form-control"
             id="weight"
             required
+
             min="1"
             step="1"
+
             value={weight}
             onChange={(e) => {
               setWeight(e.target.value);
@@ -158,6 +160,7 @@ export default function UpdateRequest() {
           <input
             className="form-control mb-3"
             type="file"
+            required
             accept="image/png, image/jpeg"
             id="image"
             onChange={uploadImage}

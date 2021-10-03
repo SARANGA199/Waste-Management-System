@@ -1,255 +1,186 @@
-import React, { Component } from 'react'
-import axios from 'axios';
+import React, {useState, useEffect}  from 'react';
+import axios from "axios";
+import { Button, Form, Alert, Row, Col } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./CreditCardForm.css";
+import "react-credit-cards/es/styles-compiled.css";
+//import AddpicupReq from './AddpickupReq.css'
+import { useHistory } from 'react-router';
 
-export default class editCard extends Component {
-
-    constructor(props){
-
-        super(props);
-        this.onSubmit = this.onSubmit.bind(this)
-
-        this.state={
-           
-            cardName : "" ,
-            cardNumber : "",
-            cardType: "",
-            cardExpiration: "",
-            cardSecurityCode: "",
-            cardPostalCode: ""
-            
-        
-
-        }
-    }
-
-
-     
-    onSubmit = (e) =>{
-        
-        e.preventDefault();
-
-        const id = this.props.match.params.id;
-   
-        const { cardName,cardNumber,cardType,cardExpiration,cardSecurityCode,cardPostalCode} = this.state;
-         
-       
-        const data = {
-
-            cardName : cardName ,
-            cardNumber : cardNumber,
-            cardType: cardType,
-            cardExpiration: cardExpiration,
-            cardSecurityCode: cardSecurityCode,
-            cardPostalCode: cardPostalCode
-        }
-        
-            
-        axios.put(`http://localhost:8070/formcards/editCard/${id}`,data).then((res) =>{
-
-       
-            if(res.data.success){
-                alert("Successfully Updated !");
-                this.setState(
-                    {
-                        cardName : "" ,
-                        cardNumber : "",
-                        cardType: "",
-                        cardExpiration: "",
-                        cardSecurityCode: "",
-                        cardPostalCode: ""   
-                    }
-                )
-                this.props.history.push('/formcards');
-                
-            }
-        })
-   
-}
-
-    handleInputChange = (e)=>{
-      
-        const {name,value} = e.target;
-
-        this.setState({
-            ...this.state,
-            [name] :value
-        })
-
-
-    }
-
+export default function EditCardData()  {
   
-    componentDidMount(){
+  let history = useHistory();
+  //let pd2;
 
-        const id = this.props.match.params.id;
     
-        axios.get(`http://localhost:8070/formcards/formcards/${id}`).then((res)=>{
+    const [CardId, setsCardId] = useState();
+    const [cardNickname, setNickname] = useState();
+    const [cardName, setHolder] = useState();
+    const [cardNumber, setNumber] = useState();
+    const [cardType, setType] = useState();
+    const [cardSecurityCode, setCVV] = useState();
+    const [cardExpiration, setExp] = useState();
     
-             if(res.data.success){
     
-                this.setState({
-                    cardName : res.data.formcards.cardName,
-                    cardNumber:res.data.formcards.cardNumber,
-                    cardType: res.data.formcards.cardType,
-                    cardExpiration: res.data.formcards.cardExpiration,
-                    cardSecurityCode: res.data.formcards.cardSecurityCode,
-                    cardPostalCode: res.data.formcards.cardPostalCode,                   
-                });
+
+    useEffect(() => {
+
+        setsCardId(localStorage.getItem('CardId'))
+        setNickname(localStorage.getItem('cardNickname'));
+        setHolder(localStorage.getItem('cardName'));
+        setNumber(localStorage.getItem('cardNumber'));
+        setType(localStorage.getItem('cardType'));
+        setCVV(localStorage.getItem('cardSecurityCode'));
+        setExp(localStorage.getItem('cardExpiration'));
+
+        //pd2 = pDate.substring(0,9);
+        
+    },[] );
+
     
-             
-             }
+    function submitData(e) {
+        e.preventDefault();
+        const newRoute = {
+              
+            CardId,
+            cardNickname,
+            cardName,
+            cardNumber,
+            cardType,
+            cardSecurityCode,
+            cardExpiration
+        }
+
+        let ans = window.confirm("Are you really wanted to update ?");
+
+        if(ans){
+
+        axios.put(`http://localhost:8070/salarys/update/${CardId}`,newRoute).then(()=>{
+
+            alert("Salary Data Updated Successfully");
+           
+            history.push('/credit-card-validation/MyCards2/');
     
-        })
-     }  
+         }).catch((err)=>{
+    
+            alert(err);
+         })
+          
+         
+         
+        }   
+                 
 
-
- 
-
-    render() {
-        return (
-            <div>
-                <div className="container">
-
-            <form id="myform" style={{width:"1900px"}}>
-            
-
-            <div className="col-md-4 mb-3">
-                <label htmlFor="name" className="form-label">
-                Package Size(KG)
-                </label>
-                <input
-                disabled
-                type="text"
-                className="form-control"
-                name="PackSize"
-                value= {this.state.cardName}
-                onChange = {this.handleInputChange}
-                
-                />
-            </div>
-            
-
-
-                        
-                    <div className="col-md-2 mb-3">
-                                    <label htmlFor="category" className="form-label">
-                                    Vehicle Type
-                                    </label>
-                                    <select
-                                    className="form-select"
-                                    name="vehicleType"
-                                    value= {this.state.cardNumber}
-                                    onChange = {this.handleInputChange}
-                                    
-                                    >
-                                        <option selected>Select the Nearby Town</option>
-                                        <option value={"Truck"}>Truck</option>
-                                        <option value={"Van"}>Van</option>
-                                        <option value={"Bike"}>Bike</option>
-                                    
-                                        </select>
-                                    </div>  <br/><br/>             
-
-
-            
-                            <div className="col-md-4 mb-3">
-                                <label className="form-label">
-                                Destination
-                                </label>
-                                <input
-                                disabled
-                                type="text"
-                                className="form-control"
-                                name="destination"
-                                value= {this.state.cardType}
-                                onChange = {this.handleInputChange}
-                                
-                                />
-                            </div>
-
-
-            
-                                <div className="col-md-4 mb-3">
-                                    <label className="form-label">
-                                    Distance
-                                    </label>
-                                    <input
-                                    required
-                                    type="text"
-                                    className="form-control"
-                                    name="distance"
-                                    value= {this.state.cardExpiration}
-                                    onChange = {this.handleInputChange}
-                                    
-                                    />
-                                </div>
-
-                                        
-                                <div className="col-md-2 mb-3">
-                                    <label htmlFor="category" className="form-label">
-                                    Delivery Town
-                                    </label>
-                                    <select
-                                    className="form-select"
-                                    name="deliveryTown"
-                                    value= {this.state.cardPostalCode}
-                                    onChange = {this.handleInputChange}
-                                    
-                                                            >
-                                        <option selected>Select the Nearby Town</option>
-                                        <option value={"MATARA"}>MATARA</option>
-                                        <option value={"GALLE"}>GALLE</option>
-                                        <option value={"DIKWELLA"}>DIKWELLA</option>
-                                        <option value={"AKURASSA"}>AKURASSA</option>
-                                        <option value={"WALIGAMA"}>WALIGAMA</option>
-                                        </select>
-                                    </div>  <br/><br/>              
-
-
-
-                                <div className="col-md-4 mb-3">
-                                    <label htmlFor="name" className="form-label">
-                                    Arrival Time
-                                    </label>
-                                    <input
-                                    type="text"
-                                    className="form-control"
-                                    name="arrivalTime"
-                                    value= {this.state.cardSecurityCode}
-                                    onChange = {this.handleInputChange}
-                                    required
-                                    
-                                    />
-                                </div>
-
-                        <hr className="col-md-4 mb-3" />
-                        
-                        <div className="form-check ">
-                            <input
-                            
-                            type="checkbox"
-                            className="form-check-input"
-                            id="save-info" 
-                            required
-                            />
-
-
-                            <label className="col-md-4 form-check-label" htmlFor="save-info">
-                            I agree with the storage and handling of my data
-                            </label>
-                        </div>
-                        <hr className="col-md-4 mb-4" />
-
-                        <button type="submit" id= " btn1" className="btn btn-primary mb-5" onClick={this.onSubmit}>
-                            Update
-                        </button>
-                        </form>
-                        </div>
-
-                        
-                
-
-            </div>
-        )
     }
+
+
+   return(
+      
+    <div>
+    <div className="cardcontainer">
+      <div className="box justify-content-center align-items-center">
+        <div className="formDiv">
+        <div className="creditCard">
+        <h3> Update Card Details</h3>
+        </div>
+        <Form onSubmit={submitData} >
+          <Form.Group>
+            <Form.Control
+              type="text"
+              id="uid"
+              data-testid="uid"
+              name="uid"
+              placeholder="Username"
+              value={cardNickname}
+              onChange={e=>{
+                  
+                setNickname(e.target.value);
+    
+             }}
+  
+              required
+            />
+          </Form.Group>
+          <br />
+          <Form.Group>
+            <Form.Control
+              type="text"
+              id="date"
+              data-testid="date"
+              name="date"
+              placeholder="Holder's Name"
+              value={cardName}
+
+              onChange={e=>{
+                  
+                setHolder(e.target.value);
+    
+             }}
+              
+
+    
+            />
+          </Form.Group>
+          <br />
+         
+          <br />
+          <Form.Group>
+            <Form.Control
+              type="number"
+              id="amount"
+              data-testid="amount"
+              name="amount"
+              placeholder="Payment Amount"
+              value={cardType}
+              onChange={e=>{
+                  
+                setType(e.target.value);
+    
+             }}
+
+              required
+            />
+          </Form.Group>
+
+          <Form.Group>
+            <Form.Control
+              type="number"
+              id="amount"
+              data-testid="amount"
+              name="amount"
+              placeholder="Payment Amount"
+              value={cardSecurityCode}
+              onChange={e=>{                 
+                setCVV(e.target.value);    
+             }}
+
+              required
+            />
+          </Form.Group>
+
+          <br />
+          <center>
+          <Button
+            style={{backgroundColor: "green"}}
+            size={"block"}
+            data-testid="validateButton"
+            id="validateButton"
+            type="submit"
+            
+          >
+            Update
+          </Button>
+          </center>
+        </Form>
+        </div>
+        {" "}
+      </div>
+    </div>
+  </div>
+
+
+   );
+
+
+
 }

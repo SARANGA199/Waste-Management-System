@@ -5,6 +5,11 @@ const Schema = mongoose.Schema;
 const cardSchema = new Schema({
 
 
+    uid: {
+        type: String,
+        required : true
+    },
+
     cardName: {
         type: String,
         required : true
@@ -30,7 +35,7 @@ const cardSchema = new Schema({
         required : true
     },
 
-    cardPostalCode: {
+    cardNickname: {
         type: String,
         required : true
     },

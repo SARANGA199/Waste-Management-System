@@ -5,9 +5,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./CreditCardForm.css";
 import Cards from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
+import {useContext} from 'react';
+import { AuthContext } from '../Context/AuthContext';
 
 
 const CreditCardForm = () => {
+
+  const {user} = useContext(AuthContext);
   const { handleChange, handleFocus, handleSubmit2, handleSubmit, values, errors } = useForm();
   return (
     <div>
@@ -30,6 +34,7 @@ const CreditCardForm = () => {
                 required
               />
             </Form.Group>
+            <br />
             <Form.Group>
               <Form.Control
                 type="number"
@@ -42,7 +47,7 @@ const CreditCardForm = () => {
                 required
               />
             </Form.Group>
-
+            <br />
             <Form.Group>
               <Form.Control
                 type="number"
@@ -56,15 +61,18 @@ const CreditCardForm = () => {
               />
             </Form.Group>
 
-            
+            <br />
+            <center>
             <Button
               size={"block"}
               data-testid="validateButton"
               id="validateButton"
               type="submit"
+              style={{backgroundColor: "green"}}
             >
               Submit
             </Button>
+            </center>
           </Form>
           </div>
           <Alert

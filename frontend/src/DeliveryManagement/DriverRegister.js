@@ -1,6 +1,7 @@
 import "./Delivery.css";
-import React, { useState } from "react";
+import React, { useState , useContext} from "react";
 import axios from "axios";
+import { AuthContext } from '../Context/AuthContext';
 
 export default function DriverRegister() {
   const [licenseId, setLicense] = useState("");
@@ -9,11 +10,11 @@ export default function DriverRegister() {
   const [vehicleType, setType] = useState("");
   const [licenseImg1, setImg1] = useState("");
   const [licenseImg2, setImg2] = useState("");
-  
+  const {user} = useContext(AuthContext);
 
   function regDriver(e) {
     e.preventDefault();
-
+   
     const newDriver = {
      
         licenseId,
@@ -26,7 +27,7 @@ export default function DriverRegister() {
 
     axios
       .post(
-        "http://localhost:8070/driver/613728a89f2ac365dc10e3ab/reg",
+        `http://localhost:8070/driver/${user._id}/reg`,      //ID  Add
         newDriver
       )
       .then(() => {
@@ -39,6 +40,8 @@ export default function DriverRegister() {
   }
 
   return (
+    <div class="driverimage">
+  
     <div className="register">
 
       <center>  <h1 className="Hfont">Register As Freelance Driver</h1> </center>
@@ -52,7 +55,7 @@ export default function DriverRegister() {
             type="text"
             className="form-control"
             id="licenseid"
-            placeholder="Ex :- 27486234218790B"
+            placeholder="Ex :- B4523249"
             required
             onChange={(e) => {
               setLicense(e.target.value);
@@ -72,13 +75,10 @@ export default function DriverRegister() {
             }}
           >
             <option selected>Select the closest location</option>
-            <option value={"Akuressa"}>Akuressa</option>
-            <option value={"Godagama"}>Godagama</option>
-            <option value={"Hakmana"}>Hakmana</option>
-            <option value={"Kamburupitiya"}>Kamburupitiya</option>
+            <option value={"Akurassa"}>Akuressa</option>
+            <option value={"Galle"}>Galle</option>
             <option value={"Matara"}>Matara</option>
-            <option value={"Telijjawila"}>Telijjawila</option>
-            <option value={"Weligama"}>Weligama</option>
+            <option value={"Weligama"}>Waligama</option>
           </select>
         </div>
 
@@ -90,7 +90,7 @@ export default function DriverRegister() {
             type="text"
             className="form-control"
             id="regNumber"
-            placeholder="Ex :- LC-4311"
+            placeholder="Ex :- BBQ-4311"
             required
             onChange={(e) => {
               setNumber(e.target.value);
@@ -109,10 +109,9 @@ export default function DriverRegister() {
               setType(e.target.value);
             }}
           >
-            <option selected>Choose Vehicle Type</option>
-            <option value={"Cab"}>Cab</option>
+            <option selected>Choose Vehicle Type</option> 
+            <option value={"Bike"}>Bike</option>
             <option value={"Lorry"}>Lorry</option>
-            <option value={"Motor Bike"}>Motor Bike</option>
             <option value={"Three-Wheeler"}>Three-Wheeler</option>
             <option value={"Truck"}>Truck</option>
           </select>
@@ -173,9 +172,14 @@ export default function DriverRegister() {
        
         <hr className="col-md-10 mb-3" />
         <button type="submit" class="btn btn-success btn-lg">
+          
           Register
+         
         </button>
       </form>
-    </div>
+    </div>    
+    </div> 
+
+    
   );
 }

@@ -100,12 +100,15 @@ export default function AddRequest() {
             <span class="text-muted"> (Kg)</span>
           </label>
           <input
+
             type="number"
             required
             className="form-control"
             id="weight"
             min="1"
             step="1"
+
+ 
             onChange={(e) => {
               setWeight(e.target.value);
             }}

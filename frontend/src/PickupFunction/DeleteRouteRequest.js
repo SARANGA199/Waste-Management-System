@@ -36,8 +36,12 @@ export default function DeleteRouteRequest()  {
 
     function submitData(e) {
         e.preventDefault();
-        
+         
+        let ans = window.confirm("Do you want to delete this record ?");
 
+        if(ans){
+
+      
         axios.delete(`http://localhost:8070/routeReq/deleteReqRoute/${rid}`).then(()=>{
 
             alert("Route Delete successfully");
@@ -51,6 +55,7 @@ export default function DeleteRouteRequest()  {
     
 
     }
+  }
 
 
    return(
@@ -59,59 +64,64 @@ export default function DeleteRouteRequest()  {
 
 <button className ="btn btn-success"><a href="/routeReq" style={{textDecoration:'none', color :'white'}}>Request Routes</a> </button>
 
+<div className="addform1"><h1>Delete Request Route</h1></div>                
+    <div className="main">
+
+  <form onSubmit={submitData} className="form1">
+
+              {/* <div className="col-md-4 mb-3">
+                <label htmlFor="name" className="form-label">
+                <h2 className="name1">  Request ID </h2>
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="rid"
+                  required
+                  value={rid}
+                  onChange={e=>{
+                              
+                    setrid(e.target.value);
+
+              }}
+                  
+                />
+              </div> */}
+
+
+            <div className="col-md-4 mb-3">
+              <label htmlFor="name" className="form-label">
+              <h2 className="name1">  Package Size(KG) </h2>
+              </label>
+              <input
+                disabled
+                value={PackSize}
+                type="text"
+                className="form-control"
+                disabled
+                style={{width:"300px"}}
+                name="PackSize"
+                onChange={e=>{
+                            
+                  setPack(e.target.value);
+
+            }}
                 
-    <div className="container">
-
-<form onSubmit={submitData} style={{width:"1600px"}}>
-  <div className="col-md-4 mb-3">
-    <label htmlFor="name" className="form-label">
-       Request ID
-    </label>
-    <input
-      type="text"
-      className="form-control"
-      name="rid"
-      required
-      value={rid}
-      onChange={e=>{
-                  
-        setrid(e.target.value);
-
-  }}
-      
-    />
-  </div>
-
-
-  <div className="col-md-4 mb-3">
-    <label htmlFor="name" className="form-label">
-       Package Size(KG)
-    </label>
-    <input
-      disabled
-      value={PackSize}
-      type="text"
-      className="form-control"
-      name="PackSize"
-      onChange={e=>{
-                  
-        setPack(e.target.value);
-
-  }}
-      
-    />
-  </div>
- 
+              />
+            </div>
+          
 
 
               
           <div className="col-md-2 mb-3">
                         <label htmlFor="category" className="form-label">
-                          Vehicle Type
+                        <h2 className="name1">  Vehicle Type </h2>
                         </label>
                         <select
                         className="form-select"
                         name="vehicleType"
+                        style={{width:"300px"}}
+                        disabled
                         value={vehicleType}
                         onChange={e=>{
                   
@@ -132,12 +142,13 @@ export default function DeleteRouteRequest()  {
   
                 <div className="col-md-4 mb-3">
                     <label className="form-label">
-                    Destination
+                <h2 className="name1"> Destination </h2>
                     </label>
                     <input
                     disabled
                     type="text"
                     className="form-control"
+                    style={{width:"500px"}}
                     name="destination"
                     value={destination}
                     onChange={e=>{
@@ -153,12 +164,14 @@ export default function DeleteRouteRequest()  {
   
                     <div className="col-md-4 mb-3">
                         <label className="form-label">
-                        Distance
+                        <h2 className="name1"> Distance(KM) </h2>
                         </label>
                         <input
                          required
                         type="text"
                         className="form-control"
+                        style={{width:"300px"}}
+                        disabled
                         name="distance"
                         value={distance}
                         onChange={e=>{
@@ -173,10 +186,12 @@ export default function DeleteRouteRequest()  {
                             
                     <div className="col-md-2 mb-3">
                         <label htmlFor="category" className="form-label">
-                        Delivery Town
+                        <h2 className="name1"> Delivery Town </h2>
                         </label>
                         <select
                         className="form-select"
+                        style={{width:"300px"}}
+                        disabled
                         name="deliveryTown"
                         value={deliveryTown}
                         onChange={e=>{
@@ -198,12 +213,14 @@ export default function DeleteRouteRequest()  {
 
                     <div className="col-md-4 mb-3">
                         <label htmlFor="name" className="form-label">
-                        Arrival Time
+                        <h2 className="name1"> Arrival Time </h2>
                         </label>
                         <input
                         required
-                        type="text"
+                        type="time"
                         className="form-control"
+                        style={{width:"300px"}}
+                        disabled
                         name="arrivalTime"
                         value={arrivalTime}
                         onChange={e=>{
@@ -219,11 +236,13 @@ export default function DeleteRouteRequest()  {
                     
                     <div className="col-md-4 mb-3">
                         <label htmlFor="name" className="form-label">
-                        Date
+                        <h2 className="name1">Date</h2>
                         </label>
                         <input
-                        type="text"
+                        type="date"
                         className="form-control"
+                        style={{width:"300px"}}
+                        disabled
                         name="date"
                         value={date}
                         onChange={e=>{
@@ -250,16 +269,17 @@ export default function DeleteRouteRequest()  {
 
 
                 <label className="col-md-4 form-check-label" htmlFor="save-info">
-                confirm update
+                Confirm To Delete
                 </label>
             </div>
             <hr className="col-md-4 mb-4" />
 
-            <button type="submit" id= " btn1" className="btn btn-primary mb-5" >
+            <button type="submit" id= " btn1" className="btn btn-danger" >
                 Delete
             </button>
             </form>
             </div>
+             <br/><br/>
             </div>
 
 

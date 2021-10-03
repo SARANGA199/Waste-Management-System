@@ -88,7 +88,7 @@ const setData = (data) => {
                 </tbody> 
 
             </table>
-            <center><button className ="btn btn-success"><a href="/" style={{textDecoration:'none', color :'white'}}>Switch To Request </a> </button></center> 
+            <center><button className ="btn btn-success"><a href="/req" style={{textDecoration:'none', color :'white'}}>Switch To Request </a> </button></center> 
 
 </div>
             

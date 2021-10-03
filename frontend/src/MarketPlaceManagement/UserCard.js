@@ -29,6 +29,7 @@ class UserCard extends React.Component {
               <title>User Image</title>
               <rect width="100%" height="100%" fill="#55595c" />
             </svg> */}
+
             <img width="100%" height={225} src={this.props.link}></img>
           </div>
         </div>

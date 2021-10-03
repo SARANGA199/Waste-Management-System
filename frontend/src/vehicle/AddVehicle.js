@@ -10,6 +10,7 @@ export default function AddVehicle(){
    const[Capacity,setCapacity] = useState("");
    const[Price,setPrice] = useState("");
    const[Photo,setPhoto] = useState("");
+   const [loading, setLoading] = useState(false);
   
 
    function sendData(e){
@@ -43,6 +44,9 @@ export default function AddVehicle(){
     const data = new FormData();
     data.append("file", files[0]);
     data.append("upload_preset", "wasteImages");
+    setLoading(true);
+   
+
 
     const res = await fetch(
       //"https://api.cloudinary.com/v1_1/vehicle/image/upload",
@@ -61,11 +65,13 @@ export default function AddVehicle(){
     return(
           
         <div >
+
+       <h4 style={{color: 'green', textAlign: 'center'}} className="mb-4"><b><i>Vehicle Registration</i></b></h4>
        <form onSubmit={sendData}>
        
         <div className="row mb-3">
         
-          <label for="exampleInputEmail1" className="col-sm-2 form-label">Registration No</label>
+          <label for="exampleInputEmail1" className="col-sm-2 form-label"><b>Registration No</b></label>
           <div class="col-sm-4">
           <input type="text" className="form-control numberinput" id="Vehicle_reg_no" required onChange={(e)=>{
               
@@ -80,8 +86,8 @@ export default function AddVehicle(){
 
        
         <div className="row mb-3">
-                        <label htmlFor="category" className="col-sm-2 form-label">
-                          Vehicle Type
+                        <label htmlFor="category" className="col-sm-2 form-label"><b>
+                          Vehicle Type</b>
                         </label>
                         <div class="col-sm-4">
                         <select
@@ -106,7 +112,7 @@ export default function AddVehicle(){
                                
 
         <div className="row mb-3">
-          <label htmlFor="exampleInputchassisno" className="col-sm-2 form-label">Chassis No</label>
+          <label htmlFor="exampleInputchassisno" className="col-sm-2 form-label"><b>Chassis No</b></label>
           <div class="col-sm-4">
           <input type="text" className="form-control" id="Chassis_No" required onChange={(e)=>{
               
@@ -116,7 +122,7 @@ export default function AddVehicle(){
         </div>
 
         <div className="row mb-3">
-          <label htmlFor="exampleInputPassword1" className="col-sm-2 form-label">Model</label>
+          <label htmlFor="exampleInputPassword1" className="col-sm-2 form-label"><b>Model</b></label>
           <div class="col-sm-4">
           <input type="text" className="form-control" id="Model" required onChange={(e)=>{
               
@@ -126,9 +132,9 @@ export default function AddVehicle(){
         </div>
 
         <div className="row mb-3">
-          <label htmlFor="exampleInputPassword1" className="col-sm-2 form-label">Capacity</label>
+          <label htmlFor="exampleInputPassword1" className="col-sm-2 form-label"><b>Capacity</b></label>
           <div class="col-sm-4">
-          <input type="text" className="form-control" id="Capacity" required onChange={(e)=>{
+          <input type="number"step="1" className="form-control" id="Capacity" required onChange={(e)=>{
               
               setCapacity(e.target.value);
               }}/>
@@ -136,9 +142,9 @@ export default function AddVehicle(){
         </div>
 
         <div className="row mb-3">
-          <label htmlFor="exampleInputPassword1" className="col-sm-2 form-label">Price</label>
+          <label htmlFor="exampleInputPassword1" className="col-sm-2 form-label"><b>Price</b></label>
           <div class="col-sm-4">
-          <input type="text" className="form-control" id="Price" required onChange={(e)=>{
+          <input type="number" className="form-control" id="Price" required onChange={(e)=>{
               
               setPrice(e.target.value);
               }}/>
@@ -146,15 +152,26 @@ export default function AddVehicle(){
         </div>
 
         <div class="row mb-3">
-        <label for="formFile" class="col-sm-2 form-label">Photo</label>
+        <label for="formFile" class="col-sm-2 form-label"><b>Photo</b></label>
         <div class="col-sm-4">
         <input
-            className="form-control"
+            className="form-control mb-3"
             type="file"
             accept="image/png, image/jpeg"
             id="image"
             onChange={uploadImage}
           />
+          {loading ? (
+            <img
+              className="img-thumbnail"
+              width="150px"
+              height="150px"
+              src={Photo}
+              alt="Loading..."
+            />
+          ) : (
+            <label htmlFor="loading" className="form-label" />
+          )}
         </div>
         </div>
 
@@ -164,13 +181,13 @@ export default function AddVehicle(){
         <div className="col-12">
         <div className="form-check">
           <input className="form-check-input" type="checkbox" defaultValue id="invalidCheck" required />
-          <label className="form-check-label" htmlFor="invalidCheck">
-            I have read and agree to terms and conditions
+          <label className="form-check-label" htmlFor="invalidCheck"><b>
+            I have read and agree to </b> <b className ="text-danger" >terms and conditions</b>
           </label>
         </div>
       </div>
-      <br/><br/> 
-        <button type="submit" className="btn btn-primary">Submit</button>
+      <br/> 
+        <button type="submit" className="btn btn-success">Submit</button>
        </form>
         </div>
     );

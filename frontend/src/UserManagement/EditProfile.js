@@ -1,5 +1,7 @@
+
 import React, { Component } from 'react'
 import axios from 'axios';
+import './Styles/login.css'
 
 export default class EditProfile extends Component {
 
@@ -17,38 +19,62 @@ export default class EditProfile extends Component {
             role:""
         }
 
-    }
+import React, {useState, useEffect,useContext}  from 'react';
+import axios from "axios";
+import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router';
+import { AuthContext } from '../Context/AuthContext';
 
-    handleInputChange = (e) =>{
-        const {name,value}= e.target;
 
-        this.setState({
-            ...this.state,
-            [name]:value
-        })
-    }
 
-    onSubmit = (e) =>{
+export default function EditRouteRequest()  {
+
+  let history = useHistory();
+    
+    const [uid, setuid] = useState();
+    const [name, setname] = useState();
+    const [username, setusername] = useState();
+    const [phone, setphone] = useState();
+    const [email, setemail] = useState();
+    const [nic, setnic] = useState();
+    const [gender, setgender] = useState();
+    const [role, setrole] = useState();
+
+
+    useEffect(() => {
+
+        setuid(localStorage.getItem('uid'));
+        setname(localStorage.getItem('name'));
+        setusername(localStorage.getItem('username'));
+        setphone(localStorage.getItem('phone'))
+        setemail(localStorage.getItem('email'));
+        setnic(localStorage.getItem('nic'));
+        setgender(localStorage.getItem('gender'))
+        setrole(localStorage.getItem('role'));
+       
+
+
+    },[] );
+
+
+    function onSubmit(e) {
         e.preventDefault();
-        const id = this.props.match.params.id;
+        const editprof = {
+              
+            uid,
+            name,
+            username,
+            phone,
+            email,
+            nic,
+            gender,
+            role
 
-        const {name,username,phone,email,nic,gender,password,image,role} = this.state;
-
-        const data ={
-            name:name,
-            username:username,
-            phone:phone,
-            email:email,
-            nic:nic,
-            gender:gender,
-            password:password,
-            image:image,
-            role:role
-        }
 
         axios.put(`/user/updateUser/${id}`,data).then((res) =>{
             if(res.data.success){
-                alert("Post Updated")
+                alert("Profile Updated successfully");
+                this.props.history.push("/profiles"); 
                 this.setState(
                     {
                         name:"",
@@ -66,32 +92,25 @@ export default class EditProfile extends Component {
 
         });
 
-    }
+        }
 
-    componentDidMount(){
 
-        const id = this.props.match.params.id;
+        axios.put(`/user/updateUser/${uid}`,editprof).then(()=>{
 
-        axios.get(`/user/profile/${id}`).then(res=>{
-            if(res.data.success){
-                this.setState({
-                    name:res.data.users.name,
-                    username:res.data.users.username,
-                    phone:res.data.users.phone,
-                    email:res.data.users.email,
-                    nic:res.data.users.nic,
-                    gender:res.data.users.gender,
-                    password:res.data.users.password,
-                    image:res.data.users.image,
-                    role:res.data.users.role
-                });
-                console.log(this.state.users);
-            }
-        });
+            alert("Account Update successfully");
+            history.push('/profiles');
+    
+         }).catch((err)=>{
+    
+            alert(err);
+         })
+    
 
     }
 
-    render() {
+    const {user} = useContext(AuthContext);
+    console.log(user._gender);
+    
         return (
         <div class="col-md-6" style={{marginLeft:'300px',marginTop:'30px',background:'#fff',padding:'30px',borderRadius:'10px',boxShadow:'2px 2px 2px 2px #000'}}>
 	        <h1 className="h3 mb-3 font-weight-normal">Edit User</h1>
@@ -99,64 +118,100 @@ export default class EditProfile extends Component {
                 <label style={{marginBottom:'5px'}}>Name</label>
                 <input type = "text"
                         name = "name"
-                        value={this.state.name}
-                        onChange={this.handleInputChange}
+                        value={name}
+                        onChange={e=>{
+                  
+                            setname(e.target.value);
+                    
+                        }}
                         className = "form-control"
                         placeholder = "Enter name"/>
                 <label style={{marginBottom:'5px'}}>Username</label>
                 <input type = "text"
                         name = "username"
-                        value={this.state.username}
-                        onChange={this.handleInputChange}
+                        value={username}
+                        onChange={e=>{
+                  
+                            setusername(e.target.value);
+                    
+                        }}
                         className = "form-control"
                         placeholder = "Enter username"/>
                 <label style={{marginBottom:'5px'}}>Phone</label>
                 <input type = "text"
                         name = "phone"
-                        value={this.state.phone}
-                        onChange={this.handleInputChange}
+                        value={phone}
+                        onChange={e=>{
+                  
+                            setphone(e.target.value);
+                    
+                        }}
                         className = "form-control"
                         placeholder = "Enter phone"/>
                 <label style={{marginBottom:'5px'}}>Email</label>
                 <input type = "text"
                         name = "email"
-                        value={this.state.email}
-                        onChange={this.handleInputChange}
+                        value={email}
+                        onChange={e=>{
+                  
+                            setemail(e.target.value);
+                    
+                        }}
                         className = "form-control"
                         placeholder = "Enter email"/>
                 <label style={{marginBottom:'5px'}}>NIC</label>
                 <input type = "text"
                         name = "nic"
-                        value={this.state.nic}
-                        onChange={this.handleInputChange}
+                        value={nic}
+                        onChange={e=>{
+                  
+                        setnic(e.target.value);
+
+                        }}
                         className = "form-control"
                         placeholder = "Enter NIC"/>
                 <label style={{marginBottom:'5px'}}>Gender</label>
                 <input type = "text"
                         name = "gender"
-                        value={this.state.gender}
-                        onChange={this.handleInputChange}
+                        value={gender}
+                        onChange={e=>{
+                  
+                        setgender(e.target.value);
+
+                        }}
                         className = "form-control"
                         placeholder = "Enter Gender"/>
                 <label style={{marginBottom:'5px'}}>Role</label>
-                {this.state.role === "User" ?
+                {user.role === "User" ?
                 <input type = "text"
                         name = "role"
-                        value={this.state.role}
-                        onChange={this.handleInputChange}
+                        value={role}
+                        onChange={e=>{
+                  
+                        setrole(e.target.value);
+
+                        }}
                         className = "form-control"
                         readonly="true"
                         placeholder = "Enter Password"/>:null}
-                {this.state.role === "admin" ?
+                        {user.role === "admin" ?
                         <input type = "text"
                         name = "role"
-                        value={this.state.role}
-                        onChange={this.handleInputChange}
+                        value={role}
+                        onChange={e=>{
+                  
+                        setrole(e.target.value);
+
+                        }}
                         className = "form-control"
                         placeholder = "Enter Password"/>:null}
 
+                    <br/>
                     <button className="btn btn-success" type="submit" style={{marginBottom:'15px'}} onClick={this.onSubmit}>
-                        <i className="far fa-check-square"></i>
+
+
+                    <button className="btn btn-success" type="submit" style={{marginBottom:'15px'}} onClick={onSubmit}>
+        <i className="far fa-check-square"></i>
                         &nbsp;update
                     </button>
 
@@ -164,4 +219,3 @@ export default class EditProfile extends Component {
         </div>
         )
     }
-}
