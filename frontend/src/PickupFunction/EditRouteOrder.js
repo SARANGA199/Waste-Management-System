@@ -51,6 +51,10 @@ export default function EditRouteOrder()  {
 
         }
 
+        let ans = window.confirm("Are you really wanted to update ?");
+
+        if(ans){
+
         axios.put(`http://localhost:8070/routeOrder/updateOrderRoute/${orderId}`,newRoute).then(()=>{
 
             alert("Route Updated Successfully");
@@ -63,7 +67,7 @@ export default function EditRouteOrder()  {
          })
           
          
-          
+        }   
                  
 
     }
@@ -75,12 +79,12 @@ export default function EditRouteOrder()  {
 
 <button className ="btn btn-success"><a href="/routeOrder" style={{textDecoration:'none', color :'white'}}>Request Routes</a> </button>
 
-  <div className="addform"><h1>Process Order</h1></div>
+  <div className="addform"><h1> Edit Order Route</h1></div>
                 
     <div className="main">
 
 <form onSubmit={submitData}  className="form">
-  <div className="col-md-4 mb-3">
+  {/* <div className="col-md-4 mb-3">
     <label htmlFor="name" className="form-label">
     <h2 className="name1">  Order ID </h2>
     </label>
@@ -99,7 +103,7 @@ export default function EditRouteOrder()  {
   }}
       
     />
-  </div>
+  </div> */}
 
 
   <div className="col-md-4 mb-3">
@@ -225,7 +229,7 @@ export default function EditRouteOrder()  {
   
                     <div className="col-md-4 mb-3">
                         <label className="form-label">
-                        <h2 className="name1">Distance </h2>
+                        <h2 className="name1">Distance(KM) </h2>
                         </label>
                         <input
                          required
@@ -251,7 +255,7 @@ export default function EditRouteOrder()  {
                         </label>
                         <input
                         required
-                        type="text"
+                        type="time"
                         value={arrivalTime}
                         style={{width:"300px"}}
                         className="form-control"
@@ -272,7 +276,7 @@ export default function EditRouteOrder()  {
                         <h2 className="name1">Date </h2>
                         </label>
                         <input
-                        type="text"
+                        type="date"
                         className="form-control"
                         value={date}
                         style={{width:"300px"}}
@@ -306,11 +310,12 @@ export default function EditRouteOrder()  {
             </div>
             <hr className="col-md-4 mb-4" />
 
-            <button type="submit" id= " btn1" className="btn btn-primary mb-5"  href="/routeReq">
+            <button type="submit" id= " btn1" className="btn btn-outline-success mb-5"  href="/routeReq">
                 Update
             </button>
             </form>
             </div>
+            <br/> <br/>
             </div>
 
 

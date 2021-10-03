@@ -54,7 +54,7 @@ router.post('/addReqRoute',(req,res)=>{
      }
 
      return res.status(200).json({
-        success : "Posted Save Successfully"
+        success : "Request Save Successfully"
      });
   });
 });
