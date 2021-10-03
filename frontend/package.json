@@ -10,7 +10,10 @@
     "bootstrap": "^5.1.1",
     "card-validator": "^8.1.1",
     "jspdf": "^2.4.0",
+
+
     "jspdf-autotable": "^3.5.20",
+
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.3",
     "react-credit-cards": "^0.8.3",

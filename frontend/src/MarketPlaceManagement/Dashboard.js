@@ -96,6 +96,7 @@ export default function Dashboard() {
                         <i className="bi bi-trash me-2" />
                         Delete
                       </button>
+
                       <a
                         type="button"
                         className="btn btn-warning ms-5"
