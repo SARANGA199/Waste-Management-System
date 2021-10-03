@@ -13,7 +13,7 @@ const CreditCardForm = () => {
   values.uid = "ui22222";
   return (
     <div>
-      <div className="container">
+      <div className="cardcontainer">
         <div className="box justify-content-center align-items-center">
           <div className="formDiv">
           <div className="creditCard">
@@ -50,6 +50,7 @@ const CreditCardForm = () => {
                 required
               />
             </Form.Group>
+            <br />
             <Form.Group>
               <Form.Control
                 type="date"
@@ -62,6 +63,7 @@ const CreditCardForm = () => {
                 required
               />
             </Form.Group>
+            <br />
             <Row>
               <Col>
                 <Form.Group>
@@ -96,7 +98,10 @@ const CreditCardForm = () => {
             <Row>
               
             </Row>
+            <br />
+            <center>
             <Button
+            style={{backgroundColor: "green"}}
               size={"block"}
               data-testid="validateButton"
               id="validateButton"
@@ -104,6 +109,7 @@ const CreditCardForm = () => {
             >
               Submit
             </Button>
+            </center>
           </Form>
           </div>
           <Alert

@@ -1,179 +1,170 @@
-import React, { Component } from 'react'
-import axios from 'axios';
+import React, {useState, useEffect}  from 'react';
+import axios from "axios";
+import { Button, Form, Alert, Row, Col } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./CreditCardForm.css";
+import "react-credit-cards/es/styles-compiled.css";
+//import AddpicupReq from './AddpickupReq.css'
+import { useHistory } from 'react-router';
 
-export default class EditCard extends Component {
-    /*
-        constructor(props){
-            super(props);
-            this.state={
-                uid:"",
-                cardName:"",
-                cardNumber:"",
-                cardType:"",
-                cardExpiration:"",
-                cardSecurityCode:"",
-                passcardNicknameword:"",
-            }
+export default function EditCardData()  {
+  
+  let history = useHistory();
+  //let pd2;
+
     
+    const [CardId, setsCardId] = useState();
+    const [cardNickname, setNickname] = useState();
+    const [cardName, setHolder] = useState();
+    const [cardNumber, setNumber] = useState();
+    const [cardType, setType] = useState();
+    const [cardSecurityCode, setCVV] = useState();
+    const [cardExpiration, setExp] = useState();
+    
+    
+
+    useEffect(() => {
+
+        setsCardId(localStorage.getItem('CardId'))
+        setNickname(localStorage.getItem('cardNickname'));
+        setHolder(localStorage.getItem('cardName'));
+        setNumber(localStorage.getItem('cardNumber'));
+        setType(localStorage.getItem('cardType'));
+        setCVV(localStorage.getItem('cardSecurityCode'));
+        setExp(localStorage.getItem('cardExpiration'));
+
+        //pd2 = pDate.substring(0,9);
+        
+    },[] );
+
+    
+    function submitData(e) {
+        e.preventDefault();
+        const newRoute = {
+              
+            CardId,
+            cardNickname,
+            cardName,
+            cardNumber,
+            cardType,
+            cardSecurityCode,
+            cardExpiration
         }
-    
-    */
-    
-      
-        constructor(props){
-            
-            super(props);
-            //this.onSubmit = this.onSubmit.bind(this)
-    
-            this.state={
-                
-                cardName : "" ,
-                cardNumber : "",
-                cardType: "",
-                cardExpiration: "",
-                cardSecurityCode: "",
-                cardNickname: ""
-            }
-        }
-    
-        handleInputChange =(e) =>{
-            const {name,value} = e.target;
-            this.setState({
-                ...this.state,
-                [name]:value
-            })
-        }    
-    
-    
-        componentDidMount(){
-    
-            //const id = this.props.match.params.id;
-            //const id = param_id;
-            const id="61408760f92f8928fcf89365";
-            //const queryParams = new URLSearchParams(window.location.search);
-            //const id = queryParams.get('id');
-    
-            alert(id);
-    
-            axios.get(`http://localhost:8070/formcards/formcards/getCard/${id}`).then((res)=>{
-        
-                 if(res.data.success){
-                    alert("Data fetched");
-                    this.setState({
-                        Card: res.data.Card,
-                        cardName : res.data.formcards.cardName,
-                        cardNumber:res.data.formcards.cardNumber,
-                        cardType: res.data.formcards.cardType,
-                        cardExpiration: res.data.formcards.cardExpiration,
-                        cardSecurityCode: res.data.formcards.cardSecurityCode,
-                        cardNickname: res.data.formcards.cardNickname,                   
-                    });
-        
-                 
-                 }
-        
-            })
-         }  
-    
-    
-      
-        onSubmit = (e) =>{
-            
-            e.preventDefault();
-    
-            const id="61408760f92f8928fcf89365";
-       
-            const { cardName,cardNumber,cardType,cardExpiration,cardSecurityCode,cardNickname} = this.state;
-             
+
+        let ans = window.confirm("Are you really wanted to update ?");
+
+        if(ans){
+
+        axios.put(`http://localhost:8070/salarys/update/${CardId}`,newRoute).then(()=>{
+
+            alert("Salary Data Updated Successfully");
            
-            const data = {
+            history.push('/credit-card-validation/MyCards2/');
     
-                cardName : cardName ,
-                cardNumber : cardNumber,
-                cardType: cardType,
-                cardExpiration: cardExpiration,
-                cardSecurityCode: cardSecurityCode,
-                cardNickname: cardNickname
-            }
+         }).catch((err)=>{
     
-            alert(id);
-            
-                
-            axios.put(`http://localhost:8070/formcards/editCard/${id}`,data).then((res) =>{
-    
-           
-                if(res.data.success){
-                    alert("Successfully Updated !");
-                    this.setState(
-                        {
-                            cardName : "" ,
-                            cardNumber : "",
-                            cardType: "",
-                            cardExpiration: "",
-                            cardSecurityCode: "",
-                            cardNickname: ""   
-                        }
-                    )
-                    //this.props.history.push('/formcards');
-                    
-                }
-            })
-       
-    }
-    
-        handleInputChange = (e)=>{
+            alert(err);
+         })
           
-            const {name,value} = e.target;
-    
-            this.setState({
-                ...this.state,
-                [name] :value
-            })
-    
-    
-        }
-    
-      
-        
-    
-     
-    
-        render() {
-            return (
-                
-                <div>
-                    <center>
-                    <div className="container">
-    
-                <form id="myform" style={{width:"1900px"}}>
-                
-    
-                <div className="col-md-4 mb-3">
-                    <label htmlFor="name" className="form-label">
-                    New Nickname
-                    </label>
-                    <input
-                    type="text"
-                    className="form-control"
-                    name="PackSize"
-    
-                    onChange = {this.handleInputChange}
-                    
-                    />
-                </div>   
-                        
-                            <hr className="col-md-4 mb-4" />
-    
-                            <button type="submit" id= " btn1" className="btn btn-primary mb-5" onClick={this.onSubmit}>
-                                Update
-                            </button>
-                            </form>
-                            </div>
-    
-                            
-                    
-                            </center>  
-                </div> 
-            ) 
-        }
+         
+         
+        }   
+                 
+
     }
+
+
+   return(
+      
+    <div>
+    <div className="cardcontainer">
+      <div className="box justify-content-center align-items-center">
+        <div className="formDiv">
+        <div className="creditCard">
+        <h3> Update Card Details</h3>
+        </div>
+        <Form onSubmit={submitData} >
+          <Form.Group>
+            <Form.Control
+              type="text"
+              id="uid"
+              data-testid="uid"
+              name="uid"
+              placeholder="Username"
+              value={cardNickname}
+              onChange={e=>{
+                  
+                setNickname(e.target.value);
+    
+             }}
+  
+              required
+            />
+          </Form.Group>
+          <br />
+          <Form.Group>
+            <Form.Control
+              type="text"
+              id="date"
+              data-testid="date"
+              name="date"
+              placeholder="Holder's Name"
+              value={cardName}
+
+              onChange={e=>{
+                  
+                setHolder(e.target.value);
+    
+             }}
+              
+
+    
+            />
+          </Form.Group>
+          <br />
+         
+          <br />
+          <Form.Group>
+            <Form.Control
+              type="number"
+              id="amount"
+              data-testid="amount"
+              name="amount"
+              placeholder="Payment Amount"
+              value={cardType}
+              onChange={e=>{
+                  
+                setType(e.target.value);
+    
+             }}
+
+              required
+            />
+          </Form.Group>
+
+          <br />
+          <center>
+          <Button
+            style={{backgroundColor: "green"}}
+            size={"block"}
+            data-testid="validateButton"
+            id="validateButton"
+            type="submit"
+            
+          >
+            Submit
+          </Button>
+          </center>
+        </Form>
+        </div>
+        {" "}
+      </div>
+    </div>
+  </div>
+
+
+   );
+
+
+
+}

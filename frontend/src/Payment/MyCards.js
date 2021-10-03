@@ -1,7 +1,27 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import userEvent from '@testing-library/user-event';
+import {useContext} from 'react';
+import { AuthContext } from '../Context/AuthContext';
+
+
+
+
+let uname;
+const USR = () =>{
+    
+    const {user} = useContext(AuthContext);
+    console.log(user.username);
+    uname = user.username;
+
+    //localStorage.setItem('username', user.username);
+}
 
 export default class MyCards extends Component {
+
+
+    static contextType = AuthContext;
+
 
     constructor(props){
 
@@ -12,10 +32,13 @@ export default class MyCards extends Component {
            ReqRoute:[]
       
         };
+
+       
       }
       
       componentDidMount(){
-        const id= "ui22222";
+        //alert(uname)
+        const id= "zeusUser";
         this.retriveCards(id);
       }
       
@@ -51,7 +74,8 @@ export default class MyCards extends Component {
             }).catch((err)=>{
                 alert(err.message);
             })
-        }  
+        } 
+        this.retriveCards(id); 
       }
 
       deleteCard(){
@@ -108,7 +132,17 @@ export default class MyCards extends Component {
                                 <td>{Reqr.cardExpiration}</td>
                                 
 
+                                <td>
 
+                                    <a className="btn btn-warning" href={`credit-card-validation/editCard/${Reqr._id}`}>
+                                        <i className="fas fa-edit"></i>&nbsp;Edit
+                                    </a>
+                                    &nbsp;
+                                    <a className="btn btn-danger" onClick={() => this.onDelete(Reqr._id)}>
+                                        <i className="fas fa-trash-alt"></i>&nbsp;Delete
+                                    </a>
+
+                                </td>
                                
 
                             </tr>

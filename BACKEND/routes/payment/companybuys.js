@@ -1,7 +1,7 @@
 //const Card = require("../models/Salary");
 
 const router = require("express").Router();
-let Company = require("../../models/CompanyBuy");
+let Company = require("../../Models/Payment/CompanyBuy");
 
 router.route("/add").post((req,res)=>{
     const comID = req.body.comID;
@@ -38,16 +38,16 @@ router.route("/").get((req,res)=>{
 
 router.route("/update/:id").put(async (req, res)=>{
     let companyid = req.params.id;
-    const {EID,pDate,OT_Payment,TotalSalary} = req.body;
+    const {comID,date,size,price} = req.body;
 
     const updatePurchase = {
-        EID,
-        pDate,
-        OT_Payment,
-        TotalSalary
+        comID,
+        date,
+        size,
+        price
     }
 
-    const update = await Company.findByIdAndUpdate(company,updatePurchase)
+    const update = await Company.findByIdAndUpdate(companyid,updatePurchase)
     .then(()=>{
         res.status(200).send({status: "Updated"});
     }).catch((err)=>{

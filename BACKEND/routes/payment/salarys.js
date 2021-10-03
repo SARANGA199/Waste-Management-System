@@ -38,12 +38,11 @@ router.route("/").get((req,res)=>{
 
 router.route("/update/:id").put(async (req, res)=>{
     let salaryid = req.params.id;
-    const {EID,pDate,OT_Payment,TotalSalary} = req.body;
+    const {EID,pDate,TotalSalary} = req.body;
 
     const updateSalary = {
         EID,
         pDate,
-        OT_Payment,
         TotalSalary
     }
 

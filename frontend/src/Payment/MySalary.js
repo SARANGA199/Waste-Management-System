@@ -11,7 +11,7 @@ export default class SalaryData extends Component {
       }
       
       componentDidMount(){
-        const id= "ui2222";
+        const id= "zeusAdmin";
         this.retriveSalary(id);
       }
       
@@ -73,11 +73,7 @@ export default class SalaryData extends Component {
     render() {
         return (
             <><center><h1>My Salary Details</h1> </center>
-            <center>
-            <a href="/credit-card-validation/addSalary">
-                
-                <button>Add new</button> </a>
-                </center>
+            
             <div className="container " style={{ width: "100%" }}>
                 <table className="table">
 
@@ -86,7 +82,7 @@ export default class SalaryData extends Component {
                             <th scope="col">#</th>
                             <th scope="col">User ID</th>
                             <th scope="col">Pay Date</th>
-                            <th scope="col">OT Hours</th>
+  
                             <th scope="col">Total Payment</th>
                         </tr>
 
@@ -98,7 +94,7 @@ export default class SalaryData extends Component {
                                 <th scope="row">{index + 1}</th>
                                 <td>{Reqr.EID}</td>
                                 <td>{Reqr.pDate}</td>
-                                <td style={{ width: '250px' }}>{Reqr.OT_Payment}</td>
+
                                 <td>{Reqr.TotalSalary}</td>
                                
                             </tr>

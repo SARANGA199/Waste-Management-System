@@ -148,7 +148,7 @@ router.route("/update/:id").put(async (req, res)=>{
 
 router.route("/delete/:id").delete(async (req,res)=>{
     let cardid = req.params.id;
-    alert(cardid)
+ 
     await Card.findByIdAndDelete(cardid)
     .then(()=>{
         res.status(200).send({status: "Deleted!"});

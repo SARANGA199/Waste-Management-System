@@ -11,7 +11,7 @@ export default class EditSalary extends Component {
       }
       
       componentDidMount(){
-        const UID = "uid112";
+        const UID = "zeusUser";
         this.retrivePayments(UID);
       }
       

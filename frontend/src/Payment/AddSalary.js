@@ -8,10 +8,10 @@ import "react-credit-cards/es/styles-compiled.css";
 
 const CreditCardForm = () => {
   const { handleChange, handleFocus, handleSubmit3, handleSubmit, values, errors } = useForm();
-  values.uid="123123";
+  //values.uid="123123";
   return (
     <div>
-      <div className="container">
+      <div className="cardcontainer">
         <div className="box justify-content-center align-items-center">
           <div className="formDiv">
           <div className="creditCard">
@@ -30,6 +30,7 @@ const CreditCardForm = () => {
                 required
               />
             </Form.Group>
+            <br />
             <Form.Group>
               <Form.Control
                 type="date"
@@ -41,7 +42,7 @@ const CreditCardForm = () => {
                 onFocus={handleFocus}
               />
             </Form.Group>
-
+            <br />
             <Form.Group>
               <Form.Control
                 type="hidden"
@@ -54,7 +55,7 @@ const CreditCardForm = () => {
                 value={values.uid}
               />
             </Form.Group>
-
+            <br />
             <Form.Group>
               <Form.Control
                 type="number"
@@ -68,15 +69,19 @@ const CreditCardForm = () => {
               />
             </Form.Group>
 
-            
+            <br />
+            <center>
             <Button
+              style={{backgroundColor: "green"}}
               size={"block"}
               data-testid="validateButton"
               id="validateButton"
               type="submit"
+              
             >
               Submit
             </Button>
+            </center>
           </Form>
           </div>
           <Alert
