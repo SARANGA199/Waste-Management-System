@@ -67,7 +67,7 @@ export default function DisplayRouterOrder() {
                     <tr key={index}>
                        <th scope="row">{index+1}</th>
                        <td>{data.quantity}</td>
-                       <td>{data.routeDescription}</td>
+                       <td style={{width:'200px'}}>{data.routeDescription}</td>
                        <td>{data.orderType}</td>
                        <td>{data.vehicleType}</td>
                        <td style={{width:'250px'}}>{data.destination}</td>

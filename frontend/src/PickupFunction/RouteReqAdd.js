@@ -164,7 +164,7 @@ export default function RouteReqAdd()  {
   
                     <div className="col-md-4 mb-3">
                         <label className="form-label">
-                        <h2 className="name1">Distance </h2>
+                        <h2 className="name1">Distance(KM) </h2>
                         </label>
                         <input
                          required
@@ -236,6 +236,7 @@ export default function RouteReqAdd()  {
                         type="date"
                         className="form-control"
                         style={{width:"300px"}}
+                        required
                         name="date"
                         onChange={e=>{
                   
