@@ -8,7 +8,7 @@ import "jspdf-autotable";
 
 // define a generatePDF function that accepts a tickets argument
 const generatePDF = profile => {
-  // initialize jsPDF
+ 
   const doc = new jsPDF();
 
   // define the columns we want and their titles
@@ -16,7 +16,7 @@ const generatePDF = profile => {
   // define an empty array of rows
   const tableRows = [];
 
-  // for each ticket pass all its data into an array
+  
   profile.forEach(profile => {
     const profileData = [
       profile.name,
