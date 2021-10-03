@@ -2,25 +2,31 @@ const router = require("express").Router();
 let CompItem = require("../../Models/RecycleFacility/CompItem");
 
 //Add Company item Details
-router.route("/:itemId/:companyId/addcompanyitem").post((req,res)=>{
+router.route("/addcompanyitem").post((req,res)=>{
 
-    const itemId = req.params.itemId;
-    const companyId = req.params.companyId;
+    const companyName = req.body.companyName;
+    const itemName = req.body.itemName;
     const capacity = Number(req.body.capacity);
+    //const itemCategory = req.body.itemCategory;
+    const Date = req.body.Date;
 
 
   const newCompItem = new CompItem({
         
-    itemId,
-    companyId,
+    companyName,
+    itemName,
     capacity,
+   // itemCategory,
+    Date
 
   })
 
 
   newCompItem.save().then(()=>{
 
-       res.json("Company item Added");
+    return res.json({ 
+        success:true
+    });
 
   }).catch((err) =>{
       
@@ -31,11 +37,14 @@ router.route("/:itemId/:companyId/addcompanyitem").post((req,res)=>{
 })
 
 //Display Company details
-router.route("/").get((req,res) =>{
+router.route("/posts").get((req,res) =>{
 
     CompItem.find().then((companyItems)=>{
 
-          res.json(companyItems)
+      return res.status(200).json({
+        success:true,
+        existingcompanyitems:companyItems
+ })  
 
     }).catch((err)=>{
         console.catch.log(err);
@@ -51,9 +60,11 @@ router.route("/updatecompany/:id").put(async (req,res) =>{
     const {itemId,companyId,capacity} = req.body;
  
     const updatecompanyitemInfo = {
-        itemId,
-        companyId,
+      companyName,
+      itemName,
         capacity,
+       // itemCategory,
+        Date
     }
  
     const update = await CompItem.findByIdAndUpdate(CompItemId,updatecompanyitemInfo)
@@ -71,7 +82,7 @@ router.route("/updatecompany/:id").put(async (req,res) =>{
 
  //Remove company item
 
-router.route("/removecompany/:id").delete(async(req,res)=>{
+router.route("/removecompanyitem/:id").delete(async(req,res)=>{
 
 
     let CompItemId= req.params.id;

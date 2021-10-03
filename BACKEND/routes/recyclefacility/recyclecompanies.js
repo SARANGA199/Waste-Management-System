@@ -85,7 +85,9 @@ router.route("/updatecompany/:id").put(async (req,res) =>{
     const update = await Company.findByIdAndUpdate(CompanyId,updatecompanyInfo)
     .then(() =>{
  
-      res.status(200).send({status:"Company details is  Updated"})
+      return res.json({ 
+        success:true
+    });
  
     }).catch((err) =>{
  

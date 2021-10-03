@@ -48,6 +48,8 @@ export default class updateitem extends Component {
               if(res.data.success){
 
                   alert("item update successfuly")
+
+                  this.props.history.push("/itemdisp")
                   
                 this.setState({
                   itemName:"",
@@ -90,36 +92,44 @@ export default class updateitem extends Component {
 
     render() {
         return (
-            <div>
-               <form class="row g-3">
-              <div class="col-md-6">
-                <label class="form-label">Item Name</label>
-                <input type="text" class="form-control" id="itemname" name="itemName" value={this.state.itemName} onChange={this.handleinputchanges} />
+          <div class="container-fluid px-1 py-5 mx-auto">
+          <div class="row d-flex justify-content-center">
+              <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+            <div class="card">
+              <h3 class="text-center mb-4" >Update Item Details</h3>
+               <form class="row g-3" class="form-card" onSubmit={this.onSubmit}>
+              <div class="col-md-6" >
+                <label style={{paddingRight:'160px'}} >Item Name</label>
+                <input  type="text" class="form-control" id="itemname" name="itemName" value={this.state.itemName} onChange={this.handleinputchanges} required/>
               </div>
               <div class="col-md-6">
-                <label  class="form-label">Category</label>
-                <input type="text" class="form-control" name="category" value={this.state.category} onChange={this.handleinputchanges}/>
+              <label style={{paddingRight:'180px',paddingTop:'20px'}} >Category</label>
+                <input type="text" class="form-control" name="category" value={this.state.category} onChange={this.handleinputchanges} required/>
               </div>
               <div class="col-12">
-                <label for="inputAddress" class="form-label">Date</label>
-                <input type="date" class="form-control" name="date" placeholder="1234 Main St" value={this.state.date} onChange={this.handleinputchanges}/>
+              <label style={{paddingRight:'485px',paddingTop:'20px'}}   >Date</label>
+                <input style={{width:'280px'}} type="date" class="form-control" name="date" placeholder="1234 Main St" value={this.state.date} onChange={this.handleinputchanges} required/>
               </div>
               <div class="col-12">
-                <label for="inputAddress2" class="form-label">Description</label>
-                <textarea  class="form-control" name="description" value={this.state.description} onChange={this.handleinputchanges}></textarea>
+              <label style={{paddingRight:'440px',paddingTop:'20px'}}  >Description</label>
+                <textarea style={{width:'400px'}} class="form-control" name="description" value={this.state.description} onChange={this.handleinputchanges}></textarea>
               </div>
-              <label for="inputAddress2" class="form-label">Unit Price</label>
+              
+              <label style={{paddingRight:'420px',paddingTop:'20px'}} >Unit Price(1kg)</label>
+              <div style={{width:'200px'}}>
               <div class="input-group mb-3">
-              <span class="input-group-text">RS.</span>
-              <input type="number" name="unitPrice" class="form-control" aria-label="Amount (to the nearest dollar)"value={this.state.unitPrice} onChange={this.handleinputchanges}/>
+              <span  class="input-group-text">RS.</span>
+              <input  type="number" name="unitPrice" class="form-control" aria-label="Amount (to the nearest dollar)"value={this.state.unitPrice} onChange={this.handleinputchanges} required/>
               <span class="input-group-text">.00</span>
             </div>
+            </div>
               <div class="col-12">
-                
-                <button type="submit" class="btn btn-primary"  onClick={this.onSubmit} >update</button>
-                
+                <button type="submit" class="btn btn-primary" class="btn-block btn-primary"  formAction="/">Update</button>
               </div>
             </form>
+            </div>
+            </div>
+            </div>
             </div>
         )
     }

@@ -63,6 +63,7 @@ function SideBar() {
   <li><a  href={"/itemdisp"} style={{width:"124.7%", marginLeft:"-24.8%"}} className="btn-secondary "> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item List </a> </li>
   <li><a  href={"/discompanies"} style={{width:"124.7%", marginLeft:"-24.8%"}} className="btn-secondary "> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Company List </a> </li>
   <li><a  href={"/addcompanyitems"} style={{width:"124.7%", marginLeft:"-24.8%"}} className="btn-secondary "> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add Item Capacity </a> </li>
+  <li><a  href={"/disitemscapacity"} style={{width:"124.7%", marginLeft:"-24.8%"}} className="btn-secondary "> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View Item Capacity </a> </li>
   </ul>
 </div>:null}
 

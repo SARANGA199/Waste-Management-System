@@ -98,6 +98,7 @@ import editCard from "./Payment/editCard";
 import edcard from "./Payment/edcard";
 //import savedCard from "./Payment/savedCard";
 import scard from "./Payment/scard";
+import disitemscapcity from './RecycleFacilityManagement/disitemscapcity';
 
 function App() {
   return (
@@ -160,6 +161,7 @@ function App() {
           <PrivateRoute path='/discompanies' roles={["admin"]} component={discompanies}/>
           <PrivateRoute path='/upcompany/:id' roles={["admin"]} component={upcompany}/>
           <PrivateRoute path='/addcompanyitems' roles={["admin"]} component={additemscapacity}/>
+          <PrivateRoute path='/disitemscapacity' roles={["admin"]} component={disitemscapcity}/>
 
           {/* staff */}
 

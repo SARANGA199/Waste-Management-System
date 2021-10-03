@@ -32,6 +32,10 @@ export default class home extends Component {
 
   onDelete = (id)=>{
 
+    let ans = window.confirm("Do you want to delete this record ?");
+
+        if(ans){
+
       axios.delete('http://localhost:8070/item/deleteitem/'+id).then((res)=>{
 
               alert("delete successfully")
@@ -39,23 +43,24 @@ export default class home extends Component {
     
       })
 
+    }
+
   }
   
 
   render() {
     return (
       <div className="container">
-        <h1>All Items</h1>
+        <h1 style={{paddingTop:'5',paddingLeft:'400px'}}>All Recycling Items</h1>
         <table class="table">
           <thead>
             <tr>
-              <th scope="col">#</th>
+              <th scope="col"></th>
               <th scope="col">Itemname</th>
-              <th scope="col">category</th>
+              <th scope="col">Category</th>
               <th scope="col">Date</th>
               <th scope="col">Discription</th>
               <th scope="col">Unitprice</th>
-              <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -69,18 +74,18 @@ export default class home extends Component {
                 <td>{items.unitPrice}</td>
                 <td>
                     <a className = "btn btn-warning" href={'/update/'+ items._id}>
-                            Edit
+                    <i className= "fas fa-edit"></i>&nbsp;Edit
                     </a>
                     &nbsp;
                     <a className = "btn btn-danger" href="#" onClick={()=>this.onDelete(items._id)}>
-                            Delete
+                    <i className= "fas fa-trash-alt"></i>&nbsp;Delete
                     </a>
                 </td>
               </tr> 
             ))}
           </tbody>
           </table>
-          <button type="button" className="btn btn-success"><a href='/add' style={{textDecoration:"none",color:'white'}}>Add New Item</a></button>
+          <button type="button" className="btn btn-success"><a href='/add' style={{textDecoration:"none",color:'white'}}>+ Add New Item</a></button>
       </div>
     )
   }

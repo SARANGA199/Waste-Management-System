@@ -32,6 +32,10 @@ export default class discompanies extends Component {
       }
     
       onDelete = (id)=>{
+
+        let ans = window.confirm("Do you want to delete this record ?");
+
+        if(ans){
     
           axios.delete('http://localhost:8070/Company/removecompany/'+id).then((res)=>{
     
@@ -39,6 +43,8 @@ export default class discompanies extends Component {
                   this.retrivecompany()
         
           })
+
+        }
     
       }
       
@@ -46,11 +52,11 @@ export default class discompanies extends Component {
       render() {
         return (
           <div className="container">
-            <h1>All compnies</h1>
+            <h1 style={{paddingTop:'5',paddingLeft:'300px'}}>All Registered Companies</h1>
             <table class="table">
               <thead>
                 <tr>
-                  <th scope="col">#</th>
+                  <th scope="col"></th>
                   <th scope="col">Companyname</th>
                   <th scope="col">Register Number</th>
                   <th scope="col">Location</th>
@@ -65,11 +71,11 @@ export default class discompanies extends Component {
                     <td>{compnies.companyLocation}</td>
                     <td>
                         <a className = "btn btn-warning" href={'/upcompany/'+ compnies._id}>
-                                Edit
+                        <i className= "fas fa-edit"></i>&nbsp;Edit
                         </a>
                         &nbsp;
                         <a className = "btn btn-danger" href="#" onClick={()=>this.onDelete(compnies._id)}>
-                                Delete
+                        <i className= "fas fa-trash-alt"></i>&nbsp;Delete
                         </a>
                         
                     </td>
@@ -77,10 +83,10 @@ export default class discompanies extends Component {
                 ))}
               </tbody>
               </table>
-              <button type="button" className="btn btn-success"><a href='/addcompany' style={{textDecoration:"none",color:'white'}}>Add New company</a></button>
+              <button type="button" className="btn btn-success"><a href='/addcompany' style={{textDecoration:"none",color:'white'}}>Register New company</a></button>
               &nbsp;
               &nbsp;
-              <button type="button" className="btn btn-success"><a href='/addcompanyitems' style={{textDecoration:"none",color:'white'}}>Add Item Capacity</a></button>
+              <button type="button" className="btn btn-success"><a href='/addcompanyitems' style={{textDecoration:"none",color:'white'}}>+ Add Item Capacity</a></button>
           </div>
         )
       }

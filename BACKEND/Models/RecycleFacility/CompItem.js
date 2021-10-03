@@ -3,13 +3,17 @@ const Schema = mongoose.Schema;
 
 const companyItem = new Schema({
 
-    itemId: {
-        type: Schema.Types.ObjectId,
-        ref: 'Item'
+    companyName: {
+        type: String,
+        required:true
     },
-    companyId: {
-        type: Schema.Types.ObjectId,
-        ref: 'RecycleCompany'
+    itemName: {
+        type: String,
+        required:true
+    },
+    Date: {
+        type: String,
+        required:true
     },
     capacity: {
         type: Number,

@@ -6,7 +6,7 @@ router.route("/additem").post((req,res)=>{
 
     const itemName = req.body.itemName;
     const category = req.body.category;
-    const date = Date(req.body.date);
+    const date = req.body.date;
     const unitPrice = Number(req.body.unitPrice);
     const description = req.body.description;
 
@@ -89,7 +89,9 @@ router.route("/updateitem/:id").put(async (req,res) =>{
     const update = await Item.findByIdAndUpdate(itemId,updateitemInfo)
     .then(() =>{
  
-      res.status(200).send({status:"Item details is  Updated"})
+        return res.json({ 
+            success:true
+        });
  
     }).catch((err) =>{
  
