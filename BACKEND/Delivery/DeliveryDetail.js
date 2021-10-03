@@ -9,16 +9,28 @@ const DeliverySchema = new Schema({
         
     },
 
+    tripId: {
+        type: Schema.Types.ObjectId,
+        ref: "RouteInfo",
+    },
+
+    vehicleNo: {
+        type: String,
+        required: true
+    },
+
     deliveryLocation: {
         type: String,
         required: true
 
+    },
+    date: {
+
+        type: Date,
+        required: true
+
     }
-    
-}, {
-    timestamps: true,
-}
-)
+})
 const Delivery = mongoose.model("Delivery", DeliverySchema);
 
 module.exports = Delivery;

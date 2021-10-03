@@ -34,6 +34,14 @@ export default function DeleteRouteRequest()  {
     },[] );
 
 
+    onDelete = (id) =>{
+        axios.delete(`/user/deleteUser/${id}`).then((res)=>{
+            alert("Deleted Successfully");
+            this.props.history.push("/");
+        })
+    }
+
+
     function deleteData() {
         
 

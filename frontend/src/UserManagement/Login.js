@@ -24,6 +24,7 @@ const Login = props=>{
                 props.history.push('/');
             }
             else
+                alert("Invalid username or password");
                 setMessage(message);
         });
     }

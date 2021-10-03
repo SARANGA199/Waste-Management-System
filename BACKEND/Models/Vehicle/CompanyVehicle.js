@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const vehicleSchema = new Schema({
 
     Vehicle_reg_no: {
-        type: Number,
+        type: String,
         required: true
     },
 

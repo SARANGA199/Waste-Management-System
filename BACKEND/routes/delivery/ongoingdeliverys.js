@@ -6,13 +6,13 @@ let OngoingDelivery = require("../../Models/Delivery/OngoingDelivery");
 router.route("/addTrip").post((req, res) => {
 
 
-        const dId = req.body.dId;
+        const _id = req.body._id;
         const destination = req.body.destination;
 
 
         const ongoingDetail = new OngoingDelivery({
 
-            dId,
+            _id,
             destination
         })
 
@@ -27,12 +27,32 @@ router.route("/addTrip").post((req, res) => {
         })
 
     })
+
+//Display order
+router.get("/check/:id", (req, res) => {
+
+    let displayJob = req.params.id;
+    OngoingDelivery.findById(displayJob,(err,check) => {
+    if(err){
+       return res.status(400).json({success:false,err});
+
+    }
+    return res.status(200).json({
+        success:true,
+        check
+    })
+  }) 
+})
+
+
+
+
     //Delete Profile
 
-router.route("/deleteTrip/:tripid").delete(async(req, res) => {
+router.route("/deleteTrip/:id").delete(async(req, res) => {
 
 
-    let deleterecord = req.params.tripid;
+    let deleterecord = req.params.id;
     await ongoingDelivery.findOneAndDelete(deleterecord).then(() => {
         res.status(200).send({ status: "Trip Details Deleted" })
     }).catch((err) => {

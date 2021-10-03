@@ -1,8 +1,30 @@
+
+import React, { Component } from 'react'
+import axios from 'axios';
+import './Styles/login.css'
+
+export default class EditProfile extends Component {
+
+    constructor(props){
+        super(props);
+        this.state={
+            name:"",
+            username:"",
+            phone:"",
+            email:"",
+            nic:"",
+            gender:"",
+            password:"",
+            image:"",
+            role:""
+        }
+
 import React, {useState, useEffect,useContext}  from 'react';
 import axios from "axios";
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import { AuthContext } from '../Context/AuthContext';
+
 
 
 export default function EditRouteRequest()  {
@@ -48,7 +70,30 @@ export default function EditRouteRequest()  {
             gender,
             role
 
+
+        axios.put(`/user/updateUser/${id}`,data).then((res) =>{
+            if(res.data.success){
+                alert("Profile Updated successfully");
+                this.props.history.push("/profiles"); 
+                this.setState(
+                    {
+                        name:"",
+                        username:"",
+                        phone:"",
+                        email:"",
+                        nic:"",
+                        gender:"",
+                        password:"",
+                        image:"",
+                        role:""
+                    }
+                )
+            }
+
+        });
+
         }
+
 
         axios.put(`/user/updateUser/${uid}`,editprof).then(()=>{
 
@@ -161,8 +206,12 @@ export default function EditRouteRequest()  {
                         className = "form-control"
                         placeholder = "Enter Password"/>:null}
 
+                    <br/>
+                    <button className="btn btn-success" type="submit" style={{marginBottom:'15px'}} onClick={this.onSubmit}>
+
+
                     <button className="btn btn-success" type="submit" style={{marginBottom:'15px'}} onClick={onSubmit}>
-                        <i className="far fa-check-square"></i>
+        <i className="far fa-check-square"></i>
                         &nbsp;update
                     </button>
 

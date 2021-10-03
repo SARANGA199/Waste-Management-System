@@ -8,7 +8,7 @@ const OngoingDelivery = new Schema({
         ref: "FreelanceDriver",
     },
 
-    destination: {
+    deliveryTown: {
         type: String,
         required: true
     }

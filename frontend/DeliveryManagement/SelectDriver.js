@@ -33,17 +33,21 @@ export default function SelectDriver() {
 
         const setData = (data) => {
 
-          let {_id,vehicleNo, nearbyTown,vehicleType} = data;
+          let {_id,vehicleNo, nearbyTown,vehicleType,destination} = data;
 
           localStorage.setItem('dId',_id);
           localStorage.setItem('vehicleNo', vehicleNo);
           localStorage.setItem('nearbyTown', nearbyTown);
           localStorage.setItem('vehicleType', vehicleType);
         
+          localStorage.setItem('destination', destination);
+          console.log(data);
+
+         
           const OngoingDelivery = {
              
             _id,
-            destination,
+            deliveryTown,
           
         };
     
@@ -53,13 +57,13 @@ export default function SelectDriver() {
              OngoingDelivery
           )
           .then(() => {
-            
+            alert("Details Added");
                                  
           })
           .catch((err) => {
             alert(err);
           });
-          alert("Driver Assigned");
+        alert("Data Added")
 
 }
 
