@@ -1,7 +1,6 @@
 import "./Delivery.css";
-import React, { useState , useContext} from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import { AuthContext } from '../Context/AuthContext';
 
 export default function DriverRegister() {
   const [licenseId, setLicense] = useState("");
@@ -10,11 +9,11 @@ export default function DriverRegister() {
   const [vehicleType, setType] = useState("");
   const [licenseImg1, setImg1] = useState("");
   const [licenseImg2, setImg2] = useState("");
-  const {user} = useContext(AuthContext);
+  
 
   function regDriver(e) {
     e.preventDefault();
-   
+
     const newDriver = {
      
         licenseId,
@@ -27,7 +26,7 @@ export default function DriverRegister() {
 
     axios
       .post(
-        `http://localhost:8070/driver/${user._id}/reg`,      //ID  Add
+        "http://localhost:8070/driver/6151b64dcbef9428c4f23eeb/reg",      //ID  Add
         newDriver
       )
       .then(() => {

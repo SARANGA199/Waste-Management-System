@@ -58,12 +58,12 @@ const Navbar = props =>{
                     </li>
                 </Link> : null
                 }
-                    <Link to="/profiles">
+                    <Link to={`/driver/${user._id}/reg`}>
                         <li className="nav-item nav-link text-white " style={{marginRight:'5vh',marginLeft:'43vh'}}>
                             Driver Register
                         </li>
                     </Link>
-                    <Link to="/profiles">
+                    <Link to="/itemlist">
                         <li className="nav-item nav-link text-white ">
                             Marketplace
                         </li>

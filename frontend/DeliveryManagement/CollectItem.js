@@ -1,35 +1,8 @@
-import React, {useState} from "react";
+import React, {useState,useEffect} from "react";
 import axios from 'axios';
 
 
 export default function CollectItem() {
-
-    const [itemcategory, setCatItem] = useState();
-    const [quantity, setquantity] = useState();
-    const [date, setDate] = useState();
-
-    function submitData(e){
-          
-      e.preventDefault();
-
-      const newReceived = {
-        itemcategory,
-        quantity,
-        date
-      }
-
-      axios.post("http://localhost:8070/receivedItem/addReceived",newReceived).then(()=>{
-
-        alert("Received Items added");
-         e.target.reset();
-         
-
-     }).catch((err)=>{
-
-        alert(err);
-     })
-
-    }
 
     return(
       <div>
@@ -39,7 +12,7 @@ export default function CollectItem() {
       <center> <p class="font"> *Please fill these fields after collecting items </p> </center>
 
          <br/> 
-         <form class="container" onSubmit={submitData}>
+         <form class="container">
          <div className="col-md-8 mb-3 font">
           <label htmlFor="type" className="form-label">
            Item Category
@@ -48,7 +21,7 @@ export default function CollectItem() {
             className="form-select"
             required
             onChange={(e) => {
-               setCatItem(e.target.value);
+              //setType(e.target.value);
             }}
           >
             <option selected>Choose item category</option>
@@ -62,7 +35,7 @@ export default function CollectItem() {
 
         <div className="col-md-8 mb-3 font">
           <label htmlFor="Quantity" className="form-label">
-           Quantity
+           Quantity (kg)
           </label>
            <input
             type="text"
@@ -70,13 +43,13 @@ export default function CollectItem() {
             id="Quantity"
             required
             onChange={(e) => {
-              setquantity(e.target.value);
+              //setLicense(e.target.value);
             }}
           />
         </div>
 
         <div className="col-md-8 mb-3 font">
-          <label htmlFor="date" className="form-label">
+          <label htmlFor="Quantity" className="form-label">
            Date
           </label>
            <input
@@ -85,7 +58,7 @@ export default function CollectItem() {
             id="Date"
             required
             onChange={(e) => {
-                setDate(e.target.value);
+              //setLicense(e.target.value);
             }}
           />
         </div>
@@ -97,11 +70,13 @@ export default function CollectItem() {
 
                </form>
 
-               <br/>   <br/>  <br/> 
-        <hr className="col-md-10 mb-3" />
-       <center> <button type="button" class="btn btn-secondary btn-lg">
+               <br/>   <br/>  
+       <center> <hr className="col-md-10 mb-3" /> </center>
+       <center> <a class="btn btn-secondary btn-lg"
+       href={`/driver`}
+       >
          Finish Delivery
-        </button> </center>
+        </a> </center>
 
 
         </div>

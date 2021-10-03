@@ -41,7 +41,7 @@ onSubmit = (e) =>{
         
     }
 
-    axios.put(`http://localhost:8070/driver/updateProfile/${id}`,data).then((res) =>{
+    axios.put(`http://localhost:8070/driver/updateProfile/6151b64dcbef9428c4f23eeb`,data).then((res) =>{
         if(res.data.success){
             alert("Successfully Updated !");
             this.setState(
@@ -76,7 +76,7 @@ componentDidMount(){
 
     const id = this.props.match.params.id;
 
-    axios.get(`http://localhost:8070/driver/prof/${id}`).then((res)=>{
+    axios.get(`http://localhost:8070/driver/prof/6151b64dcbef9428c4f23eeb`).then((res)=>{
 
          if(res.data.success){
 
@@ -95,10 +95,9 @@ componentDidMount(){
  }  
 
 onDelete= (id)=>{
-   
     let ans = window.confirm("Are you sure want to delete your account?");
     if(ans){  
-    axios.delete(`http://localhost:8070/driver/deleteProfile/${id}`).then((res)=>{
+    axios.delete(`http://localhost:8070/driver/deleteProfile/6151b64dcbef9428c4f23eeb`).then((res)=>{
         alert("Driver Profile Successfully Deleted");
         this.props.history.push('/');
         }).catch((err)=>{

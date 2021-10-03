@@ -1,9 +1,65 @@
-import React, {useState,useEffect} from "react";
+import React, {useState,useContext} from "react";
 import axios from 'axios';
-
+//import { AuthContext } from '../Context/AuthContext';
 
 export default function CollectItem() {
 
+    const [itemcategory, setCatItem] = useState();
+    const [quantity, setquantity] = useState();
+    const [date, setDate] = useState();
+
+    //const {user} = useContext(AuthContext);
+    
+   
+   
+    function submitData(e){
+          
+      e.preventDefault();
+
+      const newReceived = {
+        itemcategory,
+        quantity,
+        date
+      }
+
+      axios.post("http://localhost:8070/receivedItem/addReceived",newReceived).then(()=>{
+
+        alert("Received Items added");
+         e.target.reset();
+         
+
+     }).catch((err)=>{
+
+        alert(err);
+     })
+
+    }
+
+
+    /*function submitDelivery(e){
+      
+      e.preventDefault();
+
+      const newdeliveryDetail = {
+        driverId,
+        deliveryLocation,
+      }
+
+      axios.post("http://localhost:8070/delivery/addDelivery",newdeliveryDetail).then(()=>{
+
+        alert("Details added");
+         e.target.reset();
+         
+
+     }).catch((err)=>{
+
+        alert(err);
+     })
+
+    }*/
+
+    
+  
     return(
       <div>
        <center>   <h1>Collected Items</h1> </center>
@@ -12,7 +68,7 @@ export default function CollectItem() {
       <center> <p class="font"> *Please fill these fields after collecting items </p> </center>
 
          <br/> 
-         <form class="container">
+         <form class="container" onSubmit={submitData}>
          <div className="col-md-8 mb-3 font">
           <label htmlFor="type" className="form-label">
            Item Category
@@ -21,7 +77,7 @@ export default function CollectItem() {
             className="form-select"
             required
             onChange={(e) => {
-              //setType(e.target.value);
+               setCatItem(e.target.value);
             }}
           >
             <option selected>Choose item category</option>
@@ -43,13 +99,13 @@ export default function CollectItem() {
             id="Quantity"
             required
             onChange={(e) => {
-              //setLicense(e.target.value);
+              setquantity(e.target.value);
             }}
           />
         </div>
 
         <div className="col-md-8 mb-3 font">
-          <label htmlFor="Quantity" className="form-label">
+          <label htmlFor="date" className="form-label">
            Date
           </label>
            <input
@@ -58,7 +114,7 @@ export default function CollectItem() {
             id="Date"
             required
             onChange={(e) => {
-              //setLicense(e.target.value);
+                setDate(e.target.value);
             }}
           />
         </div>
@@ -71,11 +127,15 @@ export default function CollectItem() {
                </form>
 
                <br/>   <br/>  
-       <center> <hr className="col-md-10 mb-3" /> </center>
-       <center> <button type="button" class="btn btn-secondary btn-lg">
-         Finish Delivery
-        </button> </center>
+               <form >
+        <hr className="col-md-10 mb-3" />
+       <center> 
+       <button type="submit" id="btndelete" class="btn btn-secondary btn-lg"
+           >
+              Finish Delivery
+           </button> </center> </form>
 
+       
 
         </div>
 

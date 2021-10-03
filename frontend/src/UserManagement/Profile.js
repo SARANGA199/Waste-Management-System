@@ -43,6 +43,14 @@ export default function DisplayRouteRequest() {
         <div className = "container " style={{width:"100%"}}>
 
                  <div className="addform1"><h1>All User Accounts </h1></div>
+
+             
+                 <a className="btn btn-warning" 
+                            type="button"
+                            href={`http://localhost:3000/report`}
+                            style={{textDecoration:'none'}}>
+                            <i></i>&nbsp;Generate Report
+                            </a>
       
         <table className="table" >
   

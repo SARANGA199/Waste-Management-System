@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const FreelanceSchema = new Schema({
 
-    _id: {
+    userId: {
         type: Schema.Types.ObjectId,
         ref: "user",
     },

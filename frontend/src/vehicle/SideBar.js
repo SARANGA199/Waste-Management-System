@@ -20,7 +20,16 @@ function SideBar() {
         <li><a href="/"><i className="fas fa-home" />Home</a></li>
         {
                 user.role === "User" ? 
-        <li><a href="/"><i className="fas fa-home" />Dashboard</a></li>:null}
+        <li><a href="/dashboard"><i  />Dashboard</a></li>:null}
+
+          { 
+                user.role === "User" ? 
+         <li><a href={`/driver/prof/${user._id}`}><i  />View Driver Profile</a></li> :null}
+
+        { 
+                user.role === "User" ? 
+         <li><a href={`/trip/check/${user._id}`}><i  />Check Delivery Job</a></li> :null}
+
       
         {
                 user.role === "admin" ? 

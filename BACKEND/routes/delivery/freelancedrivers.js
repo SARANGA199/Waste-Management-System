@@ -2,9 +2,9 @@ const router = require("express").Router();
 let Driver = require("../../Models/Delivery/FreelanceDriver");
 
 //Register Driver
-router.route("/:dId/reg").post((req, res) => {
+router.route("/:_id/reg").post((req, res) => {
 
-    const userId = req.params.dId;
+    const _id = req.params._id;
     const licenseId = req.body.licenseId;
     const nearbyTown = req.body.nearbyTown;
     const vehicleNo = req.body.vehicleNo;
@@ -14,7 +14,7 @@ router.route("/:dId/reg").post((req, res) => {
 
     const regDriver = new Driver({
 
-        userId,
+        _id,
         licenseId,
         nearbyTown,
         vehicleNo,
@@ -37,7 +37,7 @@ router.route("/:dId/reg").post((req, res) => {
 
 })
 
-//Display Profile
+//Display Profile(class)
 router.get("/prof/:id", (req, res) => {
 
     let displayProfile = req.params.id;
@@ -73,7 +73,7 @@ router.get("/allprof",(req,res)=>{
 
 
 
-//Update Profile
+//Update Profile(class)
 router.put("/updateProfile/:id",(req,res) => {
 
     
@@ -99,6 +99,18 @@ router.put("/updateProfile/:id",(req,res) => {
      )
       
     })
+
+//Update Profile(function)
+/*router.put("/updateProfile1/:id").put(async(req,res)=>{
+    let Id=req.params.id;
+    const{}
+})*/
+
+
+
+
+
+
 
 //Delete Profile
 

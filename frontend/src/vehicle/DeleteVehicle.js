@@ -33,14 +33,17 @@ export default function DeleteVehicle()  {
    
 
   const onDelete = (_id) => {
+    console.log("Delete", _id);
+    let ans = window.confirm("Do you want to delete this vehicle ?");
+    if (ans) {
     axios.delete(`http://localhost:8070/vehicle/deleteVehicle/${_id}`)
-    
+    }
   }
 
     
         return (
        <div>
-       <form onSubmit={onDelete}>
+       <form onSubmit={onDelete(_id)} >
        
         <div className="row mb-3">
         
@@ -123,10 +126,19 @@ export default function DeleteVehicle()  {
         <label for="formFile" class="col-sm-2 form-label">Photo</label>
         <div class="col-sm-4">
         <input class="form-control" type="file" id="formFile"/>
+        <img
+            className="img-thumbnail"
+            width="150px"
+            height="150px"
+            src={Photo}
+            alt="Card image cap"
+          />
+         
+
         </div>
         </div>
       
-        <a type="submit" className="btn btn-primary" href="/" onClick={onDelete(_id)}>Delete</a>
+        <a type="submit" className="btn btn-primary" href="/" >Delete</a>
 
        
 
